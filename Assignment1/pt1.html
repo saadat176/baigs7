@@ -5,41 +5,6 @@ Date: 14 May 2025
 Part 1 of Assignment 1 - Marking up a letter
 -->
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="author" content="Dr. Eleanor Gaye"> <!-- ✅ ADDED for validation -->
-  <title>Letter to Eileen Dover</title> <!-- ✅ Updated for relevance -->
-
-  <style>
-    body {
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    .sender-column {
-      text-align: right;
-    }
-
-    h1 {
-      font-size: 1.5em;
-    }
-
-    h2 {
-      font-size: 1.3em;
-    }
-
-    p, ul, ol, dl, address {
-      font-size: 1.1em;
-    }
-
-    p, li, dd, dt, address {
-      line-height: 1.5;
-    }
-  </style>
-</head>
 <body>
   <address class="sender-column">
     <strong>Dr. Eleanor Gaye</strong><br>
@@ -69,7 +34,9 @@ Part 1 of Assignment 1 - Marking up a letter
 
   <h2>Starting dates</h2>
 
-  <p>We are happy to accommodate you starting your study with us at any time, however it would suit us better if you could start at the beginning of a semester; the start dates for each one are as follows:</p>
+  <p>
+    We are happy to accommodate you starting your study with us at any time, however it would suit us better if you could start at the beginning of a semester; the start dates for each one are as follows:
+  </p>
 
   <ul>
     <li>First semester: <time datetime="2016-09-09">9 September 2016</time></li>
@@ -78,6 +45,10 @@ Part 1 of Assignment 1 - Marking up a letter
   </ul>
 
   <p>Please let me know if this is ok, and if so which start date you would prefer.</p>
+
+  <p>
+    You can find more information about <a href="http://example.com" title="Important university dates">important university dates</a> on our website.
+  </p>
 
   <h2>Subjects of study</h2>
 
@@ -91,11 +62,15 @@ Part 1 of Assignment 1 - Marking up a letter
     <li>HTML and CSS constructs for representing musical scores.</li>
   </ol>
 
-  <p>So please can you provide more information on each of these subjects, including how long you'd expect the research to take, required staff and other resources, and anything else you think we'd need to know? Thanks.</p>
+  <p>
+    So please can you provide more information on each of these subjects, including how long you'd expect the research to take, required staff and other resources, and anything else you think we'd need to know? Thanks.
+  </p>
 
-  <h2>Exotic dance moves</h2> <!-- ✅ Fix: was incorrectly <h3> before -->
+  <h2>Exotic dance moves</h2> <!-- ✅ Fixed invalid closing tag (was </h3>) -->
 
-  <p>Yes, you are right! As part of my post-doctorate work, I did study exotic tribal dances. To answer your question, my favourite dances are as follows, with definitions:</p>
+  <p>
+    Yes, you are right! As part of my post-doctorate work, I did study exotic tribal dances. To answer your question, my favourite dances are as follows, with definitions:
+  </p>
 
   <dl>
     <dt>Polynesian chicken dance</dt>
@@ -108,12 +83,11 @@ Part 1 of Assignment 1 - Marking up a letter
     <dd>An interesting example of historic misinformation, English explorers in the 1960s believed to have discovered a new dance style characterized by "robotic", stilted movements, being practiced by inhabitants of Northern Alaska and Canada. Later on however it was discovered that they were just moving like this because they were really cold.</dd>
   </dl>
 
-  <p>For more of my research, see my exotic dance research page.</p>
+  <p>For more of my research, see my <a href="http://example.com" title="Exotic dance research page">exotic dance research page</a>.</p>
 
   <p>Yours sincerely,</p>
   <p>Dr Eleanor Gaye</p>
 
-  <p>University of Awesome motto: "Be awesome to each other." -- The memoirs of Bill S Preston, Esq</p>
-
+  <p>University of Awesome motto: "Be awesome to each other." -- <cite>The memoirs of Bill S Preston, Esq</cite></p>
 </body>
 </html>
