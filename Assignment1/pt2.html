@@ -15,7 +15,7 @@ Part 2 of Assignment 1 - Marking up semantic content
 
   <style>
     body {
-      max-width: 800px;
+      max-width: 1000px;
       margin: 0 auto;
       font-family: sans-serif;
       line-height: 1.5;
@@ -23,16 +23,41 @@ Part 2 of Assignment 1 - Marking up semantic content
   </style>
 </head>
 <body>
+
+  <header>
+    <h1>Science Research Portal</h1>
+    <img src="logo.png" alt="University of Awesome logo" />
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Research</a></li>
+      <li><a href="#">Publications</a></li>
+      <li><a href="#">Events</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </nav>
+
   <main>
-    <h1>Welcome to the Science Research Portal</h1>
+    <section>
+      <h2>Welcome</h2>
+      <p>
+        This portal provides access to fascinating research projects and updates from the University of Awesome. Whether you're a student, professor, or science enthusiast, you'll find something inspiring here.
+      </p>
 
-    <p>
-      This portal provides access to fascinating research projects and updates from the University of Awesome.
-    </p>
+      <p>
+        Learn about the latest discoveries, ongoing studies, and how to participate in groundbreaking scientific work.
+      </p>
+    </section>
 
-    <p>
-      Here you can learn about the latest scientific breakthroughs, meet our researchers, and explore upcoming events.
-    </p>
+    <aside>
+      <h2>Featured Research Images</h2>
+      <img src="labwork.png" alt="Lab Research in Progress" />
+      <img src="robotics.png" alt="Prototype Medical Robot" />
+      <img src="deepsea.png" alt="Deep Sea Creature" />
+      <img src="quantumchip.png" alt="Quantum Processor Chip" />
+    </aside>
 
     <section>
       <h2>Popular Research Topics</h2>
@@ -44,5 +69,11 @@ Part 2 of Assignment 1 - Marking up semantic content
       </ul>
     </section>
   </main>
+
+  <footer>
+    <p>This project page is part of INFT1206 – Web Development Fundamentals.</p>
+    <p>&copy; 2025 University of Awesome. All rights reserved.</p>
+  </footer>
+
 </body>
 </html>
