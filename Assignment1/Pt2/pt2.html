@@ -20,11 +20,20 @@ Part 2 of Assignment 1 - Marking up semantic content
       margin: 0 auto;
       font-family: Arial, sans-serif;
       line-height: 1.6;
+      position: relative;
+      z-index: 1;
     }
 
-    header img {
-      width: 200px;
-      margin-bottom: 10px;
+    /* Background Video */
+    #bg-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      z-index: -1;
+      opacity: 0.2;
     }
 
     header {
@@ -33,15 +42,22 @@ Part 2 of Assignment 1 - Marking up semantic content
       padding: 20px;
     }
 
+    header img {
+      width: 200px;
+      margin-bottom: 10px;
+    }
+
     nav ul {
       display: flex;
       justify-content: center;
       list-style: none;
       padding: 0;
+      margin: 0;
+      background-color: #f1f1f1;
     }
 
     nav ul li {
-      margin: 0 10px;
+      margin: 0 15px;
     }
 
     nav ul li a {
@@ -53,20 +69,44 @@ Part 2 of Assignment 1 - Marking up semantic content
       display: flex;
       flex-wrap: wrap;
       margin-top: 20px;
+      gap: 20px;
     }
 
-    article {
-      flex: 2;
-      margin-right: 20px;
+    article, aside {
+      flex: 1 1 45%;
     }
 
-    aside {
-      flex: 1;
+    h2.section-heading {
+      width: 100%;
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    section.images-grid {
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    figure {
+      margin: 0;
+      text-align: center;
     }
 
     img.thumbnail {
       width: 100%;
-      margin-bottom: 20px;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 6px;
+      display: block;
+    }
+
+    figcaption {
+      font-size: 0.9em;
+      color: #444;
+      margin-top: 8px;
     }
 
     footer {
@@ -79,38 +119,31 @@ Part 2 of Assignment 1 - Marking up semantic content
 </head>
 <body>
 
+  <!-- Background video -->
+  <video autoplay muted loop playsinline id="bg-video">
+    <source src="../Pt2/img/Background.mp4" type="video/mp4" />
+  </video>
+
   <header>
-    <div>
-      <img src="../Assignment1/logo.png" alt="University of Awesome logo">
-    </div>
-    <h1>Science Research Portal</h1>
+    <img src="../Pt2/img/logo.png" alt="University of Awesome logo" />
+    <h1 style="color: white;">Science Research Portal</h1>
   </header>
 
   <nav>
     <ul>
-      <li><a href="#">Home</a></li>
-      <li><a href="#">Research</a></li>
-      <li><a href="#">Publications</a></li>
-      <li><a href="#">Events</a></li>
-      <li><a href="#">Contact</a></li>
+      <li><a href="../Pt2/index.html" title="Go to homepage">Home</a></li>
+      <li><a href="../Pt2/research.html" title="Learn about our research">Research</a></li>
+      <li><a href="../Pt2/publications.html" title="Read our publications">Publications</a></li>
+      <li><a href="../Pt2/events.html" title="See upcoming events">Events</a></li>
+      <li><a href="../Pt2/contact.html" title="Contact the university">Contact</a></li>
     </ul>
   </nav>
 
   <main>
     <article>
-      <section>
-        <h2>Welcome</h2>
-        <p>This portal provides access to fascinating research projects and updates from the University of Awesome. Whether you're a student, professor, or science enthusiast, you'll find something inspiring here.</p>
-        <p>Learn about the latest discoveries, ongoing studies, and how to participate in groundbreaking scientific work.</p>
-      </section>
-
-      <section>
-        <h2>Featured Research Images</h2>
-        <img src="../Assignment1/labwork.png" alt="Lab Research in Progress" class="thumbnail">
-        <img src="../Assignment1/robotics.png" alt="Prototype Medical Robot" class="thumbnail">
-        <img src="../Assignment1/deepsea.png" alt="Deep Sea Creature" class="thumbnail">
-        <img src="../Assignment1/quantumchip.png" alt="Quantum Processor Chip" class="thumbnail">
-      </section>
+      <h2>Welcome</h2>
+      <p>This portal provides access to fascinating research projects and updates from the University of Awesome. Whether you're a student, professor, or science enthusiast, you'll find something inspiring here.</p>
+      <p>Learn about the latest discoveries, ongoing studies, and how to participate in groundbreaking scientific work.</p>
     </article>
 
     <aside>
@@ -122,6 +155,29 @@ Part 2 of Assignment 1 - Marking up semantic content
         <li>Deep Sea Marine Life Studies</li>
       </ul>
     </aside>
+
+    <h2 class="section-heading">Featured Research Images</h2>
+    <section class="images-grid">
+      <figure>
+        <img src="../Pt2/img/labwork.png" alt="Lab Research in Progress" class="thumbnail" />
+        <figcaption>Microscopic Research in Progress</figcaption>
+      </figure>
+
+      <figure>
+        <img src="../Pt2/img/robotics.png" alt="Prototype Medical Robot" class="thumbnail" />
+        <figcaption>Prototype Medical Robotics in Action</figcaption>
+      </figure>
+
+      <figure>
+        <img src="../Pt2/img/deepsea.png" alt="Deep Sea Creature" class="thumbnail" />
+        <figcaption>Rare Species from the Deep Sea</figcaption>
+      </figure>
+
+      <figure>
+        <img src="../Pt2/img/quantumchip.png" alt="Quantum Processor Chip" class="thumbnail" />
+        <figcaption>Quantum Computing Processor</figcaption>
+      </figure>
+    </section>
   </main>
 
   <footer>
@@ -129,5 +185,29 @@ Part 2 of Assignment 1 - Marking up semantic content
     <p>© 2025 University of Awesome. All rights reserved.</p>
   </footer>
 
+  <!-- Persistent video time script -->
+  <script>
+    const bgVideo = document.getElementById('bg-video');
+
+    bgVideo.addEventListener('loadedmetadata', function () {
+      const savedTime = sessionStorage.getItem('videoTime');
+      const duration = bgVideo.duration;
+
+      if (savedTime && savedTime < duration - 2) {
+        bgVideo.currentTime = parseFloat(savedTime);
+      } else {
+        bgVideo.currentTime = 10; // start fresh at 10s
+      }
+    });
+
+    bgVideo.addEventListener('timeupdate', function () {
+      sessionStorage.setItem('videoTime', bgVideo.currentTime);
+    });
+
+    bgVideo.addEventListener('ended', function () {
+      bgVideo.currentTime = 10;
+      bgVideo.play();
+    });
+  </script>
 </body>
 </html>

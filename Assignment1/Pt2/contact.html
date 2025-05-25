@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="author" content="Saadat" />
+  <title>Contact - Science Research Portal</title>
+  <link rel="stylesheet" href="css/style.css" />
+
+  <style>
+    body {
+      max-width: 1000px;
+      margin: 0 auto;
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Background Video */
+    #bg-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      z-index: -1;
+      opacity: 0.2;
+    }
+
+    header {
+      text-align: center;
+      background-color: #000000;
+      padding: 20px;
+    }
+
+    header img {
+      width: 200px;
+      margin-bottom: 10px;
+    }
+
+    nav ul {
+      display: flex;
+      justify-content: center;
+      list-style: none;
+      padding: 0;
+    }
+
+    nav ul li {
+      margin: 0 10px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: blue;
+    }
+
+    main {
+      margin-top: 20px;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.9em;
+      margin-top: 30px;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background video -->
+  <video autoplay muted loop playsinline id="bg-video">
+    <source src="../Pt2/img/Background.mp4" type="video/mp4" />
+  </video>
+
+  <header>
+    <img src="img/logo.png" alt="University of Awesome logo" />
+    <h1>Science Research Portal</h1>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="pt2.html" title="Go to homepage">Home</a></li>
+      <li><a href="research.html" title="Learn about our research">Research</a></li>
+      <li><a href="publications.html" title="Read our publications">Publications</a></li>
+      <li><a href="events.html" title="See upcoming events">Events</a></li>
+      <li><a href="contact.html" title="Contact the university">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <h2>Contact Us</h2>
+    <p>If you have any questions, suggestions, or would like to collaborate with us, feel free to reach out:</p>
+    <ul>
+      <li>Email: <a href="mailto:info@awesomeuniversity.edu">info@awesomeuniversity.edu</a></li>
+      <li>Phone: +1 (123) 456-7890</li>
+      <li>Address: 123 Innovation Way, Bobtown, CA 99999</li>
+    </ul>
+    <p>You can also visit our <a href="pt2.html" title="Return to the main portal">official portal page</a> for more details.</p>
+  </main>
+
+  <footer>
+    <p>This page is part of INFT1206 – Web Development Fundamentals.</p>
+    <p>© 2025 University of Awesome. All rights reserved.</p>
+  </footer>
+
+  <!-- Persistent video time script -->
+  <script>
+    const bgVideo = document.getElementById('bg-video');
+
+    bgVideo.addEventListener('loadedmetadata', function () {
+      const savedTime = sessionStorage.getItem('videoTime');
+      const duration = bgVideo.duration;
+
+      if (savedTime && savedTime < duration - 2) {
+        bgVideo.currentTime = parseFloat(savedTime);
+      } else {
+        bgVideo.currentTime = 10; // start at 10s
+      }
+    });
+
+    bgVideo.addEventListener('timeupdate', function () {
+      sessionStorage.setItem('videoTime', bgVideo.currentTime);
+    });
+
+    bgVideo.addEventListener('ended', function () {
+      bgVideo.currentTime = 10;
+      bgVideo.play();
+    });
+  </script>
+
+</body>
+</html>

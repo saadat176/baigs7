@@ -1,0 +1,93 @@
+<!--
+Name: Saadat
+File: index.html
+Date: 23 May 2025
+Purpose: Redirects to pt2.html with background video
+-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="author" content="Saadat" />
+  <title>Home - University of Awesome</title>
+
+  <style>
+    body {
+      margin: 0 auto;
+      max-width: 1000px;
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    h1 {
+      margin-top: 150px;
+    }
+
+    /* Background Video */
+    #bg-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      z-index: -1;
+      opacity: 0.2;
+    }
+
+    a {
+      color: blue;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background video -->
+  <video autoplay muted loop playsinline id="bg-video">
+    <source src="./img/Background.mp4" type="video/mp4" />
+  </video>
+
+  <h1>Redirecting to Science Research Portal...</h1>
+  <p>If you are not redirected automatically, <a href="pt2.html">click here to go to the portal</a>.</p>
+
+  <script>
+    const bgVideo = document.getElementById('bg-video');
+
+    bgVideo.addEventListener('loadedmetadata', function () {
+      const savedTime = sessionStorage.getItem('videoTime');
+      const duration = bgVideo.duration;
+
+      if (savedTime && savedTime < duration - 2) {
+        bgVideo.currentTime = parseFloat(savedTime);
+      } else {
+        bgVideo.currentTime = 10;
+      }
+    });
+
+    bgVideo.addEventListener('timeupdate', function () {
+      sessionStorage.setItem('videoTime', bgVideo.currentTime);
+    });
+
+    bgVideo.addEventListener('ended', function () {
+      bgVideo.currentTime = 10;
+      bgVideo.play();
+    });
+
+    // Redirect after 1 second
+    setTimeout(() => {
+      window.location.href = "pt2.html";
+    }, 1000);
+  </script>
+</body>
+</html>
