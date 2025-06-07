@@ -15,7 +15,7 @@ Part 1 of Assignment 2 - Mozilla Splash Page (HTML Multimedia)
 
   <style>
     body {
-      background: #fff url(pattern.png);
+      background: #fff url(img/pattern.png);
       font-family: Georgia, "Times New Roman", Times, serif;
       line-height: 1.6;
       margin: 0;
@@ -29,7 +29,9 @@ Part 1 of Assignment 2 - Mozilla Splash Page (HTML Multimedia)
     .moz-logo {
       float: right;
       margin: 10px;
-      width: 100px;
+      width: auto;
+      height: auto;
+      max-width: 100%;
     }
 
     header, article, footer {
@@ -42,7 +44,14 @@ Part 1 of Assignment 2 - Mozilla Splash Page (HTML Multimedia)
 </head>
 <body>
   <header>
-    <img class="moz-logo" src="../Pt1/img/Firefox-Logo.wine.png" alt="Firefox logo">
+    <a href="https://www.mozilla.org/en-US/firefox/new/">
+      <img 
+        class="moz-logo" 
+        src="img/firefox-logo-120.png"
+        srcset="img/firefox-logo-120.png 120w, img/firefox-logo-400.png 400w"
+        sizes="(max-width: 600px) 120px, 400px"
+        alt="Firefox logo - Download Firefox">
+    </a>
     <h1>Welcome to our Mozilla splash page</h1>
   </header>
 
