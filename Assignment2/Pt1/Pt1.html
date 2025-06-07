@@ -26,19 +26,58 @@ Part 1 of Assignment 2 - Mozilla Splash Page (HTML Multimedia)
       color: #d52349;
     }
 
-    .moz-logo {
-      float: right;
-      margin: 10px;
-      width: auto;
-      height: auto;
-      max-width: 100%;
-    }
-
     header, main, footer {
       max-width: 800px;
       margin: 0 auto;
       padding: 20px;
       background-color: rgba(255, 255, 255, 0.9);
+    }
+
+    header {
+      overflow: hidden;
+    }
+
+    .moz-logo {
+      float: right;
+      margin: 10px;
+      width: 120px;
+      height: auto;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+
+    main {
+      text-align: center;
+    }
+
+    section {
+      margin-top: 20px;
+    }
+
+    iframe {
+      display: block;
+      margin: 0 auto;
+      width: 100%;
+      max-width: 400px;
+      aspect-ratio: 16 / 9;
+    }
+
+    .addons-img {
+      width: 350px;
+      aspect-ratio: 2.35 / 1;
+      height: auto;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.9em;
+      margin-top: 30px;
+      color: #333;
     }
   </style>
 </head>
@@ -56,30 +95,44 @@ Part 1 of Assignment 2 - Mozilla Splash Page (HTML Multimedia)
   </header>
 
   <main>
-    <section aria-labelledby="mozilla-intro">
-      <h2 id="mozilla-intro">Mozilla is cool</h2>
-      <p>
-        At Mozilla, we’re a global community of technologists, thinkers, and
-        builders, working together to keep the Internet alive and accessible, so
-        people worldwide can be informed contributors and creators of the Web.
-      </p>
-      <p>
-        We believe this act of human collaboration across an open platform is
-        essential to individual growth and our collective future.
-        Read the <a href="https://www.mozilla.org/en-US/about/manifesto/" title="Read the Mozilla Manifesto">
-        Mozilla Manifesto</a> to learn more about the values and principles that guide the pursuit of our mission.
-      </p>
-    </section>
+    <article>
+      <section aria-label="Mozilla Video">
+        <iframe 
+          src="https://www.youtube.com/embed/LtOGa5M8AuU?si=xOXrgTYNFvoRWBYJ"
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen>
+        </iframe>
+      </section>
 
-    <section aria-label="Firefox Add-ons Promotion">
-      <a href="https://addons.mozilla.org/en-US/firefox/" title="Explore Firefox browser add-ons">
-        <img 
-          src="img/firefox-addons-600.jpg"
-          srcset="img/firefox-addons-600.jpg 600w, img/firefox-addons-1200.jpg 1200w"
-          sizes="(max-width: 800px) 600px, 1200px"
-          alt="Firefox Add-ons - Enhance your browser experience">
-      </a>
-    </section>
+      <section aria-labelledby="mozilla-intro">
+        <h2 id="mozilla-intro">Mozilla is cool</h2>
+        <p>
+          At Mozilla, we’re a global community of technologists, thinkers, and
+          builders, working together to keep the Internet alive and accessible, so
+          people worldwide can be informed contributors and creators of the Web.
+        </p>
+        <p>
+          We believe this act of human collaboration across an open platform is
+          essential to individual growth and our collective future.
+          Read the <a href="https://www.mozilla.org/en-US/about/manifesto/" title="Read the Mozilla Manifesto">
+          Mozilla Manifesto</a> to learn more about the values and principles that guide the pursuit of our mission.
+        </p>
+      </section>
+
+      <section aria-label="Firefox Add-ons Promotion">
+        <a href="https://addons.mozilla.org/en-US/firefox/" title="Explore Firefox browser add-ons">
+          <img 
+            class="addons-img"
+            src="img/firefox-addons-600.jpg"
+            srcset="img/firefox-addons-600.jpg 600w, img/firefox-addons-1200.jpg 1200w"
+            sizes="(max-width: 800px) 100vw, 350px"
+            alt="Firefox Add-ons - Enhance your browser experience">
+        </a>
+      </section>
+    </article>
   </main>
 
   <footer>
