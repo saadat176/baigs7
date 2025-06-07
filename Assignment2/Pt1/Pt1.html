@@ -34,7 +34,7 @@ Part 1 of Assignment 2 - Mozilla Splash Page (HTML Multimedia)
       max-width: 100%;
     }
 
-    header, article, footer {
+    header, main, footer {
       max-width: 800px;
       margin: 0 auto;
       padding: 20px;
@@ -44,7 +44,7 @@ Part 1 of Assignment 2 - Mozilla Splash Page (HTML Multimedia)
 </head>
 <body>
   <header>
-    <a href="https://www.mozilla.org/en-US/firefox/new/">
+    <a href="https://www.mozilla.org/en-US/firefox/new/" title="Download the latest version of Firefox">
       <img 
         class="moz-logo" 
         src="img/firefox-logo-120.png"
@@ -55,33 +55,37 @@ Part 1 of Assignment 2 - Mozilla Splash Page (HTML Multimedia)
     <h1>Welcome to our Mozilla splash page</h1>
   </header>
 
-  <article>
-    <h2>Mozilla is cool</h2>
-    <p>
-      At Mozilla, we’re a global community of technologists, thinkers, and
-      builders, working together to keep the Internet alive and accessible, so
-      people worldwide can be informed contributors and creators of the Web.
-    </p>
-    <p>
-      We believe this act of human collaboration across an open platform is
-      essential to individual growth and our collective future. Read the
-      <a href="https://www.mozilla.org/en-US/about/manifesto/">Mozilla Manifesto</a>
-      to learn more about the values and principles that guide the pursuit of our mission.
-    </p>
+  <main>
+    <section aria-labelledby="mozilla-intro">
+      <h2 id="mozilla-intro">Mozilla is cool</h2>
+      <p>
+        At Mozilla, we’re a global community of technologists, thinkers, and
+        builders, working together to keep the Internet alive and accessible, so
+        people worldwide can be informed contributors and creators of the Web.
+      </p>
+      <p>
+        We believe this act of human collaboration across an open platform is
+        essential to individual growth and our collective future. Read the
+        <a href="https://www.mozilla.org/en-US/about/manifesto/" title="Read the Mozilla Manifesto">
+          Mozilla Manifesto
+        </a>
+        to learn more about the values and principles that guide the pursuit of our mission.
+      </p>
+    </section>
 
-    <p>
-      <a href="https://addons.mozilla.org/en-US/firefox/">
+    <section aria-label="Firefox Add-ons Promotion">
+      <a href="https://addons.mozilla.org/en-US/firefox/" title="Explore Firefox browser add-ons">
         <img 
           src="img/firefox-addons-600.jpg"
           srcset="img/firefox-addons-600.jpg 600w, img/firefox-addons-1200.jpg 1200w"
           sizes="(max-width: 800px) 600px, 1200px"
           alt="Firefox Add-ons - Enhance your browser experience">
       </a>
-    </p>
-  </article>
+    </section>
+  </main>
 
   <footer>
-    <p>Copyright © Mozilla</p>
+    <p>&copy; Mozilla. All rights reserved.</p>
   </footer>
 </body>
 </html>
