@@ -5,6 +5,7 @@ Date: 24 May 2025
 Part 1 of Assignment 2 - Mozilla Splash Page (HTML Multimedia)
 -->
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -48,7 +49,7 @@ Part 1 of Assignment 2 - Mozilla Splash Page (HTML Multimedia)
       max-width: 100%;
       height: auto;
       display: block;
-      margin: 0 auto;
+      margin: 10px auto;
     }
 
     main {
@@ -71,6 +72,22 @@ Part 1 of Assignment 2 - Mozilla Splash Page (HTML Multimedia)
       width: 350px;
       aspect-ratio: 2.35 / 1;
       height: auto;
+    }
+
+    .further-info img {
+      width: 100px;
+      margin: 10px;
+      display: inline-block;
+    }
+
+    .further-info a {
+      text-decoration: none;
+    }
+
+    .red-panda img {
+      width: 100%;
+      height: auto;
+      margin-top: 20px;
     }
 
     footer {
@@ -122,15 +139,59 @@ Part 1 of Assignment 2 - Mozilla Splash Page (HTML Multimedia)
         </p>
       </section>
 
-      <section aria-label="Firefox Add-ons Promotion">
-        <a href="https://addons.mozilla.org/en-US/firefox/" title="Explore Firefox browser add-ons">
-          <img 
-            class="addons-img"
-            src="img/firefox-addons-600.jpg"
-            srcset="img/firefox-addons-600.jpg 600w, img/firefox-addons-1200.jpg 1200w"
-            sizes="(max-width: 800px) 100vw, 350px"
-            alt="Firefox Add-ons - Enhance your browser experience">
+      <section aria-label="Mozilla Visuals Gallery">
+        <h2>Explore Mozilla Visuals</h2>
+
+        <img 
+          src="img/firefox-400.jpg"
+          srcset="img/firefox-120.jpg 120w, img/firefox-400.jpg 400w"
+          sizes="(max-width: 600px) 120px, 400px"
+          alt="Firefox browser interface preview">
+
+        <img 
+          src="img/addons-400.jpg"
+          srcset="img/addons-120.jpg 120w, img/addons-400.jpg 400w"
+          sizes="(max-width: 600px) 120px, 400px"
+          alt="Screenshot of popular Firefox add-ons">
+
+        <img 
+          src="img/security-600.jpg"
+          srcset="img/security-400.jpg 400w, img/security-600.jpg 600w"
+          sizes="(max-width: 800px) 400px, 600px"
+          alt="Mozilla security features illustration">
+
+        <img 
+          src="img/community-600.jpg"
+          srcset="img/community-400.jpg 400w, img/community-600.jpg 600w, img/community-1200.jpg 1200w"
+          sizes="(max-width: 800px) 600px, 1200px"
+          alt="Mozilla global community event photo">
+      </section>
+
+      <section class="further-info" aria-label="More Mozilla Resources">
+        <h2>More From Mozilla</h2>
+
+        <a href="https://www.mozilla.org/en-US/firefox/new/" title="Get Firefox">
+          <img src="img/firefox-logo-120.png" alt="Get Firefox Logo" />
         </a>
+
+        <a href="https://addons.mozilla.org/" title="Browse Add-ons">
+          <img src="img/addons-120.jpg" alt="Add-ons Logo" />
+        </a>
+
+        <a href="https://www.mozilla.org/en-US/privacy/" title="Read Mozilla Privacy Policy">
+          <img src="img/security-400.jpg" alt="Privacy & Security" />
+        </a>
+
+        <a href="https://foundation.mozilla.org/en/" title="Join Mozilla Community">
+          <img src="img/community-400.jpg" alt="Mozilla Community" />
+        </a>
+      </section>
+
+      <section class="red-panda" aria-label="Mozilla Red Panda">
+        <h2>Meet the Red Panda!</h2>
+        <img 
+          src="img/red-panda-1200.jpg" 
+          alt="A red panda, Mozilla’s unofficial mascot" />
       </section>
     </article>
   </main>
