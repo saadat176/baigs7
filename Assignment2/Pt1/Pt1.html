@@ -25,6 +25,8 @@ Part 1 of Assignment 2 - Mozilla Splash Page (HTML Multimedia)
 
     h1, h2 {
       color: #d52349;
+      text-align: center;
+      margin: 15px 0;
     }
 
     header, main, footer {
@@ -68,26 +70,43 @@ Part 1 of Assignment 2 - Mozilla Splash Page (HTML Multimedia)
       aspect-ratio: 16 / 9;
     }
 
-    .addons-img {
-      width: 350px;
-      aspect-ratio: 2.35 / 1;
-      height: auto;
-    }
-
-    .further-info img {
-      width: 100px;
-      margin: 10px;
-      display: inline-block;
+    .further-info {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      align-items: center;
+      background-color: #d52349;
+      padding: 20px;
+      color: white;
     }
 
     .further-info a {
       text-decoration: none;
+      color: white;
+      font-weight: bold;
+      font-size: 0.95em;
+      text-align: center;
+      transition: transform 0.3s ease;
     }
 
+    .further-info img {
+      width: 120px;
+      margin: 10px auto;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .further-info a:hover img {
+      transform: scale(1.15);
+    }
+
+    .red-panda picture,
     .red-panda img {
+      max-width: 850px;
       width: 100%;
       height: auto;
-      margin-top: 20px;
+      margin: 0 auto;
+      display: block;
     }
 
     footer {
@@ -139,59 +158,59 @@ Part 1 of Assignment 2 - Mozilla Splash Page (HTML Multimedia)
         </p>
       </section>
 
-      <section aria-label="Mozilla Visuals Gallery">
-        <h2>Explore Mozilla Visuals</h2>
-
-        <img 
-          src="img/firefox-400.jpg"
-          srcset="img/firefox-120.jpg 120w, img/firefox-400.jpg 400w"
-          sizes="(max-width: 600px) 120px, 400px"
-          alt="Firefox browser interface preview">
-
-        <img 
-          src="img/addons-400.jpg"
-          srcset="img/addons-120.jpg 120w, img/addons-400.jpg 400w"
-          sizes="(max-width: 600px) 120px, 400px"
-          alt="Screenshot of popular Firefox add-ons">
-
-        <img 
-          src="img/security-600.jpg"
-          srcset="img/security-400.jpg 400w, img/security-600.jpg 600w"
-          sizes="(max-width: 800px) 400px, 600px"
-          alt="Mozilla security features illustration">
-
-        <img 
-          src="img/community-600.jpg"
-          srcset="img/community-400.jpg 400w, img/community-600.jpg 600w, img/community-1200.jpg 1200w"
-          sizes="(max-width: 800px) 600px, 1200px"
-          alt="Mozilla global community event photo">
-      </section>
-
       <section class="further-info" aria-label="More Mozilla Resources">
-        <h2>More From Mozilla</h2>
-
         <a href="https://www.mozilla.org/en-US/firefox/new/" title="Get Firefox">
-          <img src="img/firefox-logo-120.png" alt="Get Firefox Logo" />
+          <img src="img/firefox-logo-120.png" 
+               srcset="img/firefox-logo-120.png 120w, img/firefox-logo-400.png 400w"
+               sizes="(max-width: 600px) 120px, 400px"
+               alt="Get Firefox Logo" />
+          <p>Firefox</p>
         </a>
 
         <a href="https://addons.mozilla.org/" title="Browse Add-ons">
-          <img src="img/addons-120.jpg" alt="Add-ons Logo" />
+          <img src="img/addons-120.jpg" 
+               srcset="img/addons-120.jpg 120w, img/addons-400.jpg 400w"
+               sizes="(max-width: 600px) 120px, 400px"
+               alt="Add-ons Logo" />
+          <p>Add-ons</p>
         </a>
 
         <a href="https://www.mozilla.org/en-US/privacy/" title="Read Mozilla Privacy Policy">
-          <img src="img/security-400.jpg" alt="Privacy & Security" />
+          <img src="img/security-400.jpg" 
+               srcset="img/security-400.jpg 400w, img/security-600.jpg 600w"
+               sizes="(max-width: 800px) 400px, 600px"
+               alt="Privacy & Security" />
+          <p>Privacy</p>
         </a>
 
         <a href="https://foundation.mozilla.org/en/" title="Join Mozilla Community">
-          <img src="img/community-400.jpg" alt="Mozilla Community" />
+          <img src="img/community-400.jpg" 
+               srcset="img/community-400.jpg 400w, img/community-600.jpg 600w"
+               sizes="(max-width: 800px) 400px, 600px"
+               alt="Mozilla Community" />
+          <p>Community</p>
+        </a>
+
+        <a href="https://www.mozilla.org" title="Mozilla Homepage">
+          <img src="img/dino-120.jpg" 
+               srcset="img/dino-120.jpg 120w, img/dino-400.jpg 400w"
+               sizes="(max-width: 600px) 120px, 400px"
+               alt="Dinosaur Logo" />
+          <p>Dinosaur</p>
+        </a>
+
+        <a href="https://developer.mozilla.org/en-US/" title="MDN Web Docs">
+          <img src="img/mdn.svg" alt="MDN Web Docs Logo" />
+          <p>MDN Docs</p>
         </a>
       </section>
 
       <section class="red-panda" aria-label="Mozilla Red Panda">
         <h2>Meet the Red Panda!</h2>
-        <img 
-          src="img/red-panda-1200.jpg" 
-          alt="A red panda, Mozilla’s unofficial mascot" />
+        <picture>
+          <source media="(max-width: 600px)" srcset="img/red-panda-portrait-small.jpg" />
+          <img src="img/red-panda-1200.jpg" alt="A red panda" />
+        </picture>
       </section>
     </article>
   </main>
