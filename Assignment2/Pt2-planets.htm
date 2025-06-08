@@ -12,150 +12,130 @@ Part 2 of Assignment 2 - Structuring Planet Data Table
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="author" content="Saadat" />
   <title>Planet Data Table</title>
-
   <style>
     body {
       font-family: Arial, sans-serif;
-      margin: 40px;
-      background-color: #f4f4f4;
-      color: #333;
-    }
-
-    h1 {
-      text-align: center;
-      color: #1e3a5f;
+      padding: 20px;
+      background-color: #f9f9f9;
     }
 
     table {
-      width: 100%;
       border-collapse: collapse;
-      margin: 20px auto;
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto;
       background-color: #fff;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
 
     caption {
       caption-side: top;
-      font-size: 1.1em;
+      font-size: 1.4em;
+      margin-bottom: 10px;
       font-weight: bold;
-      margin: 10px;
-      padding: 10px;
     }
 
     th, td {
       border: 1px solid #ccc;
-      padding: 10px;
+      padding: 12px;
       text-align: center;
     }
 
     thead {
-      background-color: #1e3a5f;
+      background-color: #2d6fd3;
       color: white;
     }
 
     tbody tr:nth-child(even) {
-      background-color: #f9f9f9;
+      background-color: #f2f2f2;
     }
 
-    a {
-      color: #1e3a5f;
-      text-decoration: none;
+    td[colspan] {
+      background-color: #eee;
+      font-style: italic;
     }
   </style>
 </head>
 <body>
-  <h1>Planet Data Table</h1>
 
   <table>
-    <caption>
-      Data about the planets of our solar system (Planetary facts taken from 
-      <a href="https://nssdc.gsfc.nasa.gov/planetary/factsheet/">Nasa's Planetary Fact Sheet - Metric</a>).
-    </caption>
+    <caption>Planetary Data Overview</caption>
+
+    <colgroup>
+      <col span="1" />
+      <col span="1" />
+      <col span="1" />
+      <col span="1" />
+    </colgroup>
+
     <thead>
       <tr>
         <th scope="col">Planet</th>
-        <th scope="col">Mass (10<sup>24</sup>kg)</th>
-        <th scope="col">Diameter (km)</th>
-        <th scope="col">Density (kg/m³)</th>
-        <th scope="col">Gravity (m/s²)</th>
-        <th scope="col">Length of Day (hours)</th>
-        <th scope="col">Distance from Sun (10<sup>6</sup> km)</th>
+        <th scope="col">Moons</th>
+        <th scope="col">Mass (10<sup>24</sup> kg)</th>
+        <th scope="col">More Info</th>
       </tr>
     </thead>
+
     <tbody>
       <tr>
         <th scope="row">Mercury</th>
-        <td>0.330</td>
-        <td>4879</td>
-        <td>5427</td>
-        <td>3.7</td>
-        <td>4222.6</td>
-        <td>57.9</td>
+        <td>0</td>
+        <td>0.33</td>
+        <td><a href="https://solarsystem.nasa.gov/planets/mercury/overview/">Link</a></td>
       </tr>
       <tr>
         <th scope="row">Venus</th>
+        <td>0</td>
         <td>4.87</td>
-        <td>12104</td>
-        <td>5243</td>
-        <td>8.9</td>
-        <td>2802.0</td>
-        <td>108.2</td>
+        <td><a href="https://solarsystem.nasa.gov/planets/venus/overview/">Link</a></td>
       </tr>
       <tr>
         <th scope="row">Earth</th>
+        <td>1</td>
         <td>5.97</td>
-        <td>12756</td>
-        <td>5514</td>
-        <td>9.8</td>
-        <td>24.0</td>
-        <td>149.6</td>
+        <td><a href="https://solarsystem.nasa.gov/planets/earth/overview/">Link</a></td>
       </tr>
       <tr>
         <th scope="row">Mars</th>
-        <td>0.642</td>
-        <td>6792</td>
-        <td>3933</td>
-        <td>3.7</td>
-        <td>24.7</td>
-        <td>227.9</td>
+        <td>2</td>
+        <td>0.64</td>
+        <td><a href="https://solarsystem.nasa.gov/planets/mars/overview/">Link</a></td>
       </tr>
       <tr>
         <th scope="row">Jupiter</th>
+        <td>79</td>
         <td>1898</td>
-        <td>142984</td>
-        <td>1326</td>
-        <td>23.1</td>
-        <td>9.9</td>
-        <td>778.6</td>
+        <td><a href="https://solarsystem.nasa.gov/planets/jupiter/overview/">Link</a></td>
       </tr>
       <tr>
         <th scope="row">Saturn</th>
+        <td>83</td>
         <td>568</td>
-        <td>120536</td>
-        <td>687</td>
-        <td>9.0</td>
-        <td>10.7</td>
-        <td>1433.5</td>
+        <td><a href="https://solarsystem.nasa.gov/planets/saturn/overview/">Link</a></td>
       </tr>
       <tr>
         <th scope="row">Uranus</th>
+        <td>27</td>
         <td>86.8</td>
-        <td>51118</td>
-        <td>1271</td>
-        <td>8.7</td>
-        <td>17.2</td>
-        <td>2872.5</td>
+        <td><a href="https://solarsystem.nasa.gov/planets/uranus/overview/">Link</a></td>
       </tr>
       <tr>
         <th scope="row">Neptune</th>
+        <td>14</td>
         <td>102</td>
-        <td>49528</td>
-        <td>1638</td>
-        <td>11.0</td>
-        <td>16.1</td>
-        <td>4495.1</td>
+        <td><a href="https://solarsystem.nasa.gov/planets/neptune/overview/">Link</a></td>
+      </tr>
+      <tr>
+        <th scope="row">Pluto</th>
+        <td>5</td>
+        <td>0.013</td>
+        <td><a href="https://solarsystem.nasa.gov/planets/dwarf-planets/pluto/overview/">Link</a></td>
+      </tr>
+      <tr>
+        <td colspan="4" scope="rowgroup">Data accurate as of 2025 – NASA Solar System Overview</td>
       </tr>
     </tbody>
   </table>
+
 </body>
 </html>
