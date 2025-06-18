@@ -1,15 +1,27 @@
-/* 
+/*
 Name: Saadat Baig
 File: Pt3 - style.css
 Date: 18 June 2025
-Initial layout and typography styles for typesetting homepage
+Final CSS for styled homepage layout using custom fonts, spacing, and responsive nav.
 */
 
+/* Custom fonts via @font-face */
+@font-face {
+  font-family: 'CustomBody';
+  src: url('https://fonts.gstatic.com/s/ptserif/v12/EJRVQgYoZZY2vCFuvDFQ2W0.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'CustomHeading';
+  src: url('https://fonts.gstatic.com/s/raleway/v22/1Ptug8zYS_SKggPNwJYtWqhPAMif.ttf') format('truetype');
+}
+
+/* Base styles */
 html {
-  font-family: 'Georgia', serif;
-  line-height: 1.6;
+  font-size: 10px;
+  font-family: 'CustomBody', serif;
   background-color: #f8f8f8;
   color: #333;
+  line-height: 1.6;
   padding: 20px;
 }
 
@@ -22,45 +34,107 @@ body {
   box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* Headings */
 h1 {
-  font-size: 2.5rem;
+  font-family: 'CustomHeading', sans-serif;
+  text-align: center;
+  font-size: 3rem;
   margin-bottom: 20px;
   color: #2b2b2b;
   border-bottom: 2px solid #ccc;
   padding-bottom: 10px;
+  letter-spacing: 1px;
 }
 
 h2 {
-  font-size: 1.8rem;
+  font-family: 'CustomHeading', sans-serif;
+  font-size: 2rem;
   color: #444;
-  margin-top: 1.5em;
+  margin-top: 2rem;
+  letter-spacing: 0.5px;
 }
 
-a {
-  color: #0645ad;
-  text-decoration: none;
+/* Paragraphs and lists */
+p,
+li {
+  font-size: 1.6rem;
+  letter-spacing: 0.3px;
+  word-spacing: 0.8px;
+  margin-bottom: 1rem;
+  line-height: 1.7;
 }
 
-a:hover {
-  color: #0b0080;
-  text-decoration: underline;
+.intro {
+  text-indent: 20px;
 }
 
+/* Lists */
 ul,
 ol {
   padding-left: 20px;
   margin-bottom: 1em;
+  list-style-type: disc;
 }
 
+/* Navigation styles */
 nav {
-  margin-top: 2em;
-  padding-top: 1em;
+  margin-top: 3rem;
+  padding-top: 1rem;
   border-top: 1px solid #ccc;
+  position: sticky;
+  top: 0;
+  background: #fff;
+  z-index: 999;
 }
 
 nav ul {
   display: flex;
-  gap: 15px;
+  justify-content: space-around;
   list-style-type: none;
-  padding-left: 0;
+  padding: 0;
+}
+
+nav li a {
+  text-decoration: none;
+  padding: 0.6em 1.2em;
+  border: 1px solid #ccc;
+  color: #444;
+  font-weight: bold;
+  border-radius: 5px;
+  transition: background 0.3s ease;
+}
+
+nav li a:hover,
+nav li a:focus {
+  background: #e3e3e3;
+  color: #000;
+  outline: none;
+}
+
+nav li a:active {
+  background-color: #ccc;
+  color: black;
+}
+
+/* Links */
+a {
+  color: #0645ad;
+  text-decoration: underline;
+}
+
+a:hover,
+a:focus {
+  text-decoration: none;
+  color: #b00800;
+}
+
+a:focus {
+  outline: none;
+}
+
+/* External link icon */
+.external::after {
+  content: ' 🔗';
+  font-size: 1rem;
+  margin-left: 0.3em;
 }
