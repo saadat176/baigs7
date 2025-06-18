@@ -1,0 +1,31 @@
+/*
+Name: Saadat Baig
+File: style.css
+Date: 18 June 2025
+CSS file for styling a visually enhanced cool box using layout and shadow effects.
+*/
+
+html {
+  font-family: sans-serif;
+}
+
+body {
+  background-color: #f0f0f0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Full screen height */
+  margin: 0;
+}
+
+div {
+  width: 200px;
+  height: 200px;
+  background-color: #e63946; /* Base red tone */
+  color: white;
+  font-size: 1.1rem; /* ~17.6px */
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
