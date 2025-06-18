@@ -1,0 +1,37 @@
+/* 
+Name: Saadat Baig
+File: Pt3 - style.css
+Date: 18 June 2025
+Initial layout and typography styles for typesetting homepage
+*/
+
+html {
+  font-family: 'Georgia', serif;
+  line-height: 1.6;
+  background-color: #f8f8f8;
+  color: #333;
+  padding: 20px;
+}
+
+body {
+  max-width: 960px;
+  margin: 0 auto;
+  background: rgb(203, 235, 214);
+  padding: 30px;
+  border: 1px solid #ddd;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: #2b2b2b;
+  border-bottom: 2px solid #ccc;
+  padding-bottom: 10px;
+}
+
+h2 {
+  font-size: 1.8rem;
+  color: #444;
+  margin-top: 1.5em;
+}
