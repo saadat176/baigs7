@@ -17,12 +17,17 @@ img {
   display: block;
 }
 
-header.logo {
+/* Left-aligned logo inside centered layout */
+.logo {
   background: #f4f4f4;
-  padding: 2em;
-  text-align: center;
+  padding: 2em 20px;
   font-size: 2em;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
+
 
 .grid {
   display: grid;
@@ -42,6 +47,9 @@ header.logo {
 nav {
   background-color: #000;
   padding: 0.5em;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
 nav ul {
@@ -64,24 +72,32 @@ nav a {
   display: inline-block;
 }
 
+nav a:hover,
+nav a:focus {
+  background-color: #333;
+  outline: none;
+}
+
+.feature {
+  float: left;
+  width: 200px;
+  margin-right: 15px;
+  margin-bottom: 1em;
+}
+
 .photos {
   list-style: none;
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-  gap: 10px;
-}
-
-.feature {
-  width: 100%;
-  max-width: 200px;
-  margin-bottom: 1em;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
 }
 
 footer {
-  text-align: center;
-  padding: 1em;
   background: #f0f0f0;
-  margin-top: 30px;
+  padding: 1em;
+  margin-top: 250px;
+  text-align: center;
+  clear: both;
 }
