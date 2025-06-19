@@ -94,6 +94,11 @@ nav a:focus {
   margin-bottom: 1em;
 }
 
+/* 👇 Added spacing between article and aside */
+article {
+  margin-right: 20px;
+}
+
 .photos {
   list-style: none;
   margin: 0;
