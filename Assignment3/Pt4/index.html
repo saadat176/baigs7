@@ -6,50 +6,53 @@ Initial layout HTML for the Fundamental Layout Comprehension challenge.
 -->
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-US">
 <head>
   <meta charset="utf-8">
-  <title>My exciting website!</title>
-  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Layout Task</title>
+  <link href="style.css" rel="stylesheet" type="text/css">
 </head>
+
 <body>
 
-  <header>
-    <h1>My exciting website!</h1>
-  </header>
+  <div class="logo">
+    My exciting website!
+  </div>
 
   <nav>
     <ul>
-      <li><a href="#">Home</a></li>
-      <li><a href="#">Blog</a></li>
-      <li><a href="#">About us</a></li>
-      <li><a href="#">Our history</a></li>
-      <li><a href="#">Contacts</a></li>
+      <li><a href="">Home</a></li>
+      <li><a href="">Blog</a></li>
+      <li><a href="">About us</a></li>
+      <li><a href="">Our history</a></li>
+      <li><a href="">Contacts</a></li>
     </ul>
   </nav>
 
-  <main>
+  <main class="grid">
     <article>
-      <h2>An Exciting Blog Post</h2>
-      <img src="images/balloon-sq6.jpg" alt="Hot air balloon">
-      <p>Veggies es bonus vobis, proinde vos postulo essum magis kohlrabi welsh onion daikon amaranth tatsoi tomatillo melon azuki bean garlic.</p>
+      <h1>An Exciting Blog Post</h1>
+      <img src="images/balloon-sq6.jpg" alt="Hot air balloon" class="feature">
+
+      <p>Veggies es bonus vobis, proinde vos postulo essum magis kohlrabi...</p>
       <p>Gumbo beet greens corn soko endive gumbo gourd...</p>
+      <p>Turnip greens yarrow ricebean rutabaga endive cauliflower...</p>
+      <p>Nori grape silver beet broccoli kombu beet greens...</p>
+      <p>Celery quandong swiss chard chicory earthnut pea potato...</p>
     </article>
 
     <aside>
       <h2>Photography</h2>
-      <img src="images/balloon1.jpg" alt="Balloon 1">
-      <img src="images/balloon2.jpg" alt="Balloon 2">
-      <img src="images/balloon3.jpg" alt="Balloon 3">
-      <img src="images/balloon4.jpg" alt="Balloon 4">
-      <img src="images/balloon5.jpg" alt="Balloon 5">
-      <img src="images/balloon6.jpg" alt="Balloon 6">
+      <ul class="photos">
+        <li><img src="images/balloon-sq1.jpg" alt="Balloon 1"></li>
+        <li><img src="images/balloon-sq2.jpg" alt="Balloon 2"></li>
+        <li><img src="images/balloon-sq3.jpg" alt="Balloon 3"></li>
+        <li><img src="images/balloon-sq4.jpg" alt="Balloon 4"></li>
+        <li><img src="images/balloon-sq5.jpg" alt="Balloon 5"></li>
+      </ul>
     </aside>
   </main>
-
-  <footer>
-    <p>© 2025 My exciting website!</p>
-  </footer>
 
 </body>
 </html>
