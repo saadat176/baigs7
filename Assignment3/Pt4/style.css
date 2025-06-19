@@ -5,16 +5,20 @@ Date: 18 June 2025
 Initial CSS base styles for layout challenge.
 */
 
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 body {
   background-color: #fff;
   color: #333;
-  margin: 0;
   font: 1.2em/1.4 Arial, Helvetica, sans-serif;
-}
-
-img {
-  max-width: 100%;
-  display: block;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 /* Left-aligned logo inside centered layout */
@@ -28,6 +32,10 @@ img {
   box-sizing: border-box;
 }
 
+img {
+  max-width: 100%;
+  display: block;
+}
 
 .grid {
   display: grid;
@@ -36,6 +44,7 @@ img {
   max-width: 980px;
   margin: 20px auto;
   padding: 0 20px;
+  flex: 1; /* allow main to take remaining space */
 }
 
 @media (max-width: 768px) {
@@ -97,7 +106,7 @@ nav a:focus {
 footer {
   background: #f0f0f0;
   padding: 1em;
-  margin-top: 250px;
+  margin-top: 250px; /* Retain your visual preference */
   text-align: center;
   clear: both;
 }
