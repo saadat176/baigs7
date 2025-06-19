@@ -33,6 +33,12 @@ header.logo {
   padding: 0 20px;
 }
 
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 nav {
   background-color: #000;
   padding: 0.5em;
@@ -70,6 +76,7 @@ nav a {
 .feature {
   width: 100%;
   max-width: 200px;
+  margin-bottom: 1em;
 }
 
 footer {
