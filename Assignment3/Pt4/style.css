@@ -9,7 +9,7 @@ body {
   background-color: #fff;
   color: #333;
   margin: 0;
-  font: 1.2em / 1.2 Arial, Helvetica, sans-serif;
+  font: 1.2em/1.4 Arial, Helvetica, sans-serif;
 }
 
 img {
@@ -17,17 +17,20 @@ img {
   display: block;
 }
 
-.logo {
-  font-size: 200%;
-  padding: 50px 20px;
-  margin: 0 auto;
-  max-width: 980px;
+header.logo {
+  background: #f4f4f4;
+  padding: 2em;
+  text-align: center;
+  font-size: 2em;
 }
 
 .grid {
-  margin: 0 auto;
-  padding: 0 20px;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
   max-width: 980px;
+  margin: 20px auto;
+  padding: 0 20px;
 }
 
 nav {
@@ -39,20 +42,39 @@ nav ul {
   margin: 0;
   padding: 0;
   list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+nav li {
+  margin: 0.2em 0.5em;
 }
 
 nav a {
   color: #fff;
   text-decoration: none;
   padding: 0.5em 1em;
+  display: inline-block;
 }
 
 .photos {
   list-style: none;
   margin: 0;
   padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 10px;
 }
 
 .feature {
-  width: 200px;
+  width: 100%;
+  max-width: 200px;
+}
+
+footer {
+  text-align: center;
+  padding: 1em;
+  background: #f0f0f0;
+  margin-top: 30px;
 }
