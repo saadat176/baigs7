@@ -5,103 +5,102 @@ Date: 18 June 2025
 Final CSS for styled homepage layout using custom fonts, spacing, and responsive nav.
 */
 
-/* Custom fonts via @font-face */
-@font-face {
-  font-family: 'CustomBody';
-  src: url('https://fonts.gstatic.com/s/ptserif/v12/EJRVQgYoZZY2vCFuvDFQ2W0.ttf') format('truetype');
-}
-@font-face {
-  font-family: 'CustomHeading';
-  src: url('https://fonts.gstatic.com/s/raleway/v22/1Ptug8zYS_SKggPNwJYtWqhPAMif.ttf') format('truetype');
+/* Font setup */
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Libre+Baskerville:wght@400;700&display=swap');
+
+/* Global resets */
+* {
+  box-sizing: border-box;
 }
 
-/* Base styles */
-html {
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
   font-size: 10px;
-  font-family: 'CustomBody', serif;
-  background-color: #f8f8f8;
-  color: #333;
-  line-height: 1.6;
-  padding: 20px;
+  font-family: 'Libre Baskerville', serif;
+  background-color: rgb(203, 235, 214);
+  color: #222;
 }
 
+/* Flex base layout */
 body {
-  max-width: 960px;
-  margin: 0 auto;
-  background: rgb(203, 235, 214);
-  padding: 30px;
-  border: 1px solid #ddd;
-  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
 }
 
-/* Headings */
-h1 {
-  font-family: 'CustomHeading', sans-serif;
+/* Wrapper holds header + content + footer */
+.wrapper {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+}
+
+/* Header styles */
+header {
+  border-top: 5px solid #a66;
+  border-bottom: 5px solid #a66;
   text-align: center;
-  font-size: 3rem;
-  margin-bottom: 20px;
-  color: #2b2b2b;
-  border-bottom: 2px solid #ccc;
-  padding-bottom: 10px;
-  letter-spacing: 1px;
+  padding: 25px;
 }
 
-h2 {
-  font-family: 'CustomHeading', sans-serif;
-  font-size: 2rem;
-  color: #444;
-  margin-top: 2rem;
-  letter-spacing: 0.5px;
+h1 {
+  font-family: 'Amatic SC', cursive;
+  font-size: 4rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  margin: 0;
 }
 
-/* Paragraphs and lists */
-p,
-li {
-  font-size: 1.6rem;
-  letter-spacing: 0.3px;
-  word-spacing: 0.8px;
-  margin-bottom: 1rem;
-  line-height: 1.7;
+/* Container = 3-column layout */
+.container {
+  display: flex;
+  gap: 40px; /* Increased for more spacing */
+  margin-top: 20px;
 }
 
-.intro {
-  text-indent: 20px;
+/* Left: Main content */
+main {
+  flex: 1 1 55%;
 }
 
-/* Lists */
-ul,
-ol {
-  padding-left: 20px;
-  margin-bottom: 1em;
-  list-style-type: disc;
+/* Center: Top course choices */
+aside {
+  flex: 1 1 25%;
+  padding: 0 30px; /* Add space on left and right */
 }
 
-/* Navigation styles */
+/* Right: Navigation */
 nav {
-  margin-top: 3rem;
-  padding-top: 1rem;
-  border-top: 1px solid #ccc;
-  position: sticky;
-  top: 0;
-  background: #fff;
-  z-index: 999;
+  flex: 1 1 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  border-left: 1px solid #ccc;
+  padding-left: 10px;
 }
 
 nav ul {
-  display: flex;
-  justify-content: space-around;
-  list-style-type: none;
+  list-style: none;
   padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 nav li a {
   text-decoration: none;
-  padding: 0.6em 1.2em;
+  padding: 0.8em 1.4em;
   border: 1px solid #ccc;
-  color: #444;
-  font-weight: bold;
   border-radius: 5px;
-  transition: background 0.3s ease;
+  color: #333;
+  font-weight: bold;
+  background-color: #fff;
+  display: block;
+  font-size: 1.6rem;
 }
 
 nav li a:hover,
@@ -111,30 +110,49 @@ nav li a:focus {
   outline: none;
 }
 
-nav li a:active {
-  background-color: #ccc;
-  color: black;
+/* Footer */
+footer {
+  margin-top: auto;
+  border-top: 1px solid #aaa;
+  text-align: center;
+  padding: 1em;
+  font-size: 1.5rem;
 }
 
-/* Links */
-a {
-  color: #0645ad;
-  text-decoration: underline;
+/* Typography */
+h2 {
+  font-family: 'Amatic SC', cursive;
+  font-size: 2.8rem;
+  font-weight: 700;
+  margin-top: 2rem;
+  letter-spacing: 0.5px;
+  color: #111;
 }
 
-a:hover,
-a:focus {
-  text-decoration: none;
-  color: #b00800;
+p, li {
+  font-size: 1.8rem;
+  font-weight: 500;
+  line-height: 1.8;
+  margin-bottom: 1rem;
 }
 
-a:focus {
-  outline: none;
+.intro {
+  text-indent: 20px;
+  font-weight: 500;
+}
+
+ul, ol {
+  padding-left: 25px;
 }
 
 /* External link icon */
 .external::after {
-  content: ' 🔗';
-  font-size: 1rem;
+  content: '';
+  display: inline-block;
+  background-image: url('images/external-icon.png');
+  background-size: contain;
+  width: 1.2rem;
+  height: 1.2rem;
   margin-left: 0.3em;
+  vertical-align: middle;
 }
