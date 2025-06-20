@@ -1,14 +1,46 @@
 /*
 Name: Saadat Baig
 File: Pt3 - style.css
-Date: 18 June 2025
+Date: 20 June 2025
 Final CSS for styled homepage layout using custom fonts, spacing, and responsive nav.
 */
 
-/* Font setup */
-@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Libre+Baskerville:wght@400;700&display=swap');
+/* —————————————————————————————
+   Bulletproof @font-face declarations
+   ————————————————————————————— */
+@font-face {
+  font-family: 'Libre Baskerville';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Libre Baskerville Regular'), local('LibreBaskerville-Regular'),
+       url('fonts/LibreBaskerville-Regular.woff2') format('woff2'),
+       url('fonts/LibreBaskerville-Regular.woff') format('woff');
+}
 
-/* Global resets */
+@font-face {
+  font-family: 'Libre Baskerville';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Libre Baskerville Bold'), local('LibreBaskerville-Bold'),
+       url('fonts/LibreBaskerville-Bold.woff2') format('woff2'),
+       url('fonts/LibreBaskerville-Bold.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Amatic SC';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Amatic SC Bold'), local('AmaticSC-Bold'),
+       url('fonts/AmaticSC-Bold.woff2') format('woff2'),
+       url('fonts/AmaticSC-Bold.woff') format('woff');
+}
+
+/* —————————————————————————————
+   Global resets and base typography
+   ————————————————————————————— */
 * {
   box-sizing: border-box;
 }
@@ -17,30 +49,39 @@ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
-  font-size: 10px;
-  font-family: 'Libre Baskerville', serif;
+  font-size: 10px;                                  /* site-wide font sizing */
+  font-family: 'Libre Baskerville', serif;          /* body font */
   background-color: rgb(203, 235, 214);
   color: #222;
+  letter-spacing: 0.5px;                            /* letter-spacing for body text */
 }
 
-/* Hyperlink styling */
-a {
-  text-decoration: none;
-  color: blue;
-}
-
-a:hover,
-a:focus {
-  text-decoration: underline;
-}
-
-/* Flex base layout */
 body {
   display: flex;
   flex-direction: column;
 }
 
-/* Wrapper holds header + content + footer */
+/* —————————————————————————————
+   Hyperlink styling (all states)
+   ————————————————————————————— */
+a {
+  text-decoration: underline;                       /* underline by default */
+  color: #a66;                                      /* match header/footer bar */
+  outline: none;                                    /* remove default focus outline */
+}
+
+a:visited {
+  color: #944;                                      /* slightly darker mauve */
+}
+
+a:hover,
+a:focus {
+  text-decoration: none;                            /* remove underline on hover/focus */
+}
+
+/* —————————————————————————————
+   Layout wrappers
+   ————————————————————————————— */
 .wrapper {
   flex: 1;
   padding: 20px;
@@ -49,7 +90,9 @@ body {
   max-width: 100%;
 }
 
-/* Header styles */
+/* —————————————————————————————
+   Header & Hero
+   ————————————————————————————— */
 header {
   border-top: 5px solid #a66;
   border-bottom: 5px solid #a66;
@@ -58,32 +101,32 @@ header {
 }
 
 h1 {
-  font-family: 'Amatic SC', cursive;
-  font-size: 4rem;
+  font-family: 'Amatic SC', cursive;                /* heading font */
+  font-size: 4rem;                                  /* rem-based sizing */
   font-weight: 700;
   letter-spacing: 1.5px;
   margin: 0;
+  text-align: center;                               /* explicit center */
 }
 
-/* Container = 3-column layout */
+/* —————————————————————————————
+   Main three-column layout
+   ————————————————————————————— */
 .container {
   display: flex;
-  gap: 40px; /* Increased for more spacing */
+  gap: 40px;
   margin-top: 20px;
 }
 
-/* Left: Main content */
 main {
   flex: 1 1 55%;
 }
 
-/* Center: Top course choices */
 aside {
   flex: 1 1 25%;
-  padding: 0 30px; /* Add space on left and right */
+  padding: 0 30px;
 }
 
-/* Right: Navigation */
 nav {
   flex: 1 1 20%;
   display: flex;
@@ -94,7 +137,7 @@ nav {
 }
 
 nav ul {
-  list-style: none;
+  list-style: none;                                 /* remove list-style */
   padding: 0;
   margin: 0;
   display: flex;
@@ -103,25 +146,24 @@ nav ul {
 }
 
 nav li a {
-  text-decoration: none;
   padding: 0.8em 1.4em;
   border: 1px solid #ccc;
   border-radius: 5px;
   color: #333;
-  font-weight: bold;
   background-color: #fff;
-  display: block;
+  font-weight: bold;
   font-size: 1.6rem;
+  display: block;
 }
-
 nav li a:hover,
 nav li a:focus {
   background: #e3e3e3;
   color: #000;
-  outline: none;
 }
 
-/* Footer */
+/* —————————————————————————————
+   Footer
+   ————————————————————————————— */
 footer {
   margin-top: auto;
   border-top: 1px solid #aaa;
@@ -130,7 +172,9 @@ footer {
   font-size: 1.5rem;
 }
 
-/* Typography */
+/* —————————————————————————————
+   Typography for sections
+   ————————————————————————————— */
 h2 {
   font-family: 'Amatic SC', cursive;
   font-size: 2.8rem;
@@ -147,16 +191,23 @@ p, li {
   margin-bottom: 1rem;
 }
 
+/* Indent only the first paragraph after your intro section */
 .intro {
   text-indent: 20px;
   font-weight: 500;
 }
 
-ul, ol {
-  padding-left: 25px;
+/* Explicit list-style types */
+ul {
+  list-style-type: disc;
+}
+ol {
+  list-style-type: decimal;
 }
 
-/* External link icon */
+/* —————————————————————————————
+   External link icon
+   ————————————————————————————— */
 .external::after {
   content: '';
   display: inline-block;
