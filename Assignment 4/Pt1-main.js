@@ -33,6 +33,20 @@ function result() {
   newStory = newStory.replace(':inserty:', yItem);
   newStory = newStory.replace(':insertz:', zItem);
 
+  // Replace "Bob" with custom name if user entered one
+  if (customName.value !== '') {
+    newStory = newStory.replace('Bob', customName.value);
+  }
+
+  // Convert values if UK is selected
+  const uk = document.getElementById('uk');
+  if (uk.checked) {
+    const weight = Math.round(300 * 0.071429) + ' stone';
+    const temperature = Math.round((94 - 32) * 5 / 9) + ' centigrade';
+    newStory = newStory.replace('94 fahrenheit', temperature);
+    newStory = newStory.replace('300 pounds', weight);
+  }
+
   story.textContent = newStory;
   story.style.visibility = 'visible';
 }
