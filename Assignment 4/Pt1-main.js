@@ -1,3 +1,10 @@
+/*
+Name: Saadat Baig
+File: Pt1-main.js
+Date: 30 July 2025
+A silly story generator that creates a random story with optional name and unit customization.
+*/
+
 // main.js
 
 // DOM references
