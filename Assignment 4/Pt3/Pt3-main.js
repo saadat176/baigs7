@@ -2,7 +2,7 @@
 Name: Saadat Baig
 File: Pt3-main.js
 Date: 01 August 2025
-Starter JavaScript for object building practice (Part 3)
+Commit 3 - Added 25 random Ball objects and animation loop
 */
 
 // Canvas setup
@@ -53,7 +53,7 @@ Ball.prototype.update = function () {
   this.y += this.velY;
 };
 
-// Collision detection method
+// Collision detection method (will be used in next commit)
 Ball.prototype.collisionDetect = function () {
   for (let i = 0; i < balls.length; i++) {
     if (!(this === balls[i])) {
@@ -67,3 +67,35 @@ Ball.prototype.collisionDetect = function () {
     }
   }
 };
+
+// Create and populate ball array
+const balls = [];
+
+while (balls.length < 25) {
+  const size = random(10, 20);
+  const ball = new Ball(
+    random(size, width - size),
+    random(size, height - size),
+    random(-7, 7),
+    random(-7, 7),
+    randomRGB(),
+    size
+  );
+  balls.push(ball);
+}
+
+// Animation loop
+function loop() {
+  ctx.fillStyle = 'rgba(0, 0, 0, 0.25)';
+  ctx.fillRect(0, 0, width, height);
+
+  for (let i = 0; i < balls.length; i++) {
+    balls[i].draw();
+    balls[i].update();
+    // collisionDetect will be used in Commit 4
+  }
+
+  requestAnimationFrame(loop);
+}
+
+loop();
