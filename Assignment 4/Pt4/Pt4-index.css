@@ -1,0 +1,32 @@
+/*
+Name: Saadat Baig
+File: Pt4-style.css
+Date: 03 August 2025
+*/
+
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: black;
+}
+
+canvas {
+  display: block;
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+/* Heading styling */
+.title {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 28px;
+  font-family: sans-serif;
+  color: white;
+  z-index: 1000;
+}
+
+.title span {
+  color: red;
+}
