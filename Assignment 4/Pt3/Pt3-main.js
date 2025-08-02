@@ -2,15 +2,22 @@
 Name: Saadat Baig
 File: Pt3-main.js
 Date: 01 August 2025
-Commit 4 - Enabled color-changing collision detection for balls
+Commit 6 - Final fix: Dynamic canvas resizing to fit full screen
 */
 
-// Canvas setup
+// Canvas setup with dynamic resizing
 const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
 
-const width = canvas.width = window.innerWidth;
-const height = canvas.height = window.innerHeight;
+let width, height;
+
+function resizeCanvas() {
+  width = canvas.width = window.innerWidth;
+  height = canvas.height = window.innerHeight;
+}
+
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
 
 // Utility functions
 function random(min, max) {
@@ -21,52 +28,51 @@ function randomRGB() {
   return `rgb(${random(0, 255)},${random(0, 255)},${random(0, 255)})`;
 }
 
-// Ball constructor
-function Ball(x, y, velX, velY, color, size) {
-  this.x = x;
-  this.y = y;
-  this.velX = velX;
-  this.velY = velY;
-  this.color = color;
-  this.size = size;
-}
-
-// Draw method
-Ball.prototype.draw = function () {
-  ctx.beginPath();
-  ctx.fillStyle = this.color;
-  ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI);
-  ctx.fill();
-};
-
-// Update method
-Ball.prototype.update = function () {
-  if ((this.x + this.size) >= width || (this.x - this.size) <= 0) {
-    this.velX = -this.velX;
+// Ball class using ES6 syntax
+class Ball {
+  constructor(x, y, velX, velY, color, size) {
+    this.x = x;
+    this.y = y;
+    this.velX = velX;
+    this.velY = velY;
+    this.color = color;
+    this.size = size;
   }
 
-  if ((this.y + this.size) >= height || (this.y - this.size) <= 0) {
-    this.velY = -this.velY;
+  draw() {
+    ctx.beginPath();
+    ctx.fillStyle = this.color;
+    ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI);
+    ctx.fill();
   }
 
-  this.x += this.velX;
-  this.y += this.velY;
-};
+  update() {
+    if ((this.x + this.size) >= width || (this.x - this.size) <= 0) {
+      this.velX = -this.velX;
+    }
 
-// Collision detection method
-Ball.prototype.collisionDetect = function () {
-  for (let i = 0; i < balls.length; i++) {
-    if (!(this === balls[i])) {
-      const dx = this.x - balls[i].x;
-      const dy = this.y - balls[i].y;
-      const distance = Math.sqrt(dx * dx + dy * dy);
+    if ((this.y + this.size) >= height || (this.y - this.size) <= 0) {
+      this.velY = -this.velY;
+    }
 
-      if (distance < this.size + balls[i].size) {
-        balls[i].color = this.color = randomRGB();
+    this.x += this.velX;
+    this.y += this.velY;
+  }
+
+  collisionDetect() {
+    for (let i = 0; i < balls.length; i++) {
+      if (!(this === balls[i])) {
+        const dx = this.x - balls[i].x;
+        const dy = this.y - balls[i].y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+
+        if (distance < this.size + balls[i].size) {
+          balls[i].color = this.color = randomRGB();
+        }
       }
     }
   }
-};
+}
 
 // Create and populate ball array
 const balls = [];
@@ -74,8 +80,8 @@ const balls = [];
 while (balls.length < 25) {
   const size = random(10, 20);
   const ball = new Ball(
-    random(size, width - size),
-    random(size, height - size),
+    random(size, window.innerWidth - size),
+    random(size, window.innerHeight - size),
     random(-7, 7),
     random(-7, 7),
     randomRGB(),
@@ -92,7 +98,7 @@ function loop() {
   for (let i = 0; i < balls.length; i++) {
     balls[i].draw();
     balls[i].update();
-    balls[i].collisionDetect(); // ← Enabled in Commit 4
+    balls[i].collisionDetect();
   }
 
   requestAnimationFrame(loop);

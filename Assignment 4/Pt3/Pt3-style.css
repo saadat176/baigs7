@@ -2,12 +2,14 @@
 Name: Saadat Baig
 File: Pt3-style.css
 Date: 01 August 2025
-Styling for object building canvas project (Part 3)
+Commit 6 - Full-screen canvas styling and background fix
 */
 
 html, body {
   margin: 0;
   padding: 0;
+  overflow: hidden;
+  background-color: black;
 }
 
 canvas {
