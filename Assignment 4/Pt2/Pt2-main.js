@@ -34,9 +34,10 @@ imageList.forEach(function(image) {
   });
 });
 
-// Darken/Lighten toggle button
+// Darken/Lighten toggle button functionality
 btn.addEventListener('click', function () {
   const currentClass = btn.getAttribute('class');
+
   if (currentClass === 'dark') {
     btn.setAttribute('class', 'light');
     btn.textContent = 'Lighten';

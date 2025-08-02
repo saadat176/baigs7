@@ -10,20 +10,26 @@ Basic structure for a dynamic image gallery using HTML, CSS, and JavaScript.
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width" />
-  <title>Image gallery</title>
+  <title>Image Gallery</title>
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <h1>Image gallery example</h1>
 
+<body>
+  <h1>Image Gallery Example</h1>
+
+  <!-- Full-size image display with overlay and toggle button -->
   <div class="full-img">
     <img class="displayed" src="images/pic1.jpg" alt="Closeup of a human eye" />
+    <!-- Transparent overlay to apply darken/lighten effect -->
     <div class="overlay"></div>
+    <!-- Button to toggle overlay effect -->
     <button class="dark">Darken</button>
   </div>
 
+  <!-- Thumbnail bar will be populated via JavaScript -->
   <div class="thumb-bar"></div>
 
+  <!-- Link to external JavaScript logic -->
   <script src="main.js"></script>
 </body>
 </html>

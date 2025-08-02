@@ -5,6 +5,7 @@ Date: 01 August 2025
 Styling for the dynamic image gallery layout and effects.
 */
 
+/* Base font and layout */
 html {
   font-family: sans-serif;
 }
@@ -14,6 +15,7 @@ body {
   margin: 0 auto;
 }
 
+/* Main display image and overlay setup */
 .full-img {
   position: relative;
   display: block;
@@ -25,24 +27,28 @@ body {
   width: 100%;
 }
 
+/* Overlay for darken/lighten effect */
 .overlay {
   position: absolute;
   top: 0;
-  background-color: rgba(0,0,0,0);
+  background-color: rgba(0, 0, 0, 0); /* Default: transparent */
   width: 100%;
   height: 100%;
 }
 
+/* Toggle button styling */
 button {
   border: 0;
-  background: rgba(255,255,255,0.5);
+  background: rgba(255, 255, 255, 0.5);
   text-shadow: 1px 1px 1px white;
   border: 1px solid #999;
   position: absolute;
   top: 5px;
   left: 5px;
+  cursor: pointer;
 }
 
+/* Thumbnail styling */
 .thumb-bar img {
   display: block;
   width: 20%;
