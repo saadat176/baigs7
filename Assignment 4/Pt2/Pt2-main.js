@@ -2,42 +2,39 @@
 Name: Saadat Baig
 File: Pt2-main.js
 Date: 01 August 2025
-JavaScript logic for building a dynamic image gallery (Step 4 – Darken/Lighten button functionality).
+JavaScript for dynamic image gallery thumbnail handling and darken/lighten toggle.
 */
 
-// DOM element references
-const displayedImage = document.querySelector('.full-img img');
+const displayedImage = document.querySelector('.displayed');
 const thumbBar = document.querySelector('.thumb-bar');
 const btn = document.querySelector('button');
 const overlay = document.querySelector('.overlay');
 
-// Image file names and alt text
-const imageList = [
-  { src: 'Pt2/images/pic1.jpg', alt: 'Closeup of a human eye' },
-  { src: 'Pt2/images/pic2.jpg', alt: 'Rock that looks like a wave' },
-  { src: 'Pt2/images/pic3.jpg', alt: 'Purple and white pansies' },
-  { src: 'Pt2/images/pic4.jpg', alt: 'Section of wall from a pharaoh’s tomb' },
-  { src: 'Pt2/images/pic5.jpg', alt: 'Large moth on a leaf' }
+// Array of image file names and alt texts
+const images = [
+  { src: 'images/pic1.jpg', alt: 'Closeup of a human eye' },
+  { src: 'images/pic2.jpg', alt: 'Abstract orange flow lines' },
+  { src: 'images/pic3.jpg', alt: 'Purple and white flowers' },
+  { src: 'images/pic4.jpg', alt: 'Egyptian art figures' },
+  { src: 'images/pic5.jpg', alt: 'Butterfly on green leaf' }
 ];
 
-// Loop through imageList and create thumbnails
-imageList.forEach(function(image) {
+// Dynamically generate thumbnail images
+images.forEach(image => {
   const newImage = document.createElement('img');
   newImage.setAttribute('src', image.src);
   newImage.setAttribute('alt', image.alt);
   thumbBar.appendChild(newImage);
 
-  // When a thumbnail is clicked, update the main image
-  newImage.addEventListener('click', function () {
+  newImage.addEventListener('click', () => {
     displayedImage.setAttribute('src', image.src);
     displayedImage.setAttribute('alt', image.alt);
   });
 });
 
-// Darken/Lighten toggle button functionality
-btn.addEventListener('click', function () {
+// Toggle darken/lighten overlay
+btn.addEventListener('click', () => {
   const currentClass = btn.getAttribute('class');
-
   if (currentClass === 'dark') {
     btn.setAttribute('class', 'light');
     btn.textContent = 'Lighten';

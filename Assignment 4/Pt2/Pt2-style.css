@@ -5,7 +5,6 @@ Date: 01 August 2025
 Styling for the dynamic image gallery layout and effects.
 */
 
-/* Base font and layout */
 html {
   font-family: sans-serif;
 }
@@ -13,45 +12,70 @@ html {
 body {
   width: 640px;
   margin: 0 auto;
+  padding-bottom: 30px;
 }
 
-/* Main display image and overlay setup */
+/* Full image and overlay */
 .full-img {
   position: relative;
-  display: block;
   width: 640px;
   height: 480px;
+  overflow: hidden;
 }
 
-.full-img img {
+.full-img img.displayed {
   width: 100%;
+  height: auto;
+  max-height: 100%;
+  object-fit: contain;
+  display: block;
 }
 
-/* Overlay for darken/lighten effect */
+/* Overlay toggle: dark/light */
 .overlay {
   position: absolute;
   top: 0;
-  background-color: rgba(0, 0, 0, 0); /* Default: transparent */
+  left: 0;
+  background-color: rgba(0, 0, 0, 0);
   width: 100%;
   height: 100%;
+  transition: background-color 0.3s ease;
+  z-index: 1;
 }
 
-/* Toggle button styling */
+/* Toggle button */
 button {
-  border: 0;
-  background: rgba(255, 255, 255, 0.5);
-  text-shadow: 1px 1px 1px white;
-  border: 1px solid #999;
   position: absolute;
-  top: 5px;
-  left: 5px;
+  top: 10px;
+  left: 10px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid #999;
+  padding: 6px 12px;
+  font-weight: bold;
   cursor: pointer;
+  z-index: 2;
+  border-radius: 5px;
 }
 
-/* Thumbnail styling */
+/* Thumbnails */
+.thumb-bar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 15px;
+  overflow-x: hidden;
+}
+
 .thumb-bar img {
-  display: block;
-  width: 20%;
-  float: left;
+  width: 120px;
+  height: auto;
   cursor: pointer;
+  border: 2px solid transparent;
+  flex-shrink: 0;
+  transition: border-color 0.3s ease;
+}
+
+.thumb-bar img:hover {
+  border-color: #555;
 }
