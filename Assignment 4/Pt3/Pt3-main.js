@@ -2,7 +2,7 @@
 Name: Saadat Baig
 File: Pt3-main.js
 Date: 01 August 2025
-Commit 3 - Added 25 random Ball objects and animation loop
+Commit 4 - Enabled color-changing collision detection for balls
 */
 
 // Canvas setup
@@ -53,7 +53,7 @@ Ball.prototype.update = function () {
   this.y += this.velY;
 };
 
-// Collision detection method (will be used in next commit)
+// Collision detection method
 Ball.prototype.collisionDetect = function () {
   for (let i = 0; i < balls.length; i++) {
     if (!(this === balls[i])) {
@@ -92,7 +92,7 @@ function loop() {
   for (let i = 0; i < balls.length; i++) {
     balls[i].draw();
     balls[i].update();
-    // collisionDetect will be used in Commit 4
+    balls[i].collisionDetect(); // ← Enabled in Commit 4
   }
 
   requestAnimationFrame(loop);
