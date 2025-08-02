@@ -1,0 +1,16 @@
+/*
+Name: Saadat Baig
+File: Pt3-style.css
+Date: 01 August 2025
+Styling for object building canvas project (Part 3)
+*/
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+canvas {
+  display: block;
+  background-color: rgba(0, 0, 0, 0.9);
+}
