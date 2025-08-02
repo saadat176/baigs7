@@ -1,0 +1,51 @@
+/*
+Name: Saadat Baig
+File: Pt2-style.css
+Date: 01 August 2025
+Styling for the dynamic image gallery layout and effects.
+*/
+
+html {
+  font-family: sans-serif;
+}
+
+body {
+  width: 640px;
+  margin: 0 auto;
+}
+
+.full-img {
+  position: relative;
+  display: block;
+  width: 640px;
+  height: 480px;
+}
+
+.full-img img {
+  width: 100%;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  background-color: rgba(0,0,0,0);
+  width: 100%;
+  height: 100%;
+}
+
+button {
+  border: 0;
+  background: rgba(255,255,255,0.5);
+  text-shadow: 1px 1px 1px white;
+  border: 1px solid #999;
+  position: absolute;
+  top: 5px;
+  left: 5px;
+}
+
+.thumb-bar img {
+  display: block;
+  width: 20%;
+  float: left;
+  cursor: pointer;
+}
