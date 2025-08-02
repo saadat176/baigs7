@@ -30,3 +30,14 @@ canvas {
 .title span {
   color: red;
 }
+
+/* Ball count display */
+#ball-count {
+  position: absolute;
+  top: 50px;
+  right: 20px;
+  font-size: 18px;
+  color: #00ff00;
+  font-family: monospace;
+  z-index: 1000;
+}
