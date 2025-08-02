@@ -31,13 +31,19 @@ canvas {
   color: red;
 }
 
-/* Ball count display */
-#ball-count {
+/* Info Panel for Score and Lives */
+.info-panel {
   position: absolute;
-  top: 50px;
+  top: 60px;
   right: 20px;
+  font-family: monospace;
   font-size: 18px;
   color: #00ff00;
-  font-family: monospace;
+  line-height: 1.5;
   z-index: 1000;
+}
+
+#score,
+#lives {
+  margin: 0;
 }
