@@ -1,0 +1,45 @@
+/*
+Name: Saadat Baig
+File: Pt4-style.css
+Date: 03 August 2025
+*/
+
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: black;
+  font-family: sans-serif;
+}
+
+/* Fullscreen Canvas */
+canvas {
+  display: block;
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+/* Game Title and Info (Top-right unified block) */
+.info-wrapper {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  text-align: right;
+  color: white;
+  z-index: 1000;
+}
+
+/* Title styling */
+.info-wrapper h1 {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0 0 5px 0;
+  color: white;
+}
+
+/* Score and Lives */
+.info-wrapper p {
+  margin: 0;
+  font-family: monospace;
+  font-size: 16px;
+  line-height: 1.4;
+}

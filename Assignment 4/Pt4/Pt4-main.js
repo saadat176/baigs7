@@ -8,21 +8,11 @@ Commit 2 - Added score and lives system setup
 // Score and lives variables
 let score = 0;
 let lives = 3;
+let gameOver = false;
 
 // DOM elements
 const scoreDisplay = document.getElementById('score');
 const livesDisplay = document.getElementById('lives');
-
-// Functions to update display
-function updateScore(value) {
-  score += value;
-  scoreDisplay.textContent = `Score: ${score}`;
-}
-
-function updateLives(value) {
-  lives += value;
-  livesDisplay.textContent = `Lives: ${lives}`;
-}
 
 // Canvas setup
 const canvas = document.querySelector('canvas');
@@ -33,14 +23,37 @@ function resizeCanvas() {
   width = canvas.width = window.innerWidth;
   height = canvas.height = window.innerHeight;
 }
-resizeCanvas();
 window.addEventListener('resize', resizeCanvas);
+
+// Functions to update display
+function updateScore(value) {
+  score += value;
+  scoreDisplay.textContent = `Score: ${score}`;
+}
+
+function updateLives(value) {
+  lives += value;
+  if (lives < 0) lives = 0;
+  livesDisplay.textContent = `Lives: ${lives}`;
+  if (lives === 0 && !gameOver) {
+    gameOver = true;
+    displayGameOver();
+  }
+}
+
+function displayGameOver() {
+  ctx.fillStyle = 'red';
+  ctx.font = '48px sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('GAME OVER', width / 2, height / 2);
+  ctx.font = '20px sans-serif';
+  ctx.fillText('Press R to Restart', width / 2, height / 2 + 40);
+}
 
 // Utility functions
 function random(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
-
 function randomRGB() {
   return `rgb(${random(0,255)},${random(0,255)},${random(0,255)})`;
 }
@@ -74,15 +87,8 @@ class Ball extends Shape {
 
   update() {
     if (!this.exists) return;
-
-    if ((this.x + this.size) >= width || (this.x - this.size) <= 0) {
-      this.velX = -this.velX;
-    }
-
-    if ((this.y + this.size) >= height || (this.y - this.size) <= 0) {
-      this.velY = -this.velY;
-    }
-
+    if ((this.x + this.size) >= width || (this.x - this.size) <= 0) this.velX = -this.velX;
+    if ((this.y + this.size) >= height || (this.y - this.size) <= 0) this.velY = -this.velY;
     this.x += this.velX;
     this.y += this.velY;
   }
@@ -94,7 +100,6 @@ class Ball extends Shape {
         const dx = this.x - other.x;
         const dy = this.y - other.y;
         const distance = Math.sqrt(dx * dx + dy * dy);
-
         if (distance < this.size + other.size) {
           other.color = this.color = randomRGB();
         }
@@ -121,10 +126,16 @@ class EvilCircle extends Shape {
   }
 
   checkBounds() {
-    if ((this.x + this.size) >= width) this.x = width - this.size;
-    if ((this.x - this.size) <= 0) this.x = this.size;
-    if ((this.y + this.size) >= height) this.y = height - this.size;
-    if ((this.y - this.size) <= 0) this.y = this.size;
+    const outLeft = (this.x - this.size) <= 0;
+    const outRight = (this.x + this.size) >= width;
+    const outTop = (this.y - this.size) <= 0;
+    const outBottom = (this.y + this.size) >= height;
+
+    if (outLeft || outRight || outTop || outBottom) {
+      updateLives(-1);
+      this.x = random(this.size, width - this.size);
+      this.y = random(this.size, height - this.size);
+    }
   }
 
   collisionDetect(balls) {
@@ -134,7 +145,6 @@ class EvilCircle extends Shape {
         const dx = this.x - ball.x;
         const dy = this.y - ball.y;
         const distance = Math.sqrt(dx * dx + dy * dy);
-
         if (distance < this.size + ball.size) {
           ball.exists = false;
           updateScore(1);
@@ -145,6 +155,12 @@ class EvilCircle extends Shape {
 
   setControls() {
     window.addEventListener('keydown', (e) => {
+      if (gameOver && (e.key === 'r' || e.key === 'R')) {
+        restartGame();
+        return;
+      }
+      if (gameOver) return;
+
       switch (e.key) {
         case 'a':
         case 'ArrowLeft':
@@ -167,23 +183,51 @@ class EvilCircle extends Shape {
   }
 }
 
-// Create balls
-const balls = [];
-while (balls.length < 25) {
-  const size = random(10, 20);
-  const ball = new Ball(
-    random(size, width - size),
-    random(size, height - size),
-    random(-7, 7),
-    random(-7, 7),
-    randomRGB(),
-    size
-  );
-  balls.push(ball);
+// Game logic setup
+let balls = [];
+let evilCircle;
+
+function createBalls() {
+  balls = [];
+  while (balls.length < 25) {
+    const size = random(10, 20);
+    balls.push(new Ball(
+      random(size, width - size),
+      random(size, height - size),
+      random(-7, 7),
+      random(-7, 7),
+      randomRGB(),
+      size
+    ));
+  }
 }
 
-// Create EvilCircle
-const evilCircle = new EvilCircle(width / 2, height / 2);
+function restartGame() {
+  score = 0;
+  lives = 3;
+  gameOver = false;
+  updateScore(0);
+  updateLives(0);
+  createBalls();
+
+  evilCircle = new EvilCircle(
+    random(25, width - 25),
+    random(25, height - 25)
+  );
+
+  loop();
+}
+
+// MAIN START POINT — SAFE SPAWN AFTER RESIZE
+window.addEventListener('load', () => {
+  resizeCanvas();
+  createBalls();
+  evilCircle = new EvilCircle(
+    random(25, width - 25),
+    random(25, height - 25)
+  );
+  loop();
+});
 
 // Animation loop
 function loop() {
@@ -200,7 +244,6 @@ function loop() {
   evilCircle.checkBounds();
   evilCircle.collisionDetect(balls);
 
-  requestAnimationFrame(loop);
+  if (!gameOver) requestAnimationFrame(loop);
+  else displayGameOver();
 }
-
-loop();
