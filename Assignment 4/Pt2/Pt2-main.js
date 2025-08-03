@@ -12,11 +12,11 @@ const overlay = document.querySelector('.overlay');
 
 // Array of image file names and alt texts
 const images = [
-  { src: 'images/pic1.jpg', alt: 'Closeup of a human eye' },
-  { src: 'images/pic2.jpg', alt: 'Abstract orange flow lines' },
-  { src: 'images/pic3.jpg', alt: 'Purple and white flowers' },
-  { src: 'images/pic4.jpg', alt: 'Egyptian art figures' },
-  { src: 'images/pic5.jpg', alt: 'Butterfly on green leaf' }
+  { src: 'Images/pic1.jpg', alt: 'Closeup of a human eye' },
+  { src: 'Images/pic2.jpg', alt: 'Abstract orange flow lines' },
+  { src: 'Images/pic3.jpg', alt: 'Purple and white flowers' },
+  { src: 'Images/pic4.jpg', alt: 'Egyptian art figures' },
+  { src: 'Images/pic5.jpg', alt: 'Butterfly on green leaf' }
 ];
 
 // Dynamically generate thumbnail images
