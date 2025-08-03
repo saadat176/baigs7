@@ -1,8 +1,7 @@
 /*
 Name: Saadat Baig
 File: Pt4-main.js
-Date: 03 August 2025
-Commit 2 - Added score and lives system setup
+Date: 02 August 2025
 */
 
 // Score and lives variables

@@ -2,7 +2,6 @@
 Name: Saadat Baig
 File: Pt3-main.js
 Date: 02 August 2025
-Commit 7 - Added Shape and EvilCircle classes for full rubric compliance
 */
 
 // Canvas setup with dynamic resizing

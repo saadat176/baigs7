@@ -1,7 +1,7 @@
 /*
 Name: Saadat Baig
 File: Pt2-main.js
-Date: 01 August 2025
+Date: 02 August 2025
 JavaScript for dynamic image gallery thumbnail handling and darken/lighten toggle.
 */
 
