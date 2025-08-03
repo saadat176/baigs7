@@ -85,69 +85,6 @@ class Ball extends Shape {
 }
 
 // ------------------------
-// EvilCircle (extends Shape)
-// ------------------------
-class EvilCircle extends Shape {
-  constructor(x, y) {
-    super(x, y, 20, 20); // constant speed
-    this.color = 'white';
-    this.size = 25;
-    this.setControls();
-  }
-
-  draw() {
-    ctx.beginPath();
-    ctx.strokeStyle = this.color;
-    ctx.lineWidth = 3;
-    ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI);
-    ctx.stroke();
-  }
-
-  checkBounds() {
-    if ((this.x + this.size) >= width) this.x = width - this.size;
-    if ((this.x - this.size) <= 0) this.x = this.size;
-    if ((this.y + this.size) >= height) this.y = height - this.size;
-    if ((this.y - this.size) <= 0) this.y = this.size;
-  }
-
-  collisionDetect() {
-    for (let i = 0; i < balls.length; i++) {
-      const dx = this.x - balls[i].x;
-      const dy = this.y - balls[i].y;
-      const distance = Math.sqrt(dx * dx + dy * dy);
-
-      if (distance < this.size + balls[i].size) {
-        balls.splice(i, 1); // "eats" the ball
-        i--; // adjust index after removal
-      }
-    }
-  }
-
-  setControls() {
-    window.addEventListener('keydown', (e) => {
-      switch (e.key) {
-        case 'a':
-        case 'ArrowLeft':
-          this.x -= this.velX;
-          break;
-        case 'd':
-        case 'ArrowRight':
-          this.x += this.velX;
-          break;
-        case 'w':
-        case 'ArrowUp':
-          this.y -= this.velY;
-          break;
-        case 's':
-        case 'ArrowDown':
-          this.y += this.velY;
-          break;
-      }
-    });
-  }
-}
-
-// ------------------------
 // Create and populate balls
 // ------------------------
 const balls = [];
@@ -166,11 +103,6 @@ while (balls.length < 25) {
 }
 
 // ------------------------
-// Create EvilCircle instance
-// ------------------------
-const evilCircle = new EvilCircle(width / 2, height / 2);
-
-// ------------------------
 // Animation Loop
 // ------------------------
 function loop() {
@@ -182,10 +114,6 @@ function loop() {
     balls[i].update();
     balls[i].collisionDetect();
   }
-
-  evilCircle.draw();
-  evilCircle.checkBounds();
-  evilCircle.collisionDetect();
 
   requestAnimationFrame(loop);
 }
