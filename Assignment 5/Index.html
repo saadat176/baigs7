@@ -2,7 +2,7 @@
 Author: Saadat Baig
 Date: August 7, 2025
 index.html
-Commit 4: Enhanced accessibility with audio element, added ARIA roles/labels, and improved semantic structure using <figure> and <figcaption>
+Commit 5: Added accessible "Back to Top" button with ARIA label and keyboard shortcut support
 -->
 
 <!DOCTYPE html>
@@ -25,7 +25,7 @@ Commit 4: Enhanced accessibility with audio element, added ARIA roles/labels, an
       <article>
         <h3>Wild Bear</h3>
         <figure>
-          <img src="wild-bear.jpg" alt="A bear standing in a forest" />
+          <img src="wild-bear.jpg" alt="A bear standing in a forest" tabindex="0" />
           <figcaption>This bear lives in the wild and enjoys exploring nature.</figcaption>
         </figure>
       </article>
@@ -52,6 +52,11 @@ Commit 4: Enhanced accessibility with audio element, added ARIA roles/labels, an
   <footer role="contentinfo">
     <p>&copy; 2025 Bear Info Center</p>
   </footer>
+
+  <!-- Back to Top button -->
+  <button id="backToTop" aria-label="Back to top of the page" style="position: fixed; bottom: 1rem; right: 1rem;">
+    ↑ Top
+  </button>
 
   <script src="main.js"></script>
 </body>

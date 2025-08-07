@@ -2,7 +2,7 @@
 Author: Saadat Baig
 Date: August 7, 2025
 style.css
-Commit 3: Improved accessibility by styling <figure>, <figcaption>, and <audio>; ensured contrast and layout consistency
+Commit 5: Added styling for accessible "Back to Top" button with clear visibility and hover/focus effects
 */
 
 body {
@@ -57,4 +57,26 @@ figcaption {
 audio {
   width: 100%;
   margin-top: 1rem;
+}
+
+/* Back to Top button styles */
+#backToTop {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: #2e7d32;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+#backToTop:hover,
+#backToTop:focus {
+  background-color: #1b5e20;
+  outline: none;
 }
