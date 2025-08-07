@@ -1,6 +1,45 @@
 /*
 Author: Saadat Baig
 Date: August 7, 2025
-Commit 1: Created CSS file, styles will be added in next commits
+style.css
+Commit 2: Added basic layout styles, formatted headings and articles, styled images for better accessibility
 */
 
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  background-color: #f7f7f7;
+  color: #333;
+}
+
+header, footer {
+  background-color: #004d40;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+}
+
+main {
+  padding: 1rem 2rem;
+}
+
+h1, h2, h3 {
+  color: #2e7d32;
+}
+
+article {
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 5px;
+}
+
+article img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0.5rem 0;
+}
