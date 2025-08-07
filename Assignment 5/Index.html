@@ -2,7 +2,7 @@
 Author: Saadat Baig
 Date: August 7, 2025
 index.html
-Commit 2: Added bear images with alt text, improved semantic HTML using <article>, and styled image sections for accessibility
+Commit 3: Enhanced accessibility with audio element, added ARIA roles/labels, and improved semantic structure using <figure> and <figcaption>
 -->
 
 <!DOCTYPE html>
@@ -14,29 +14,42 @@ Commit 2: Added bear images with alt text, improved semantic HTML using <article
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header>
+  <header role="banner">
     <h1>All About Bears</h1>
   </header>
 
-  <main>
-    <section>
-      <h2>Meet the Bears</h2>
+  <main role="main">
+    <section aria-labelledby="bear-gallery">
+      <h2 id="bear-gallery">Meet the Bears</h2>
 
       <article>
         <h3>Wild Bear</h3>
-        <img src="wild-bear.jpg" alt="A bear standing in a forest" />
-        <p>This bear lives in the wild. It enjoys exploring nature.</p>
+        <figure>
+          <img src="wild-bear.jpg" alt="A bear standing in a forest" />
+          <figcaption>This bear lives in the wild and enjoys exploring nature.</figcaption>
+        </figure>
       </article>
 
       <article>
         <h3>Urban Bear</h3>
-        <img src="urban-bear.jpg" alt="A bear wandering through a city street" />
-        <p>This bear was spotted in an urban area. It seems curious about humans.</p>
+        <figure>
+          <img src="urban-bear.jpg" alt="A bear wandering through a city street" />
+          <figcaption>This bear was spotted in an urban area and seems curious about humans.</figcaption>
+        </figure>
       </article>
+    </section>
+
+    <section aria-labelledby="bear-sounds">
+      <h2 id="bear-sounds">Hear the Bears</h2>
+      <audio controls>
+        <source src="bear.mp3" type="audio/mpeg" />
+        <source src="bear.ogg" type="audio/ogg" />
+        Your browser does not support the audio element.
+      </audio>
     </section>
   </main>
 
-  <footer>
+  <footer role="contentinfo">
     <p>&copy; 2025 Bear Info Center</p>
   </footer>
 

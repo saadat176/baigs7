@@ -2,7 +2,7 @@
 Author: Saadat Baig
 Date: August 7, 2025
 style.css
-Commit 2: Added basic layout styles, formatted headings and articles, styled images for better accessibility
+Commit 3: Improved accessibility by styling <figure>, <figcaption>, and <audio>; ensured contrast and layout consistency
 */
 
 body {
@@ -42,4 +42,19 @@ article img {
   height: auto;
   display: block;
   margin: 0.5rem 0;
+}
+
+figure {
+  margin: 0;
+}
+
+figcaption {
+  font-style: italic;
+  color: #555;
+  padding-top: 0.25rem;
+}
+
+audio {
+  width: 100%;
+  margin-top: 1rem;
 }
