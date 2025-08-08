@@ -2,16 +2,121 @@
 Author: Saadat Baig
 Date: August 7, 2025
 style.css
-Commit 5: Added styling for accessible "Back to Top" button with clear visibility and hover/focus effects
+Commit 6: Final merge with MDN bear example styles + kept accessible Back to Top button
 */
 
-body {
-  font-family: Arial, sans-serif;
-  line-height: 1.6;
+/* ===== General Setup ===== */
+html, body {
   margin: 0;
   padding: 0;
+}
+
+html {
+  font-size: 10px;
+  background-color: #dde;
+}
+
+body {
+  font-family: 'Open Sans Condensed', Arial, sans-serif;
+  line-height: 1.6;
+  width: 80%;
+  min-width: 1024px;
+  margin: 0 auto;
   background-color: #f7f7f7;
   color: #333;
+}
+
+/* ===== Links ===== */
+a {
+  color: #2a5db0;
+  text-decoration: none;
+}
+
+a:visited {
+  color: #5a2db0;
+}
+
+a:hover,
+a:focus {
+  text-decoration: underline;
+}
+
+/* ===== Typography ===== */
+h1, h2, h3 {
+  color: #2e7d32;
+}
+
+p, input, li, table, label {
+  font-family: 'Open Sans Condensed', sans-serif;
+  color: #2a2a2a;
+  font-size: 1.6rem;
+  line-height: 1.5;
+}
+
+h1 {
+  font-size: 4rem;
+  text-align: center;
+  color: white;
+  text-shadow: 2px 2px 10px black;
+  margin: 0;
+  padding: 2rem 0;
+}
+
+h2 {
+  font-size: 3rem;
+  text-align: center;
+}
+
+h3 {
+  font-size: 2.2rem;
+}
+
+/* ===== Navigation ===== */
+nav ul {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background-color: #003d33;
+}
+
+nav ul li {
+  margin: 0;
+}
+
+nav ul li a {
+  display: block;
+  padding: 1rem 2rem;
+  color: white;
+  font-size: 1.6rem;
+}
+
+nav ul li a:hover,
+nav ul li a:focus {
+  background-color: #00695c;
+}
+
+/* ===== Layout ===== */
+main {
+  display: flex;
+  padding: 1rem 2rem;
+}
+
+article {
+  flex: 5;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  padding: 1rem;
+  margin-right: 10px;
+  margin-bottom: 1rem;
+  border-radius: 5px;
+}
+
+.secondary {
+  flex: 2;
+  background-color: #ffffff;
+  padding: 10px 30px;
 }
 
 header, footer {
@@ -21,22 +126,11 @@ header, footer {
   text-align: center;
 }
 
-main {
-  padding: 1rem 2rem;
+footer {
+  margin-top: 10px;
 }
 
-h1, h2, h3 {
-  color: #2e7d32;
-}
-
-article {
-  background-color: #ffffff;
-  border: 1px solid #ccc;
-  padding: 1rem;
-  margin-bottom: 1rem;
-  border-radius: 5px;
-}
-
+/* ===== Images & Figures ===== */
 article img {
   max-width: 100%;
   height: auto;
@@ -54,12 +148,111 @@ figcaption {
   padding-top: 0.25rem;
 }
 
+/* ===== Audio ===== */
 audio {
-  width: 100%;
-  margin-top: 1rem;
+  display: block;
+  margin: 0 auto;
+  width: 500px;
 }
 
-/* Back to Top button styles */
+/* ===== Table Styling ===== */
+table {
+  width: 100%;
+  background-color: #dde;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 10px;
+}
+
+td {
+  text-align: center;
+}
+
+th[scope="col"] {
+  border-bottom: 1px solid black;
+}
+
+tbody tr:nth-child(odd) {
+  background-color: #def;
+}
+
+/* ===== Comments Section ===== */
+.comments {
+  background-color: #def;
+  padding: 10px;
+}
+
+.show-hide {
+  cursor: pointer;
+  text-align: center;
+  width: 150px;
+  background: #333;
+  border: 0;
+  color: white;
+  font-size: 1.6rem;
+  line-height: 32px;
+}
+
+.comments h2 {
+  font-size: 2rem;
+}
+
+.comment-form {
+  margin-bottom: 3rem;
+}
+
+.comment-form .flex-pair {
+  display: flex;
+  padding: 0 3rem 1rem;
+}
+
+.comment-form label {
+  align-self: center;
+  flex: 2;
+  text-align: right;
+}
+
+.comment-form input {
+  margin-left: 1rem;
+  flex: 6;
+}
+
+.comment-form input, 
+.comment-form label {
+  font-size: 1.6rem;
+  line-height: 32px;
+}
+
+.comment-form input[type="submit"] {
+  background: #333;
+  border: 0;
+  color: white;
+  width: 30%;
+  display: block;
+  margin: 0 auto;
+}
+
+.comment-container {
+  margin-top: 0;
+}
+
+.comment-container li {
+  list-style-type: none;
+  display: flex;
+}
+
+.comment-container li p:nth-child(1) {
+  flex: 1;
+  font-weight: bold;
+}
+
+.comment-container li p:nth-child(2) {
+  flex: 5;
+}
+
+/* ===== Back to Top button styles ===== */
 #backToTop {
   position: fixed;
   bottom: 1rem;

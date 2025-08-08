@@ -2,7 +2,7 @@
 Author: Saadat Baig
 Date: August 7, 2025
 index.html
-Commit 5: Added accessible "Back to Top" button with ARIA label and keyboard shortcut support
+Commit 6: Added MDN-style comments section markup to work with JS, kept semantic and accessibility best practices.
 -->
 
 <!DOCTYPE html>
@@ -14,18 +14,27 @@ Commit 5: Added accessible "Back to Top" button with ARIA label and keyboard sho
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header role="banner">
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <header>
     <h1>All About Bears</h1>
+    <nav aria-label="Main navigation">
+      <ul>
+        <li><a href="#bear-gallery">Bear Gallery</a></li>
+        <li><a href="#bear-sounds">Bear Sounds</a></li>
+        <li><a href="#comments">Comments</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <main role="main">
+  <main id="main-content">
     <section aria-labelledby="bear-gallery">
       <h2 id="bear-gallery">Meet the Bears</h2>
 
       <article>
         <h3>Wild Bear</h3>
         <figure>
-          <img src="wild-bear.jpg" alt="A bear standing in a forest" tabindex="0" />
+          <img src="Media/wild-bear.jpg" alt="A brown bear standing in a forest" tabindex="0" />
           <figcaption>This bear lives in the wild and enjoys exploring nature.</figcaption>
         </figure>
       </article>
@@ -33,7 +42,7 @@ Commit 5: Added accessible "Back to Top" button with ARIA label and keyboard sho
       <article>
         <h3>Urban Bear</h3>
         <figure>
-          <img src="urban-bear.jpg" alt="A bear wandering through a city street" />
+          <img src="Media/urban-bear.jpg" alt="A bear walking through a quiet city street" tabindex="0" />
           <figcaption>This bear was spotted in an urban area and seems curious about humans.</figcaption>
         </figure>
       </article>
@@ -41,22 +50,40 @@ Commit 5: Added accessible "Back to Top" button with ARIA label and keyboard sho
 
     <section aria-labelledby="bear-sounds">
       <h2 id="bear-sounds">Hear the Bears</h2>
-      <audio controls>
-        <source src="bear.mp3" type="audio/mpeg" />
-        <source src="bear.ogg" type="audio/ogg" />
-        Your browser does not support the audio element.
+      <audio controls aria-label="Audio clip of a bear sound">
+        <source src="Media/bear.mp3" type="audio/mpeg" />
+        <source src="Media/bear.ogg" type="audio/ogg" />
+        Your browser does not support the audio element. 
+        <a href="Media/bear.mp3">Download the MP3</a>
       </audio>
+    </section>
+
+    <!-- MDN-style comments section -->
+    <section id="comments" aria-labelledby="comments-title">
+      <h2 id="comments-title">Comments</h2>
+      <button class="show-hide" aria-expanded="false">Show comments</button>
+
+      <div class="comment-wrapper" hidden>
+        <ul class="comment-container"></ul>
+        <form class="comment-form">
+          <label for="name">Name:</label>
+          <input type="text" id="name" required />
+
+          <label for="comment">Comment:</label>
+          <textarea id="comment" rows="4" required></textarea>
+
+          <button type="submit">Add Comment</button>
+        </form>
+      </div>
     </section>
   </main>
 
-  <footer role="contentinfo">
+  <footer>
     <p>&copy; 2025 Bear Info Center</p>
   </footer>
 
   <!-- Back to Top button -->
-  <button id="backToTop" aria-label="Back to top of the page" style="position: fixed; bottom: 1rem; right: 1rem;">
-    ↑ Top
-  </button>
+  <button id="backToTop" aria-label="Back to top of the page">↑ Top</button>
 
   <script src="main.js"></script>
 </body>
