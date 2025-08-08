@@ -1,38 +1,63 @@
 /*
 Author: Saadat Baig
-Date: August 7, 2025
+Date: August 8, 2025
 main.js
-Commit 7: Final MDN bear example functionality + accessibility (keyboard shortcut + Back to Top)
+Commit 8: MDN-style comments toggle (hidden + aria-expanded), back-to-top reveal, Alt+1 focus.
 */
 
 window.addEventListener('DOMContentLoaded', () => {
-
-  // ===== Accessibility: Focus first image with Alt+1 =====
-  document.addEventListener('keydown', function (e) {
+  // ===== Accessibility: Alt+1 focuses the first image =====
+  document.addEventListener('keydown', (e) => {
     if (e.altKey && e.key === '1') {
       const firstImg = document.querySelector('img');
       if (firstImg) firstImg.focus();
     }
   });
 
-  // ===== Back to Top button =====
+  // ===== Back to Top button (reveal on scroll) =====
   const topButton = document.getElementById('backToTop');
   if (topButton) {
+    const toggleTopBtn = () => {
+      if (window.scrollY > 300) {
+        topButton.style.display = 'block';
+      } else {
+        topButton.style.display = 'none';
+      }
+    };
+    toggleTopBtn();
+    window.addEventListener('scroll', toggleTopBtn);
+
     topButton.addEventListener('click', () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 
-  // ===== Show/Hide Comments =====
+  // ===== Show/Hide Comments (MDN-style) =====
   const showHideBtn = document.querySelector('.show-hide');
   const commentWrapper = document.querySelector('.comment-wrapper');
 
   if (showHideBtn && commentWrapper) {
-    commentWrapper.style.display = 'none';
+    // Ensure initial state matches HTML (wrapper hidden)
+    const setState = (open) => {
+      showHideBtn.setAttribute('aria-expanded', String(open));
+      showHideBtn.textContent = open ? 'Hide comments' : 'Show comments';
+      commentWrapper.hidden = !open;
+    };
+
+    // If author left hidden off in markup, normalize it here
+    setState(!commentWrapper.hasAttribute('hidden') ? true : false);
+
     showHideBtn.addEventListener('click', () => {
-      const isHidden = commentWrapper.style.display === 'none';
-      commentWrapper.style.display = isHidden ? 'block' : 'none';
-      showHideBtn.textContent = isHidden ? 'Hide comments' : 'Show comments';
+      const isOpen = showHideBtn.getAttribute('aria-expanded') === 'true';
+      setState(!isOpen);
+      if (!isOpen) {
+        // Move focus to the name field when opening for quicker input
+        const nameInput = document.getElementById('name');
+        nameInput && nameInput.focus();
+      } else {
+        // Return focus to the toggle when closing
+        showHideBtn.focus();
+      }
     });
   }
 
@@ -48,24 +73,20 @@ window.addEventListener('DOMContentLoaded', () => {
 
       const nameValue = nameField.value.trim();
       const commentValue = commentField.value.trim();
+      if (!nameValue || !commentValue) return;
 
-      if (nameValue && commentValue) {
-        const listItem = document.createElement('li');
+      const li = document.createElement('li');
+      const nameP = document.createElement('p');
+      const commentP = document.createElement('p');
 
-        const namePara = document.createElement('p');
-        namePara.textContent = nameValue;
+      nameP.textContent = nameValue;
+      commentP.textContent = commentValue;
 
-        const commentPara = document.createElement('p');
-        commentPara.textContent = commentValue;
+      li.append(nameP, commentP);
+      list.appendChild(li);
 
-        listItem.appendChild(namePara);
-        listItem.appendChild(commentPara);
-        list.appendChild(listItem);
-
-        nameField.value = '';
-        commentField.value = '';
-      }
+      form.reset();
+      nameField.focus();
     });
   }
-
 });

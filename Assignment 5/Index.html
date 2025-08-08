@@ -1,89 +1,189 @@
 <!--
 Author: Saadat Baig
-Date: August 7, 2025
+Date: August 8, 2025
 index.html
-Commit 6: Added MDN-style comments section markup to work with JS, kept semantic and accessibility best practices.
 -->
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bear Information Page</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Welcome to our wildlife website</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <a class="skip-link" href="#main">Skip to main content</a>
 
-  <header>
-    <h1>All About Bears</h1>
-    <nav aria-label="Main navigation">
-      <ul>
-        <li><a href="#bear-gallery">Bear Gallery</a></li>
-        <li><a href="#bear-sounds">Bear Sounds</a></li>
-        <li><a href="#comments">Comments</a></li>
-      </ul>
-    </nav>
+  <!-- Hero banner -->
+  <header class="site-hero" role="banner">
+    <h1>Welcome to our wildlife website</h1>
   </header>
 
-  <main id="main-content">
-    <section aria-labelledby="bear-gallery">
-      <h2 id="bear-gallery">Meet the Bears</h2>
+  <!-- Top navigation + search -->
+  <div class="topbar">
+    <nav aria-label="Primary" class="site-nav">
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Our Team</a></li>
+        <li><a href="#">Projects</a></li>
+        <li><a href="#">Blog</a></li>
+      </ul>
+    </nav>
 
-      <article>
-        <h3>Wild Bear</h3>
-        <figure>
-          <img src="Media/wild-bear.jpg" alt="A brown bear standing in a forest" tabindex="0" />
-          <figcaption>This bear lives in the wild and enjoys exploring nature.</figcaption>
-        </figure>
-      </article>
+    <form class="site-search" role="search" aria-label="Site search">
+      <label for="q" class="sr-only">Search query</label>
+      <input id="q" name="q" type="search" placeholder="Search query" />
+      <button type="submit">Go!</button>
+    </form>
+  </div>
 
-      <article>
-        <h3>Urban Bear</h3>
-        <figure>
-          <img src="Media/urban-bear.jpg" alt="A bear walking through a quiet city street" tabindex="0" />
-          <figcaption>This bear was spotted in an urban area and seems curious about humans.</figcaption>
-        </figure>
-      </article>
-    </section>
+  <!-- Two-column layout -->
+  <main id="main" class="layout">
+    <!-- Main article column -->
+    <article class="post" aria-labelledby="post-title">
+      <h2 id="post-title">The trouble with Bears</h2>
+      <p class="byline">By Evan Wild</p>
 
-    <section aria-labelledby="bear-sounds">
-      <h2 id="bear-sounds">Hear the Bears</h2>
-      <audio controls aria-label="Audio clip of a bear sound">
-        <source src="Media/bear.mp3" type="audio/mpeg" />
-        <source src="Media/bear.ogg" type="audio/ogg" />
-        Your browser does not support the audio element. 
-        <a href="Media/bear.mp3">Download the MP3</a>
-      </audio>
-    </section>
+      <p>
+        Tall, lumbering, angry, dangerous. The real-life bears of this world are proud, independent
+        creatures, self-serving and always on the hunt for food. Nothing like the bears you see on TV,
+        like Baloo from The Jungle Book. So what are bears really like, and why does the world's media
+        portray them with such a skewed vision? In this article we try to answer those questions and
+        give you a real insight into the life of the bear.
+      </p>
 
-    <!-- MDN-style comments section -->
-    <section id="comments" aria-labelledby="comments-title">
-      <h2 id="comments-title">Comments</h2>
-      <button class="show-hide" aria-expanded="false">Show comments</button>
+      <h3 id="types">Types of bear</h3>
+      <p>
+        Bears come in two broad varieties — wild and urban (kidding… kind of). Below is a quick table
+        with some fun facts about each “type”.
+      </p>
 
-      <div class="comment-wrapper" hidden>
-        <ul class="comment-container"></ul>
-        <form class="comment-form">
-          <label for="name">Name:</label>
-          <input type="text" id="name" required />
+      <table class="bear-table" aria-describedby="types">
+        <thead>
+          <tr>
+            <th scope="col">Bear Type</th>
+            <th scope="col">Coat</th>
+            <th scope="col">Adult size</th>
+            <th scope="col">Habitat</th>
+            <th scope="col">Lifespan</th>
+            <th scope="col">Diet</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Wild</th>
+            <td>Brown or black</td>
+            <td>1.4 to 2.8 meters</td>
+            <td>Woods and forests</td>
+            <td>25 to 28 years</td>
+            <td>Fish, meat, plants</td>
+          </tr>
+          <tr>
+            <th scope="row">Urban</th>
+            <td>North Face</td>
+            <td>18 to 22</td>
+            <td>Condos and coffee shops</td>
+            <td>20 to 32 years</td>
+            <td>Starbucks, sushi</td>
+          </tr>
+        </tbody>
+      </table>
 
-          <label for="comment">Comment:</label>
-          <textarea id="comment" rows="4" required></textarea>
+      <h3 id="habitats">Habitats and Eating habits</h3>
+      <p>
+        Wild bears eat a variety of meat, fish, fruit, nuts, and other naturally growing ingredients.
+        In general they will hunt for food themselves in woodland or moors, but at a push they will
+        track down their sustenance from farms or country houses.
+      </p>
 
-          <button type="submit">Add Comment</button>
-        </form>
-      </div>
-    </section>
+      <!-- First image -->
+      <figure class="media">
+        <img src="Media/wild-bear.jpg" alt="Brown bear standing in a forest clearing." />
+        <figcaption>Wild bear — photographed at a riverbank.</figcaption>
+      </figure>
+
+      <p>
+        Urban (gentrified) bears, on the other hand, have largely abandoned the old ways. They prefer
+        to scavenge from readily available urban food outlets like dumpsters and fast-food joints.
+      </p>
+
+      <!-- Second image (will be styled grayscale in CSS like MDN) -->
+      <figure class="media">
+        <img src="Media/urban-bear.jpg" alt="Bear near a metal railing in an urban area." />
+        <figcaption>Urban bear — spotted near a city park.</figcaption>
+      </figure>
+
+      <h3 id="mating">Mating rituals</h3>
+      <p>
+        Bears are romantic creatures by nature, and will naturally look for a mate that they can spend
+        the rest of their lives with (citation needed). The following audio clip contains a fact file
+        providing more details about bear “mating rituals”.
+      </p>
+
+      <figure class="audio-block">
+        <figcaption class="sr-only">Audio: Bear sounds</figcaption>
+        <audio controls>
+          <source src="Media/bear.mp3" type="audio/mpeg" />
+          <source src="Media/bear.ogg" type="audio/ogg" />
+          Your browser does not support the audio element.
+          <a href="Media/bear.mp3">Download the MP3</a>
+        </audio>
+      </figure>
+
+      <h3 id="about-author">About the author</h3>
+      <p>
+        Evan Wild is a plumber from Doncaster who is really “into” wildlife. He once went to Chester
+        Zoo on holiday, but got ill after eating a doner kebab. He has never seen a bear, but once read
+        a Daily Mail article about them, and thinks they sound cool.
+      </p>
+
+      <!-- MDN-style comments section -->
+      <section id="comments" aria-labelledby="comments-title" class="comments">
+        <div class="comments-header">
+          <h3 id="comments-title">Comments</h3>
+          <button class="show-hide" aria-expanded="false">Show comments</button>
+        </div>
+
+        <div class="comment-wrapper" hidden>
+          <ul class="comment-container"></ul>
+
+          <form class="comment-form">
+            <div class="field">
+              <label for="name">Name:</label>
+              <input type="text" id="name" required />
+            </div>
+
+            <div class="field">
+              <label for="comment">Comment:</label>
+              <textarea id="comment" rows="4" required></textarea>
+            </div>
+
+            <button type="submit">Add Comment</button>
+          </form>
+        </div>
+      </section>
+    </article>
+
+    <!-- Related sidebar -->
+    <aside class="sidebar" aria-labelledby="related-title">
+      <h3 id="related-title">Related</h3>
+      <ul class="related-links">
+        <li><a href="#">The trouble with Bees</a></li>
+        <li><a href="#">The trouble with Otters</a></li>
+        <li><a href="#">The trouble with Penguins</a></li>
+        <li><a href="#">The trouble with Octopi</a></li>
+        <li><a href="#">The trouble with Lemurs</a></li>
+      </ul>
+    </aside>
   </main>
 
-  <footer>
-    <p>&copy; 2025 Bear Info Center</p>
+  <footer class="site-footer">
+    <p>&copy; Copyright 2050 by nobody. All rights reversed.</p>
   </footer>
 
   <!-- Back to Top button -->
-  <button id="backToTop" aria-label="Back to top of the page">↑ Top</button>
+  <button id="backToTop" aria-label="Back to top">↑ Top</button>
 
   <script src="main.js"></script>
 </body>
