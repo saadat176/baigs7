@@ -2,8 +2,6 @@
 Author: Saadat Baig
 Date: August 8, 2025
 main.js
-Commit 21: Client-side search — filters visible content across pages (Home/Team/Projects/Blog)
-           with no HTML changes. Keeps MDN-style comments toggle, a11y tweaks, and Back-to-Top.
 */
 
 // Run once DOM is ready
@@ -133,10 +131,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
     if (!q) {
       // Show everything when search is cleared
-      let anyShown = false;
       searchItems.forEach(el => {
         if (el.hidden) el.hidden = false;
-        anyShown = true;
       });
       if (noResultsEl) noResultsEl.hidden = true;
       return;
@@ -199,6 +195,8 @@ window.addEventListener('DOMContentLoaded', () => {
     info = document.createElement('p');
     info.className = 'search-no-results';
     info.hidden = true;
+    info.setAttribute('role', 'status');      // announce updates politely
+    info.setAttribute('aria-live', 'polite'); //
     info.style.margin = '1rem 0';
     info.innerHTML = `No results for “<span data-q></span>”.`;
     // Prefer placing near the article/post content

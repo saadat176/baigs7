@@ -1,8 +1,8 @@
 <!--
-Author: Saadat Baig
+Name: Saadat Baig
+File: index.html
 Date: August 8, 2025
-index.html
-Commit 23: Adjusted wild-bear and urban-bear images to 500×334 and 500×403 as per provided screenshot.
+Description: Main “All About Bears” page. Responsive layout, accessible navigation, table, media, comments.
 -->
 
 <!DOCTYPE html>
@@ -75,7 +75,10 @@ Commit 23: Adjusted wild-bear and urban-bear images to 500×334 and 500×403 as 
         about bears.
       </p>
 
-      <table>
+      <table aria-describedby="bear-table-cap">
+        <caption id="bear-table-cap">
+          Quick reference comparing wild and urban bears by coat, size, habitat, lifespan, and diet.
+        </caption>
         <thead>
           <tr>
             <th scope="col">Bear Type</th>
@@ -88,7 +91,7 @@ Commit 23: Adjusted wild-bear and urban-bear images to 500×334 and 500×403 as 
         </thead>
         <tbody>
           <tr>
-            <td>Wild</td>
+            <th scope="row">Wild</th>
             <td>Brown or black</td>
             <td>1.4 to 2.8 meters</td>
             <td>Woods and forests</td>
@@ -96,7 +99,7 @@ Commit 23: Adjusted wild-bear and urban-bear images to 500×334 and 500×403 as 
             <td>Fish, meat, plants</td>
           </tr>
           <tr>
-            <td>Urban</td>
+            <th scope="row">Urban</th>
             <td>North Face</td>
             <td>18 to 22</td>
             <td>Condos and coffee shops</td>
@@ -162,11 +165,19 @@ Commit 23: Adjusted wild-bear and urban-bear images to 500×334 and 500×403 as 
         <figcaption class="sr-only">Audio: Bear sounds</figcaption>
         <audio controls preload="metadata">
           <source src="Media/bear.mp3" type="audio/mpeg" />
-          <source src="Media/bear.ogg" type="audio/ogg" />
+          <source src="Media/bear.mp3" type="audio/ogg" />
           Your browser does not support the audio element.
           <a href="Media/bear.mp3">Download the MP3</a>
         </audio>
       </figure>
+
+      <!-- Accessible transcript for hearing-impaired users -->
+      <details class="transcript">
+        <summary>Transcript of “Bear sounds” audio</summary>
+        <p>
+          Welcome to All About Bears, your guide to one of nature’s most fascinating yet misunderstood animals. While films often portray them as fearsome brutes, bears are intelligent, adaptable, and attuned to their surroundings. They roam remote wilderness or the edges of cities, showing remarkable flexibility in how they live. Large or medium in size, wild bears may grow over two meters, live up to 28 years, and thrive on fish, meat, and plants. Urban bears, in our playful imagining, might stroll in “North Face” gear past coffee shops, living longer, sometimes to 32 years, by learning to seek human food. In the wild, they detect scents kilometres away, spot fish with precision, and catch them in a single swipe; near people, they may raid picnics or bins. Even courtship ranges from strength displays in the wild to, humorously, mood lighting and a Michael Bublé playlist. Whether deep in forests or at city edges, bears remain resourceful survivors and vital to the ecosystems they call home.
+        </p>
+      </details>
 
       <!-- About the author (in-article aside like MDN) -->
       <aside aria-labelledby="about-author">
@@ -183,13 +194,13 @@ Commit 23: Adjusted wild-bear and urban-bear images to 500×334 and 500×403 as 
       <section id="comments" class="comments" aria-labelledby="comments-title">
         <div class="comments-header">
           <h3 id="comments-title" class="fancy">Comments</h3>
-          <button class="show-hide" aria-expanded="false">Show comments</button>
+          <button class="show-hide" aria-expanded="false" aria-controls="comments-panel">Show comments</button>
         </div>
 
-        <div class="comment-wrapper" hidden>
+        <div id="comments-panel" class="comment-wrapper" hidden>
           <h4 class="add-comment-title fancy">Add your comment</h4>
 
-          <form class="comment-form" novalidate>
+          <form class="comment-form" aria-label="Add a public comment" novalidate>
             <div class="field">
               <label for="name">Name:</label>
               <input type="text" id="name" name="name" />
@@ -201,8 +212,8 @@ Commit 23: Adjusted wild-bear and urban-bear images to 500×334 and 500×403 as 
             <button type="submit">Post comment</button>
           </form>
 
-          <h4 class="fancy">Comments</h4>
-          <ul class="comment-container" aria-live="polite"></ul>
+          <h4 id="comments-list-title" class="fancy">Comments</h4>
+          <ul class="comment-container" aria-live="polite" aria-labelledby="comments-list-title"></ul>
         </div>
       </section>
     </article>

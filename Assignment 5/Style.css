@@ -279,3 +279,37 @@ a:hover, a:focus { text-decoration: underline; }
   body { width: min(98%, 2000px); }
   .layout { grid-template-columns: minmax(960px, 4fr) minmax(340px, 1.2fr); }
 }
+
+/* ===== A11y polish: strong, consistent focus rings ===== */
+a, button, input, textarea, select, summary, [tabindex] {
+  outline: none;
+}
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+summary:focus-visible,
+[tabindex]:focus-visible {
+  outline: 3px solid #000;     /* high-contrast ring */
+  outline-offset: 2px;
+}
+
+/* Make the skip link more obvious on keyboard nav */
+.skip-link:focus {
+  transform: none;
+  outline: 3px solid #000;
+}
+
+/* ===== Reduced motion preference ===== */
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
