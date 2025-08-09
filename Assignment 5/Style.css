@@ -185,11 +185,16 @@ tbody tr:nth-child(odd) { background-color: #def; }
 
 .media-bw img { filter: grayscale(100%); border: 10px solid #000; }
 
-/* Larger images on big screens */
-.media img.wild-bear,
+/* Updated fixed sizes */
+.media img.wild-bear {
+  width: 500px;
+  height: 334px;
+  object-fit: cover;
+}
+
 .media img.urban-bear {
-  width: min(100%, 720px);
-  height: auto;
+  width: 500px;
+  height: 403px;
   object-fit: cover;
 }
 
@@ -273,6 +278,4 @@ a:hover, a:focus { text-decoration: underline; }
 @media (min-width: 1600px) {
   body { width: min(98%, 2000px); }
   .layout { grid-template-columns: minmax(960px, 4fr) minmax(340px, 1.2fr); }
-  .media img.wild-bear,
-  .media img.urban-bear { width: min(100%, 840px); }
 }

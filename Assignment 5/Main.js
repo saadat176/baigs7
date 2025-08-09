@@ -2,8 +2,8 @@
 Author: Saadat Baig
 Date: August 8, 2025
 main.js
-Commit 20: MDN parity — same behaviors as MDN sample with a11y fixes (hidden + aria-expanded),
-           plus safe Alt+1 focus and Back-to-Top init.
+Commit 21: Client-side search — filters visible content across pages (Home/Team/Projects/Blog)
+           with no HTML changes. Keeps MDN-style comments toggle, a11y tweaks, and Back-to-Top.
 */
 
 // Run once DOM is ready
@@ -19,7 +19,7 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // ===== Back to Top button (MDN challenge doesn’t include it, but keep your behavior) =====
+  // ===== Back to Top button =====
   const topButton = document.getElementById('backToTop');
   if (topButton) {
     const toggleTopBtn = () => {
@@ -33,28 +33,24 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
   // ===== Show/Hide comments — MDN parity with a11y =====
-  // Works if the control is <button class="show-hide"> or <div class="show-hide">
   const showHideBtn = document.querySelector('.show-hide');
   const commentWrapper = document.querySelector('.comment-wrapper');
 
   if (showHideBtn && commentWrapper) {
-    // Initialize closed like MDN (wrapper hidden)
     const isButton = showHideBtn.tagName.toLowerCase() === 'button';
     const setState = (open) => {
-      commentWrapper.hidden = !open;                          // a11y-friendly state
+      commentWrapper.hidden = !open;
       showHideBtn.textContent = open ? 'Hide comments' : 'Show comments';
       if (isButton) showHideBtn.setAttribute('aria-expanded', String(open));
     };
 
     setState(false);
 
-    // MDN uses onclick + text comparison; we keep the same visible logic
     showHideBtn.addEventListener('click', () => {
       const openNow = !commentWrapper.hidden;
       setState(!openNow);
 
       if (!openNow) {
-        // Focus first field when opening (quality-of-life)
         const nameInput = document.getElementById('name');
         if (nameInput) nameInput.focus();
       } else if (showHideBtn.focus) {
@@ -63,7 +59,7 @@ window.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ===== Add new comment — MDN parity (same var names/flow), with trim + early return =====
+  // ===== Add new comment — MDN parity with minor safety =====
   const form = document.querySelector('.comment-form');
   const nameField = document.querySelector('#name');
   const commentField = document.querySelector('#comment');
@@ -78,7 +74,7 @@ window.addEventListener('DOMContentLoaded', () => {
     function submitComment() {
       const nameValue = (nameField.value || '').trim();
       const commentValue = (commentField.value || '').trim();
-      if (!nameValue || !commentValue) return; // simple validation like MDN would expect
+      if (!nameValue || !commentValue) return;
 
       const listItem = document.createElement('li');
       const namePara = document.createElement('p');
@@ -95,5 +91,119 @@ window.addEventListener('DOMContentLoaded', () => {
       commentField.value = '';
       nameField.focus();
     }
+  }
+
+  // ========================================================================
+  //                      SITE SEARCH (client-side filter)
+  // ========================================================================
+  const siteSearchForm = document.querySelector('.site-search');
+  const siteSearchInput = siteSearchForm ? siteSearchForm.querySelector('input[type="search"]') : null;
+
+  if (siteSearchForm && siteSearchInput) {
+    // Prevent full page reload on submit; apply filter instead
+    siteSearchForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      applySearch(siteSearchInput.value);
+    });
+
+    // Live filter while typing (debounced)
+    let t;
+    siteSearchInput.addEventListener('input', () => {
+      clearTimeout(t);
+      t = setTimeout(() => applySearch(siteSearchInput.value), 150);
+    });
+
+    // Esc to clear search quickly
+    siteSearchInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        siteSearchInput.value = '';
+        applySearch('');
+      }
+    });
+  }
+
+  // Gather candidate "items" once, then just show/hide on each search.
+  // Designed to work across Home / Our Team / Projects / Blog without HTML changes.
+  const searchScope = document.querySelector('main') || document.body;
+  const searchItems = collectSearchItems(searchScope);
+  const noResultsEl = ensureNoResultsEl(searchScope);
+
+  function applySearch(raw) {
+    const q = (raw || '').trim().toLowerCase();
+
+    if (!q) {
+      // Show everything when search is cleared
+      let anyShown = false;
+      searchItems.forEach(el => {
+        if (el.hidden) el.hidden = false;
+        anyShown = true;
+      });
+      if (noResultsEl) noResultsEl.hidden = true;
+      return;
+    }
+
+    let matches = 0;
+    searchItems.forEach(el => {
+      const text = el.textContent ? el.textContent.toLowerCase() : '';
+      const hit = text.includes(q);
+      el.hidden = !hit;
+      if (hit) matches++;
+    });
+
+    if (noResultsEl) {
+      noResultsEl.hidden = matches > 0;
+      if (matches === 0) {
+        // show what we searched for
+        noResultsEl.querySelector('[data-q]').textContent = raw.trim();
+      }
+    }
+  }
+
+  function collectSearchItems(scope) {
+    // Priority 1: author-annotated targets
+    const annotated = Array.from(scope.querySelectorAll('[data-search-item]'));
+
+    // Priority 2: common card/list/table-row/figure patterns used across your pages
+    const commonSelectors = [
+      '.project-card',              // projects.html cards (if present)
+      '.post-card',                 // blog posts (if present)
+      '.team-card, .card',          // team member cards (if present)
+      '.media',                     // figure blocks with images/captions
+      'table tbody tr',             // data rows
+      '.related-links li',          // sidebar list items
+      '.comment-container li',      // comments
+      'article.post > section',     // logical content sections
+    ];
+    const common = Array.from(scope.querySelectorAll(commonSelectors.join(',')));
+
+    // Fallback: if a page is very bare, use top-level paragraphs under the article
+    let fallback = [];
+    if (common.length === 0) {
+      fallback = Array.from(scope.querySelectorAll('article.post > p'));
+    }
+
+    // Ensure uniqueness and only elements that are actually visible containers (not the whole <main>)
+    const set = new Set();
+    [...annotated, ...common, ...fallback].forEach(el => {
+      if (el && el.nodeType === 1) set.add(el);
+    });
+
+    return Array.from(set);
+  }
+
+  function ensureNoResultsEl(scope) {
+    // Create a polite "no results" line that we can show/hide
+    let info = scope.querySelector('.search-no-results');
+    if (info) return info;
+
+    info = document.createElement('p');
+    info.className = 'search-no-results';
+    info.hidden = true;
+    info.style.margin = '1rem 0';
+    info.innerHTML = `No results for “<span data-q></span>”.`;
+    // Prefer placing near the article/post content
+    const post = scope.querySelector('article.post') || scope;
+    post.appendChild(info);
+    return info;
   }
 });

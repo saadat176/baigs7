@@ -1,0 +1,138 @@
+<!--
+Author: Saadat Baig
+Date: August 8, 2025
+File: blog.html
+Description: Blog page with consistent header/nav/search and article list.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog — All About Bears</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <!-- Site Header -->
+  <header class="site-hero" role="banner">
+    <h1>All About Bears — Blog</h1>
+  </header>
+
+  <!-- Top Navigation + Search -->
+  <div class="topbar">
+    <nav class="site-nav" aria-label="Main navigation">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="our-team.html">Our Team</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="blog.html" aria-current="page">Blog</a></li>
+      </ul>
+    </nav>
+
+    <form class="site-search" role="search" aria-label="Site search">
+      <label for="search" class="sr-only">Search</label>
+      <input id="search" name="q" type="search" placeholder="Search query" />
+      <button type="submit">Go!</button>
+    </form>
+  </div>
+
+  <!-- Main -->
+  <main id="main-content" class="layout">
+    <!-- Post list -->
+    <article class="post" aria-labelledby="blog-heading">
+      <h2 id="blog-heading" class="fancy">Latest posts</h2>
+
+      <!-- Post 1 -->
+      <section aria-labelledby="post1-title">
+        <h3 id="post1-title">How bears actually use rivers</h3>
+        <p class="byline">By <strong>Evan Wild</strong> — <time datetime="2025-08-02">Aug 2, 2025</time> · <em>Field notes</em></p>
+        <figure class="media">
+          <img
+            src="Media/wild-bear.jpg"
+            alt="Brown bear standing in a river while fishing"
+            loading="lazy"
+            width="1000"
+            height="667"
+            class="wild-bear"
+          />
+          <figcaption>Timing is everything: salmon runs, water depth, and patience.</figcaption>
+        </figure>
+        <p>
+          If you’ve ever watched a bear at a river, it can look like luck. In reality there’s a lot of
+          skill involved: choosing eddies, reading currents, and conserving energy. Here’s what biologists
+          look for when they map out the best fishing spots for Ursus arctos.
+        </p>
+        <p><a href="#" aria-label="Read more: How bears actually use rivers">Read more →</a></p>
+        <hr />
+      </section>
+
+      <!-- Post 2 -->
+      <section aria-labelledby="post2-title">
+        <h3 id="post2-title">City bears: fact vs. fiction</h3>
+        <p class="byline">By <strong>Jane Smith</strong> — <time datetime="2025-07-24">Jul 24, 2025</time> · <em>Urban wildlife</em></p>
+        <figure class="media media-bw">
+          <img
+            src="Media/urban-bear.jpg"
+            alt="Urban bear photographed near a railing"
+            loading="lazy"
+            width="1000"
+            height="806"
+            class="urban-bear"
+          />
+          <figcaption>Urban sightings are rising—here’s why, and what communities can do.</figcaption>
+        </figure>
+        <p>
+          Social media loves a bear strolling through a suburb, but the real story is about food access,
+          drought, and fragmented habitat. We break down the myths, the data, and practical ways towns can
+          reduce conflict without harming wildlife.
+        </p>
+        <p><a href="#" aria-label="Read more: City bears fact versus fiction">Read more →</a></p>
+        <hr />
+      </section>
+
+      <!-- Post 3 -->
+      <section aria-labelledby="post3-title">
+        <h3 id="post3-title">Winter prep: how bears build the perfect den</h3>
+        <p class="byline">By <strong>Michael Brown</strong> — <time datetime="2025-07-02">Jul 2, 2025</time> · <em>Behavior</em></p>
+        <figure class="media">
+          <img
+            src="Media/wild-bear.jpg"
+            alt="Bear in dense forest preparing a den site"
+            loading="lazy"
+            width="1000"
+            height="667"
+            class="wild-bear"
+          />
+          <figcaption>Choosing shelter, orienting the entrance, and the science of staying warm.</figcaption>
+        </figure>
+        <p>
+          From slope angle to wind direction, den sites are carefully chosen. We look at recent studies on
+          den microclimates, fat reserves, and how warming winters are shifting hibernation timelines.
+        </p>
+        <p><a href="#" aria-label="Read more: Winter prep how bears build the perfect den">Read more →</a></p>
+      </section>
+    </article>
+
+    <!-- Sidebar (keep it simple/consistent with the rest of the site) -->
+    <aside class="sidebar" aria-labelledby="related-title" role="complementary">
+      <h3 id="related-title" class="fancy">Related</h3>
+      <ul class="related-links">
+        <li><a href="index.html#facts">The trouble with Bears</a></li>
+        <li><a href="index.html#gallery">Bear Gallery</a></li>
+        <li><a href="projects.html">Recent Projects</a></li>
+        <li><a href="our-team.html">Meet the Team</a></li>
+      </ul>
+    </aside>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2025 All About Bears</p>
+  </footer>
+
+  <button id="backToTop" style="display:none;">Back to Top</button>
+  <script src="main.js"></script>
+</body>
+</html>

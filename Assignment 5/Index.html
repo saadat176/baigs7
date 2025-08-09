@@ -2,7 +2,7 @@
 Author: Saadat Baig
 Date: August 8, 2025
 index.html
-Commit 21: Responsive-ready markup — nav toggle button, flexible hooks, lazy images, minor a11y/semantics.
+Commit 23: Adjusted wild-bear and urban-bear images to 500×334 and 500×403 as per provided screenshot.
 -->
 
 <!DOCTYPE html>
@@ -31,16 +31,15 @@ Commit 21: Responsive-ready markup — nav toggle button, flexible hooks, lazy i
     <!-- Mobile menu button (shown on small screens by CSS) -->
     <button class="nav-toggle" aria-controls="primary-nav" aria-expanded="false">
       <span class="sr-only">Toggle navigation</span>
-      <!-- simple hamburger icon (CSS will draw lines) -->
       <span aria-hidden="true" class="nav-toggle__bars"></span>
     </button>
 
     <nav class="site-nav" aria-label="Main navigation">
       <ul id="primary-nav">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Our Team</a></li>
-        <li><a href="#">Projects</a></li>
-        <li><a href="#">Blog</a></li>
+        <li><a href="index.html" aria-current="page">Home</a></li>
+        <li><a href="our-team.html">Our Team</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="blog.html">Blog</a></li>
       </ul>
     </nav>
 
@@ -127,8 +126,8 @@ Commit 21: Responsive-ready markup — nav toggle button, flexible hooks, lazy i
           alt="Wild bear in the forest"
           class="wild-bear"
           loading="lazy"
-          width="1000"
-          height="667"
+          width="500"
+          height="334"
         />
         <figcaption>Wild bear — photographed at a riverbank.</figcaption>
       </figure>
@@ -140,8 +139,8 @@ Commit 21: Responsive-ready markup — nav toggle button, flexible hooks, lazy i
           alt="Urban bear near trash bins"
           class="urban-bear"
           loading="lazy"
-          width="1000"
-          height="806"
+          width="500"
+          height="403"
         />
         <figcaption>Urban bear — spotted near a city park.</figcaption>
       </figure>
@@ -149,7 +148,7 @@ Commit 21: Responsive-ready markup — nav toggle button, flexible hooks, lazy i
       <h3 class="fancy">Mating rituals</h3>
       <p>
         Bears are romantic creatures by nature, and will naturally look for a mate they can spend the rest
-        of their lives with. They will woo a potential suitor by making their dwelling look attractive —
+        of their lives with. They will woo a potential suitor by making their dwelling look attractive — 
         for example with cave paintings or a bed of reeds in the case of a wild bear, and mood lighting
         and a Michael Bublé CD in the case of an urban bear.
       </p>

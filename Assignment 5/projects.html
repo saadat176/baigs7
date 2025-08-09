@@ -1,0 +1,162 @@
+<!--
+Author: Saadat Baig
+Date: August 8, 2025
+projects.html
+Commit: Initial Projects page — matches site chrome; three sample projects with images, summaries, and details.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <!-- important for responsive layouts -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projects — All About Bears</title>
+
+  <!-- MDN fonts for header/nav look -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Sonsie+One" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <!-- Hero/banner -->
+  <header class="site-hero" role="banner">
+    <h1>Recent Projects</h1>
+  </header>
+
+  <!-- Top navigation + search -->
+  <div class="topbar">
+    <button class="nav-toggle" aria-controls="primary-nav" aria-expanded="false">
+      <span class="sr-only">Toggle navigation</span>
+      <span aria-hidden="true" class="nav-toggle__bars"></span>
+    </button>
+
+    <nav class="site-nav" aria-label="Main navigation">
+      <ul id="primary-nav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="our-team.html">Our Team</a></li>
+        <li><a href="projects.html" aria-current="page">Projects</a></li>
+        <li><a href="blog.html">Blog</a></li>
+      </ul>
+    </nav>
+
+    <form class="site-search" role="search" aria-label="Site search">
+      <label for="search" class="sr-only">Search</label>
+      <input id="search" name="q" type="search" placeholder="Search query" />
+      <button type="submit">Go!</button>
+    </form>
+  </div>
+
+  <!-- Two-column layout (keeps page consistent) -->
+  <main id="main-content" class="layout">
+    <!-- Main content -->
+    <article class="post" aria-labelledby="projects-title">
+      <h2 class="fancy" id="projects-title">Featured work</h2>
+      <p>
+        Here’s a small selection of projects we’ve completed recently. Each one blends solid
+        engineering with thoughtful design—and yes, the occasional bear.
+      </p>
+
+      <!-- Project 1 -->
+      <section aria-labelledby="proj1-title">
+        <h3 class="fancy" id="proj1-title">BearFacts — Interactive Wildlife Guide</h3>
+        <p>
+          A lightweight, mobile-first web app that helps visitors learn about wildlife with
+          accessible components, offline-friendly media, and snappy client-side filtering.
+        </p>
+        <figure class="media">
+          <!-- Reusing existing assets; swap when you have dedicated project images -->
+          <img
+            src="Media/wild-bear.jpg"
+            alt="Screenshot mock: BearFacts app hero featuring a wild brown bear"
+            class="wild-bear"
+            loading="lazy"
+            width="1000"
+            height="667"
+          />
+          <figcaption>BearFacts: progressive, accessible, and fast.</figcaption>
+        </figure>
+        <ul>
+          <li>Built with semantic HTML and progressive enhancement.</li>
+          <li>Client-side search with instant results; content works without JavaScript.</li>
+          <li>Media optimized for low-bandwidth environments.</li>
+        </ul>
+        <p><strong>Status:</strong> Live • <strong>Role:</strong> Front-end &amp; a11y</p>
+      </section>
+
+      <!-- Project 2 -->
+      <section aria-labelledby="proj2-title">
+        <h3 class="fancy" id="proj2-title">HabitatMap — Conservation Dashboard</h3>
+        <p>
+          A data visualization dashboard that tracks habitats, populations, and seasonal
+          migration. Designed for field researchers with readable typography and strong color
+          contrast in all lighting conditions.
+        </p>
+        <figure class="media media-bw">
+          <img
+            src="Media/urban-bear.jpg"
+            alt="Mock analytics panel with grayscale image framing"
+            class="urban-bear"
+            loading="lazy"
+            width="1000"
+            height="806"
+          />
+          <figcaption>HabitatMap: clear visuals, field-ready UI.</figcaption>
+        </figure>
+        <ul>
+          <li>Exportable charts for reports; CSV/GeoJSON import.</li>
+          <li>Keyboard-navigable controls and screen-reader annotations.</li>
+          <li>Works offline with background sync.</li>
+        </ul>
+        <p><strong>Status:</strong> In pilot • <strong>Role:</strong> UX &amp; data plumbing</p>
+      </section>
+
+      <!-- Project 3 -->
+      <section aria-labelledby="proj3-title">
+        <h3 class="fancy" id="proj3-title">RangerNotes — Field Notes, Simplified</h3>
+        <p>
+          A no-fuss note-taking tool for rangers and volunteers. Autosaves drafts, supports quick
+          photo attachments, and exports to open formats so your data isn’t trapped.
+        </p>
+        <figure class="media">
+          <img
+            src="Media/wild-bear.jpg"
+            alt="RangerNotes interface mockup with note list and detail pane"
+            class="wild-bear"
+            loading="lazy"
+            width="1000"
+            height="667"
+          />
+          <figcaption>RangerNotes: fast capture, easy export.</figcaption>
+        </figure>
+        <ul>
+          <li>Offline-first with conflict-aware sync.</li>
+          <li>Tagging and filters; bulk export to Markdown/CSV.</li>
+          <li>Privacy-respecting by default.</li>
+        </ul>
+        <p><strong>Status:</strong> Beta • <strong>Role:</strong> Full-stack</p>
+      </section>
+    </article>
+
+    <!-- Minimal aside (no “quick links”) -->
+    <aside class="sidebar" aria-labelledby="about-projects">
+      <h3 id="about-projects" class="fancy">About these projects</h3>
+      <p>
+        This page highlights recent work and experiments. Want a deeper dive or a demo video?
+        Ping us via the Blog page—we post work-in-progress there.
+      </p>
+    </aside>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2025 All About Bears</p>
+  </footer>
+
+  <!-- Back to Top -->
+  <button id="backToTop" style="display:none;">Back to Top</button>
+
+  <script src="main.js"></script>
+</body>
+</html>

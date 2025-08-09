@@ -1,0 +1,94 @@
+<!--
+Author: Saadat Baig
+Date: August 8, 2025
+File: our-team.html
+Description: Our Team page with relevant content and consistent layout.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Team</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <!-- Site Header -->
+  <header class="site-hero">
+    <h1>Meet Our Team</h1>
+  </header>
+
+  <!-- Top Navigation + Search -->
+  <div class="topbar">
+    <nav class="site-nav" aria-label="Main navigation">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="our-team.html" aria-current="page">Our Team</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="blog.html">Blog</a></li>
+      </ul>
+    </nav>
+
+    <form class="site-search" role="search" aria-label="Site search">
+      <label for="search" class="sr-only">Search</label>
+      <input id="search" name="q" type="search" placeholder="Search query" />
+      <button type="submit">Go!</button>
+    </form>
+  </div>
+
+  <!-- Main Content -->
+  <main id="main-content" class="layout">
+    <!-- Team Introduction -->
+    <article class="post">
+      <h2 class="fancy">Who We Are</h2>
+      <p>
+        Our team is a group of passionate, creative, and skilled individuals who work together to deliver outstanding results. 
+        We combine technical expertise with innovative thinking to bring your vision to life.
+      </p>
+
+      <!-- Team Members -->
+      <section>
+        <h2 class="fancy">Our Core Team</h2>
+
+        <div class="media">
+          <img src="Media/team1.jpg" alt="John Doe - Project Manager" style="width:250px; height:auto;">
+          <figcaption><strong>John Doe</strong> – Project Manager</figcaption>
+        </div>
+
+        <p>
+          John leads the team with over 10 years of experience in project management, ensuring every project runs smoothly from start to finish.
+        </p>
+
+        <div class="media">
+          <img src="Media/team2.jpg" alt="Jane Smith - Lead Developer" style="width:250px; height:auto;">
+          <figcaption><strong>Jane Smith</strong> – Lead Developer</figcaption>
+        </div>
+
+        <p>
+          Jane is our technical wizard, specializing in front-end and back-end development to create seamless digital experiences.
+        </p>
+
+        <div class="media">
+          <img src="Media/team3.jpg" alt="Michael Brown - UI/UX Designer" style="width:250px; height:auto;">
+          <figcaption><strong>Michael Brown</strong> – UI/UX Designer</figcaption>
+        </div>
+
+        <p>
+          Michael brings creativity and user-focused design to every project, ensuring our solutions are not just functional but also visually appealing.
+        </p>
+      </section>
+    </article>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <p>&copy; 2025 Your Company Name. All rights reserved.</p>
+  </footer>
+
+  <button id="backToTop" title="Back to top">↑ Top</button>
+  <script src="main.js"></script>
+</body>
+</html>
