@@ -326,3 +326,34 @@ summary:focus-visible,
     scroll-behavior: auto !important;
   }
 }
+
+/* ===== Mobile polish (≤ 480px) ===== */
+@media (max-width: 480px) {
+  .site-hero { padding: 10px 0 12px; }
+  .site-hero h1 {
+    font-size: 1.9rem;           /* was clamp up to 4rem */
+    text-shadow: 1px 1px 4px rgba(0,0,0,.35);
+    line-height: 1.1;
+  }
+
+  .topbar { padding: .5rem .75rem; gap: .5rem; }
+  .site-nav ul { gap: .25rem .75rem; justify-content: space-evenly; }
+  .site-nav a {
+    font-size: .95rem;           /* smaller nav text on phones */
+    padding: .35rem .45rem;
+    letter-spacing: .2px;
+  }
+
+  .site-search {
+    width: 100%;
+    justify-content: stretch;    /* search stretches full width */
+    order: 3;                    /* keep it under the nav */
+  }
+  .site-search input[type="search"] { width: 100%; height: 36px; }
+  .site-search button { height: 36px; }
+
+  .layout { padding: .75rem; gap: 1rem; }
+}
+
+/* Make all images responsive, not just those in .media */
+img { max-width: 100%; height: auto; }
