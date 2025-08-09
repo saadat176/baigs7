@@ -4,6 +4,11 @@ Date: August 8, 2025
 style.css
 */
 
+/* ========= Global reset ========= */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
 /* ===== Base / page frame ===== */
 html, body { margin: 0; padding: 0; }
 html { font-size: 16px; background-color: #e6e6fa; }
@@ -17,7 +22,6 @@ body {
   background: #e6e6fa;
 }
 
-/* keep major sections centered like desktop */
 .site-hero, .topbar, .layout, .site-footer { margin-left: auto; margin-right: auto; width: 100%; }
 
 /* Body text elements */
@@ -32,11 +36,7 @@ ul, ol { margin: 0 0 1.15rem 1.25rem; }
 .post > *:last-child { margin-bottom: 0; }
 
 /* ===== Typography ===== */
-h1, h2, h3 {
-  font-family: 'Georgia', 'Times New Roman', Times, serif;
-  font-weight: bold;
-  color: #2a2a2a;
-}
+h1, h2, h3 { font-family: 'Georgia', 'Times New Roman', Times, serif; font-weight: bold; color: #2a2a2a; }
 h1 { font-size: clamp(2.25rem, 1.6rem + 2vw, 3rem); margin-bottom: .65rem; }
 h2 { font-size: clamp(1.6rem, 1.2rem + 1.5vw, 2.2rem); margin-top: 2rem; margin-bottom: .9rem; }
 h3 { font-size: clamp(1.2rem, 1rem + 1vw, 1.8rem); margin-top: 1.6rem; margin-bottom: .6rem; }
@@ -45,6 +45,7 @@ h3 { font-size: clamp(1.2rem, 1rem + 1vw, 1.8rem); margin-top: 1.6rem; margin-bo
 table {
   font-size: clamp(0.95rem, 0.9rem + 0.4vw, 1.2rem);
   width: 100%;
+  max-width: 100%;
   background-color: #fff;
   border-collapse: collapse;
   margin: 1.5rem 0 2.5rem;
@@ -70,11 +71,7 @@ tbody tr:nth-child(odd) { background-color: #f3f3ff; }
 .skip-link:focus { transform: none; outline: 2px solid #333; }
 
 /* Hero */
-.site-hero {
-  background: #c8cfe8;
-  padding: 16px 0 20px;
-  text-align: center;
-}
+.site-hero { background: #c8cfe8; padding: 16px 0 20px; text-align: center; }
 .site-hero h1 {
   margin: 0;
   font-family: 'Sonsie One', cursive;
@@ -91,25 +88,25 @@ tbody tr:nth-child(odd) { background-color: #f3f3ff; }
   align-items: center;
   gap: 1rem;
   padding: .75rem 1.25rem;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;                /* keep one row */
   border-top: 1px solid #d6d6e5;
   border-bottom: 1px solid #d6d6e5;
 }
 .nav-toggle { display: none; }
 
-.site-nav { flex: 2 1 420px; }
+.site-nav { flex: 1 1 auto; }
 .site-nav ul {
   list-style: none;
   padding: 0; margin: 0;
   display: flex; flex-wrap: wrap;
-  justify-content: space-around;
-  gap: clamp(1rem, 3vw, 4rem);
+  justify-content: center;
+  gap: clamp(.6rem, 2.2vw, 2.5rem);
 }
 .site-nav ul li { display: flex; align-items: center; justify-content: center; }
 .site-nav a {
   display: inline-block;
   font-family: 'Times New Roman', Times, serif;
-  font-size: clamp(1rem, 0.8rem + 1vw, 2rem);
+  font-size: clamp(.95rem, .8rem + 1vw, 2rem);
   text-transform: uppercase;
   text-decoration: none;
   color: #2a2a2a;
@@ -117,22 +114,21 @@ tbody tr:nth-child(odd) { background-color: #f3f3ff; }
   line-height: 1;
   white-space: nowrap;
   opacity: .95;
-  padding: 0 .75rem;
+  padding: .2rem .6rem;
 }
 .site-nav a:visited { color: #2a2a2a; }
 .site-nav a:hover, .site-nav a:focus { opacity: 1; text-decoration: underline; color: #000; }
 
 .site-search {
-  flex: 1 1 280px;
-  display: flex; align-items: center; justify-content: flex-end;
-  gap: .75rem; height: 100%;
+  flex: 0 0 auto; display: flex; align-items: center; justify-content: flex-end;
+  gap: .5rem; height: 100%;
 }
 .site-search input[type="search"] {
   font-family: 'Times New Roman', Times, serif;
   font-size: clamp(0.95rem, 0.8rem + .6vw, 1.2rem);
   height: 32px; width: min(100%, 420px);
   padding: 0 10px;
-  border: 1px solid #8a93b6; /* higher contrast */
+  border: 1px solid #8a93b6;
   background: #fff;
 }
 .site-search button {
@@ -143,10 +139,11 @@ tbody tr:nth-child(odd) { background-color: #f3f3ff; }
 }
 .site-search button:hover, .site-search button:focus { background: #333; }
 
-/* ===== Two-column layout (always like desktop) ===== */
+/* ===== Two-column layout (like desktop, but safe on phones) ===== */
 .layout {
   display: grid;
-  grid-template-columns: minmax(0, 3fr) minmax(260px, 1fr); /* article | sidebar */
+  /* Prevent intrinsic min-content width from forcing zoom-out on mobile */
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 28%);
   gap: clamp(2rem, 4vw, 4rem);
   padding: clamp(1rem, 2vw, 2rem);
 }
@@ -180,18 +177,16 @@ tbody tr:nth-child(odd) { background-color: #f3f3ff; }
 .sidebar h3 { font-size: clamp(1.4rem, 1rem + 1.2vw, 2.4rem); margin-top: 0; }
 .related-links { margin: 0; padding-left: 2rem; }
 
-/* Standard blue/purple link colors */
+/* Links */
 a { color: #0000ee; text-decoration: none; }
 a:visited { color: #551a8b; }
 a:hover, a:focus { text-decoration: underline; }
 
-/* ===== Media (images & audio) ===== */
+/* ===== Media ===== */
 .media { margin: 2rem 0 3rem; text-align: center; }
 .media img { max-width: 100%; height: auto; display: inline-block; }
 .media figcaption { font-style: italic; color: #020000; padding-top: .6rem; }
-
 .media-bw img { filter: grayscale(100%); border: 10px solid #000; }
-
 .media img.wild-bear { width: 500px; height: 334px; object-fit: cover; }
 .media img.urban-bear { width: 500px; height: 403px; object-fit: cover; }
 
@@ -244,15 +239,34 @@ details[open] > summary { font-weight: bold; }
 }
 #backToTop:hover, #backToTop:focus { background: #1b5e20; }
 
-/* ====== RESPONSIVE BREAKPOINTS ====== */
-/* keep two columns on all widths; only adjust spacing a bit at ~1100px */
-@media (max-width: 1100px) {
-  .site-nav ul { gap: clamp(.5rem, 2vw, 2rem); }
-  .layout { gap: 1.75rem; padding: 1.1rem; }
+/* ====== RESPONSIVE TUNING (keeps two columns) ====== */
+@media (max-width: 900px) {
+  /* shrink sidebar & gaps so the grid fits narrow phones without zoom-out */
+  .layout {
+    grid-template-columns: minmax(0, 1fr) minmax(220px, 26%);
+    gap: 1.25rem;
+    padding: 0.9rem;
+  }
+  .post { padding: 1.25rem; }
+  .sidebar { padding: 1rem; }
+  .site-nav ul { gap: .5rem 1rem; }
 }
 
-/* NOTE: removed the 900px rule that collapsed to 1 column */
-/* NOTE: removed the 600px rule that stacked the header */
+@media (max-width: 600px) {
+  .topbar { padding: .5rem .75rem; gap: .5rem; flex-wrap: nowrap; }
+  .site-nav a { font-size: clamp(.95rem, 2.9vw, 1.1rem); padding: .2rem .4rem; }
+  .site-search input[type="search"] { width: 10.5rem; height: 30px; }
+  .site-search button { height: 30px; }
+
+  .layout {
+    grid-template-columns: minmax(0, 1fr) minmax(200px, 34%); /* article | narrower sidebar */
+    gap: 1rem;
+    padding: .75rem;
+  }
+  .post { padding: 1rem; }
+  .media-bw img { border-width: 6px; }
+  table { font-size: .95rem; }
+}
 
 /* Ultra-wide monitors */
 @media (min-width: 1600px) {
@@ -260,7 +274,7 @@ details[open] > summary { font-weight: bold; }
   .layout { grid-template-columns: minmax(960px, 4fr) minmax(340px, 1.2fr); }
 }
 
-/* ===== A11y polish: strong, consistent focus rings ===== */
+/* ===== A11y focus ===== */
 a, button, input, textarea, select, summary, [tabindex] { outline: none; }
 a:focus-visible,
 button:focus-visible,
@@ -272,11 +286,9 @@ summary:focus-visible,
   outline: 3px solid #000;
   outline-offset: 2px;
 }
-
-/* Make the skip link more obvious on keyboard nav */
 .skip-link:focus { transform: none; outline: 3px solid #000; }
 
-/* ===== Reduced motion preference ===== */
+/* ===== Reduced motion ===== */
 @media (prefers-reduced-motion: reduce) {
   html:focus-within { scroll-behavior: auto; }
   *, *::before, *::after {
@@ -287,56 +299,5 @@ summary:focus-visible,
   }
 }
 
-/* ===== Mobile polish (≤ 480px) ===== */
-@media (max-width: 480px) {
-  /* Header / hero */
-  .site-hero { padding: 10px 0 12px; }
-  .site-hero h1 {
-    font-size: 2rem;         /* cap size */
-    text-shadow: none;       /* cleaner on tiny screens */
-    line-height: 1.1;
-  }
-
-  /* Topbar & nav (stay horizontal, just tighter) */
-  .topbar { padding: .5rem .75rem; gap: .5rem; }
-  .site-nav ul { gap: .25rem .75rem; justify-content: space-evenly; }
-  .site-nav a { font-size: .95rem; padding: .35rem .45rem; letter-spacing: .2px; }
-
-  /* Search */
-  .site-search { width: auto; justify-content: flex-end; }
-  .site-search input[type="search"] { width: 10.5rem; height: 36px; }
-  .site-search button { height: 36px; }
-
-  /* Article spacing & type scale */
-  .layout { padding: .75rem; gap: 1rem; }
-  .post   { padding: 1rem; }
-  h1 { font-size: 1.45rem; }
-  h2 { font-size: 1.25rem; }
-  h3 { font-size: 1.1rem; }
-  p, li, table, label, input, textarea { font-size: 1rem; line-height: 1.6; }
-
-  /* Media & tables */
-  .media img { width: 100%; height: auto; }
-  .media-bw img { border-width: 6px; }
-  table { font-size: .95rem; }
-}
-
-/* Make all images responsive globally */
+/* Global responsive images safeguard */
 img { max-width: 100%; height: auto; }
-
-/* --- Phone tweaks to keep header like desktop --- */
-@media (max-width: 600px) {
-  .topbar {
-    flex-direction: row;   /* ensure it never stacks */
-    align-items: center;
-    justify-content: space-between;
-    gap: .5rem;
-  }
-  .site-nav { flex: 1 1 auto; }
-  .site-nav ul { flex-wrap: wrap; justify-content: center; gap: .5rem 1rem; }
-  .site-nav a { font-size: clamp(.95rem, 2.8vw, 1.1rem); padding: 0 .4rem; }
-  .site-search { flex: 0 0 auto; justify-content: flex-end; gap: .5rem; }
-  .site-search input[type="search"] { width: 10.5rem; height: 30px; }
-  .site-search button { height: 30px; }
-  .post { padding: 1.25rem; }
-}
