@@ -2,28 +2,41 @@
 Author: Saadat Baig
 Date: August 8, 2025
 index.html
+Commit 21: Responsive-ready markup — nav toggle button, flexible hooks, lazy images, minor a11y/semantics.
 -->
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Welcome to our wildlife website</title>
+  <!-- important for responsive layouts -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>All About Bears</title>
+
+  <!-- MDN fonts for header/nav look -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Sonsie+One" rel="stylesheet" />
+
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to main content</a>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
 
-  <!-- Hero banner -->
+  <!-- Hero/banner -->
   <header class="site-hero" role="banner">
-    <h1>Welcome to our wildlife website</h1>
+    <h1>All About Bears</h1>
   </header>
 
   <!-- Top navigation + search -->
   <div class="topbar">
-    <nav aria-label="Primary" class="site-nav">
-      <ul>
+    <!-- Mobile menu button (shown on small screens by CSS) -->
+    <button class="nav-toggle" aria-controls="primary-nav" aria-expanded="false">
+      <span class="sr-only">Toggle navigation</span>
+      <!-- simple hamburger icon (CSS will draw lines) -->
+      <span aria-hidden="true" class="nav-toggle__bars"></span>
+    </button>
+
+    <nav class="site-nav" aria-label="Main navigation">
+      <ul id="primary-nav">
         <li><a href="#">Home</a></li>
         <li><a href="#">Our Team</a></li>
         <li><a href="#">Projects</a></li>
@@ -32,34 +45,38 @@ index.html
     </nav>
 
     <form class="site-search" role="search" aria-label="Site search">
-      <label for="q" class="sr-only">Search query</label>
-      <input id="q" name="q" type="search" placeholder="Search query" />
+      <label for="search" class="sr-only">Search</label>
+      <input id="search" name="q" type="search" placeholder="Search query" />
       <button type="submit">Go!</button>
     </form>
   </div>
 
   <!-- Two-column layout -->
-  <main id="main" class="layout">
-    <!-- Main article column -->
-    <article class="post" aria-labelledby="post-title">
-      <h2 id="post-title">The trouble with Bears</h2>
-      <p class="byline">By Evan Wild</p>
-
+  <main id="main-content" class="layout">
+    <!-- Main article -->
+    <article class="post" aria-labelledby="facts">
+      <h2 class="fancy" id="facts">The trouble with Bears</h2>
       <p>
         Tall, lumbering, angry, dangerous. The real-life bears of this world are proud, independent
-        creatures, self-serving and always on the hunt for food. Nothing like the bears you see on TV,
-        like Baloo from The Jungle Book. So what are bears really like, and why does the world's media
-        portray them with such a skewed vision? In this article we try to answer those questions and
-        give you a real insight into the life of the bear.
+        creatures, self-serving and always on the hunt for food. Nothing like the bears you see on TV.
+        So what are bears really like, and why does the world's media portray them with such a skewed
+        vision? In this article we try to answer those questions and give you a real insight into the
+        life of the bear.
       </p>
 
-      <h3 id="types">Types of bear</h3>
+      <h3 class="fancy">Types of bear</h3>
       <p>
-        Bears come in two broad varieties — wild and urban (kidding… kind of). Below is a quick table
-        with some fun facts about each “type”.
+        Bears come in two varieties — large and medium. You don’t get small bears. If you have seen a
+        small bear, then it was in fact probably a baby bear (cub) from another species.
+      </p>
+      <p>
+        Bears can also be classified in terms of their habitat — both large and medium bears are just as
+        at home in urban areas as they are in the countryside. Different habitats encourage different
+        behaviour however, as you’ll find out below. The table below also gives you some useful facts
+        about bears.
       </p>
 
-      <table class="bear-table" aria-describedby="types">
+      <table>
         <thead>
           <tr>
             <th scope="col">Bear Type</th>
@@ -72,7 +89,7 @@ index.html
         </thead>
         <tbody>
           <tr>
-            <th scope="row">Wild</th>
+            <td>Wild</td>
             <td>Brown or black</td>
             <td>1.4 to 2.8 meters</td>
             <td>Woods and forests</td>
@@ -80,7 +97,7 @@ index.html
             <td>Fish, meat, plants</td>
           </tr>
           <tr>
-            <th scope="row">Urban</th>
+            <td>Urban</td>
             <td>North Face</td>
             <td>18 to 22</td>
             <td>Condos and coffee shops</td>
@@ -90,40 +107,61 @@ index.html
         </tbody>
       </table>
 
-      <h3 id="habitats">Habitats and Eating habits</h3>
+      <!-- Updated: Bear Gallery section -->
+      <h2 class="fancy" id="gallery">Majestic bears in their element</h2>
       <p>
-        Wild bears eat a variety of meat, fish, fruit, nuts, and other naturally growing ingredients.
-        In general they will hunt for food themselves in woodland or moors, but at a push they will
-        track down their sustenance from farms or country houses.
+        Bears are powerful and adaptable, thriving everywhere from icy coasts to deep forests. Thick fur,
+        keen noses and serious fishing skills help them survive; curiosity and playfulness make them a joy
+        to watch (from a very safe distance).
+      </p>
+      <p>
+        The photographs below capture two sides of bear life. First, a wild brown bear working a river for
+        dinner; then an “urban” bear making do in a human landscape. Together they show how easily bears
+        switch between wilderness and the edges of our towns.
       </p>
 
-      <!-- First image -->
+      <!-- Wild bear image -->
       <figure class="media">
-        <img src="Media/wild-bear.jpg" alt="Brown bear standing in a forest clearing." />
+        <img
+          src="Media/wild-bear.jpg"
+          alt="Wild bear in the forest"
+          class="wild-bear"
+          loading="lazy"
+          width="1000"
+          height="667"
+        />
         <figcaption>Wild bear — photographed at a riverbank.</figcaption>
       </figure>
 
-      <p>
-        Urban (gentrified) bears, on the other hand, have largely abandoned the old ways. They prefer
-        to scavenge from readily available urban food outlets like dumpsters and fast-food joints.
-      </p>
-
-      <!-- Second image (will be styled grayscale in CSS like MDN) -->
-      <figure class="media">
-        <img src="Media/urban-bear.jpg" alt="Bear near a metal railing in an urban area." />
+      <!-- Urban bear image (grayscale frame styled in CSS) -->
+      <figure class="media media-bw">
+        <img
+          src="Media/urban-bear.jpg"
+          alt="Urban bear near trash bins"
+          class="urban-bear"
+          loading="lazy"
+          width="1000"
+          height="806"
+        />
         <figcaption>Urban bear — spotted near a city park.</figcaption>
       </figure>
 
-      <h3 id="mating">Mating rituals</h3>
+      <h3 class="fancy">Mating rituals</h3>
       <p>
-        Bears are romantic creatures by nature, and will naturally look for a mate that they can spend
-        the rest of their lives with (citation needed). The following audio clip contains a fact file
-        providing more details about bear “mating rituals”.
+        Bears are romantic creatures by nature, and will naturally look for a mate they can spend the rest
+        of their lives with. They will woo a potential suitor by making their dwelling look attractive —
+        for example with cave paintings or a bed of reeds in the case of a wild bear, and mood lighting
+        and a Michael Bublé CD in the case of an urban bear.
+      </p>
+      <p>
+        The following audio clip contains a fact file providing more details about bear mating rituals,
+        along with samples and quotes from experts.
       </p>
 
+      <!-- Audio -->
       <figure class="audio-block">
         <figcaption class="sr-only">Audio: Bear sounds</figcaption>
-        <audio controls>
+        <audio controls preload="metadata">
           <source src="Media/bear.mp3" type="audio/mpeg" />
           <source src="Media/bear.ogg" type="audio/ogg" />
           Your browser does not support the audio element.
@@ -131,43 +169,48 @@ index.html
         </audio>
       </figure>
 
-      <h3 id="about-author">About the author</h3>
-      <p>
-        Evan Wild is a plumber from Doncaster who is really “into” wildlife. He once went to Chester
-        Zoo on holiday, but got ill after eating a doner kebab. He has never seen a bear, but once read
-        a Daily Mail article about them, and thinks they sound cool.
-      </p>
+      <!-- About the author (in-article aside like MDN) -->
+      <aside aria-labelledby="about-author">
+        <h3 id="about-author" class="fancy">About the author</h3>
+        <p>
+          Evan Wild is an unemployed plumber from Doncaster, who has been really "into" wildlife since
+          childhood. He once went to Chester Zoo on holiday, but got ill after eating a doner kebab.
+          He has never seen a bear, but once read a Daily Mail article about them, and thinks they sound
+          cool.
+        </p>
+      </aside>
 
-      <!-- MDN-style comments section -->
-      <section id="comments" aria-labelledby="comments-title" class="comments">
+      <!-- Comments -->
+      <section id="comments" class="comments" aria-labelledby="comments-title">
         <div class="comments-header">
-          <h3 id="comments-title">Comments</h3>
+          <h3 id="comments-title" class="fancy">Comments</h3>
           <button class="show-hide" aria-expanded="false">Show comments</button>
         </div>
 
         <div class="comment-wrapper" hidden>
-          <ul class="comment-container"></ul>
+          <h4 class="add-comment-title fancy">Add your comment</h4>
 
-          <form class="comment-form">
+          <form class="comment-form" novalidate>
             <div class="field">
               <label for="name">Name:</label>
-              <input type="text" id="name" required />
+              <input type="text" id="name" name="name" />
             </div>
-
             <div class="field">
               <label for="comment">Comment:</label>
-              <textarea id="comment" rows="4" required></textarea>
+              <textarea id="comment" name="comment" rows="4"></textarea>
             </div>
-
-            <button type="submit">Add Comment</button>
+            <button type="submit">Post comment</button>
           </form>
+
+          <h4 class="fancy">Comments</h4>
+          <ul class="comment-container" aria-live="polite"></ul>
         </div>
       </section>
     </article>
 
     <!-- Related sidebar -->
-    <aside class="sidebar" aria-labelledby="related-title">
-      <h3 id="related-title">Related</h3>
+    <aside class="sidebar" aria-labelledby="related-title" role="complementary">
+      <h3 id="related-title" class="fancy">Related</h3>
       <ul class="related-links">
         <li><a href="#">The trouble with Bees</a></li>
         <li><a href="#">The trouble with Otters</a></li>
@@ -179,11 +222,11 @@ index.html
   </main>
 
   <footer class="site-footer">
-    <p>&copy; Copyright 2050 by nobody. All rights reversed.</p>
+    <p>&copy; 2025 All About Bears</p>
   </footer>
 
-  <!-- Back to Top button -->
-  <button id="backToTop" aria-label="Back to top">↑ Top</button>
+  <!-- Back to Top -->
+  <button id="backToTop" style="display:none;">Back to Top</button>
 
   <script src="main.js"></script>
 </body>

@@ -2,66 +2,68 @@
 Author: Saadat Baig
 Date: August 8, 2025
 main.js
-Commit 8: MDN-style comments toggle (hidden + aria-expanded), back-to-top reveal, Alt+1 focus.
+Commit 20: MDN parity — same behaviors as MDN sample with a11y fixes (hidden + aria-expanded),
+           plus safe Alt+1 focus and Back-to-Top init.
 */
 
+// Run once DOM is ready
 window.addEventListener('DOMContentLoaded', () => {
-  // ===== Accessibility: Alt+1 focuses the first image =====
+  // ===== Accessibility: Alt+1 focuses the first image (ensure focusable) =====
   document.addEventListener('keydown', (e) => {
     if (e.altKey && e.key === '1') {
       const firstImg = document.querySelector('img');
-      if (firstImg) firstImg.focus();
+      if (firstImg) {
+        if (!firstImg.hasAttribute('tabindex')) firstImg.setAttribute('tabindex', '-1');
+        firstImg.focus();
+      }
     }
   });
 
-  // ===== Back to Top button (reveal on scroll) =====
+  // ===== Back to Top button (MDN challenge doesn’t include it, but keep your behavior) =====
   const topButton = document.getElementById('backToTop');
   if (topButton) {
     const toggleTopBtn = () => {
-      if (window.scrollY > 300) {
-        topButton.style.display = 'block';
-      } else {
-        topButton.style.display = 'none';
-      }
+      topButton.style.display = window.scrollY > 300 ? 'block' : 'none';
     };
     toggleTopBtn();
     window.addEventListener('scroll', toggleTopBtn);
-
     topButton.addEventListener('click', () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 
-  // ===== Show/Hide Comments (MDN-style) =====
+  // ===== Show/Hide comments — MDN parity with a11y =====
+  // Works if the control is <button class="show-hide"> or <div class="show-hide">
   const showHideBtn = document.querySelector('.show-hide');
   const commentWrapper = document.querySelector('.comment-wrapper');
 
   if (showHideBtn && commentWrapper) {
-    // Ensure initial state matches HTML (wrapper hidden)
+    // Initialize closed like MDN (wrapper hidden)
+    const isButton = showHideBtn.tagName.toLowerCase() === 'button';
     const setState = (open) => {
-      showHideBtn.setAttribute('aria-expanded', String(open));
+      commentWrapper.hidden = !open;                          // a11y-friendly state
       showHideBtn.textContent = open ? 'Hide comments' : 'Show comments';
-      commentWrapper.hidden = !open;
+      if (isButton) showHideBtn.setAttribute('aria-expanded', String(open));
     };
 
-    // If author left hidden off in markup, normalize it here
-    setState(!commentWrapper.hasAttribute('hidden') ? true : false);
+    setState(false);
 
+    // MDN uses onclick + text comparison; we keep the same visible logic
     showHideBtn.addEventListener('click', () => {
-      const isOpen = showHideBtn.getAttribute('aria-expanded') === 'true';
-      setState(!isOpen);
-      if (!isOpen) {
-        // Move focus to the name field when opening for quicker input
+      const openNow = !commentWrapper.hidden;
+      setState(!openNow);
+
+      if (!openNow) {
+        // Focus first field when opening (quality-of-life)
         const nameInput = document.getElementById('name');
-        nameInput && nameInput.focus();
-      } else {
-        // Return focus to the toggle when closing
+        if (nameInput) nameInput.focus();
+      } else if (showHideBtn.focus) {
         showHideBtn.focus();
       }
     });
   }
 
-  // ===== Add Comment Form =====
+  // ===== Add new comment — MDN parity (same var names/flow), with trim + early return =====
   const form = document.querySelector('.comment-form');
   const nameField = document.querySelector('#name');
   const commentField = document.querySelector('#comment');
@@ -70,23 +72,28 @@ window.addEventListener('DOMContentLoaded', () => {
   if (form && nameField && commentField && list) {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
-
-      const nameValue = nameField.value.trim();
-      const commentValue = commentField.value.trim();
-      if (!nameValue || !commentValue) return;
-
-      const li = document.createElement('li');
-      const nameP = document.createElement('p');
-      const commentP = document.createElement('p');
-
-      nameP.textContent = nameValue;
-      commentP.textContent = commentValue;
-
-      li.append(nameP, commentP);
-      list.appendChild(li);
-
-      form.reset();
-      nameField.focus();
+      submitComment();
     });
+
+    function submitComment() {
+      const nameValue = (nameField.value || '').trim();
+      const commentValue = (commentField.value || '').trim();
+      if (!nameValue || !commentValue) return; // simple validation like MDN would expect
+
+      const listItem = document.createElement('li');
+      const namePara = document.createElement('p');
+      const commentPara = document.createElement('p');
+
+      namePara.textContent = nameValue;
+      commentPara.textContent = commentValue;
+
+      list.appendChild(listItem);
+      listItem.appendChild(namePara);
+      listItem.appendChild(commentPara);
+
+      nameField.value = '';
+      commentField.value = '';
+      nameField.focus();
+    }
   }
 });
