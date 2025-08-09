@@ -1,0 +1,85 @@
+<!--
+Name: Saadat Baig
+File: bees.html
+Date: August 8, 2025
+Description: “The trouble with Bees” page; same accessible layout/chrome as main site.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The trouble with Bees — All About Wildlife</title>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Sonsie+One" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <header class="site-hero" role="banner">
+    <h1>Welcome to our wildlife website</h1>
+  </header>
+
+  <div class="topbar">
+    <button class="nav-toggle" aria-controls="primary-nav" aria-expanded="false">
+      <span class="sr-only">Toggle navigation</span>
+      <span aria-hidden="true" class="nav-toggle__bars"></span>
+    </button>
+
+    <nav class="site-nav" aria-label="Main navigation">
+      <ul id="primary-nav">
+        <li><a href="AllAboutBears.html">Home</a></li>
+        <li><a href="our-team.html">Our Team</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="blog.html">Blog</a></li>
+      </ul>
+    </nav>
+
+    <form class="site-search" role="search" aria-label="Site search">
+      <label for="search-bees" class="sr-only">Search</label>
+      <input id="search-bees" name="q" type="search" placeholder="Search query" />
+      <button type="submit">Go!</button>
+    </form>
+  </div>
+
+  <main id="main-content" class="layout">
+    <article class="post" aria-labelledby="bees-title">
+      <h2 id="bees-title" class="fancy">The trouble with Bees</h2>
+      <p>
+        Bees are often portrayed as picnic ruiners, but they’re essential pollinators that keep
+        farms and wild ecosystems productive. Most species are gentle and prefer flowers to people.
+      </p>
+
+      <figure class="media">
+        <img src="Media/bees.jpg" alt="Close-up of a honeybee gathering pollen on a yellow flower"
+             loading="lazy" width="500" height="334" />
+        <figcaption>Bees: small bodies, huge ecological impact.</figcaption>
+      </figure>
+
+      <h3 class="fancy">Why they matter</h3>
+      <p>
+        Roughly one in three bites of food depends on pollination. Habitat loss, pesticides, and disease
+        stress bee populations, but planting native flowers and avoiding harmful chemicals helps.
+      </p>
+    </article>
+
+    <aside class="sidebar" aria-labelledby="related-title" role="complementary">
+      <h3 id="related-title" class="fancy">Related</h3>
+      <ul class="related-links">
+        <li><a href="bees.html" aria-current="page">The trouble with Bees</a></li>
+        <li><a href="otters.html">The trouble with Otters</a></li>
+        <li><a href="penguins.html">The trouble with Penguins</a></li>
+        <li><a href="octopi.html">The trouble with Octopi</a></li>
+        <li><a href="lemurs.html">The trouble with Lemurs</a></li>
+      </ul>
+    </aside>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2025 All About Bears</p>
+  </footer>
+
+  <button id="backToTop" style="display:none;">Back to Top</button>
+  <script src="main.js"></script>
+</body>
+</html>

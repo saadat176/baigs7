@@ -1,0 +1,85 @@
+<!--
+Name: Saadat Baig
+File: otters.html
+Date: August 8, 2025
+Description: “The trouble with Otters” page; accessible, consistent chrome.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The trouble with Otters — All About Wildlife</title>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Sonsie+One" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <header class="site-hero" role="banner">
+    <h1>Welcome to our wildlife website</h1>
+  </header>
+
+  <div class="topbar">
+    <button class="nav-toggle" aria-controls="primary-nav" aria-expanded="false">
+      <span class="sr-only">Toggle navigation</span>
+      <span aria-hidden="true" class="nav-toggle__bars"></span>
+    </button>
+
+    <nav class="site-nav" aria-label="Main navigation">
+      <ul id="primary-nav">
+        <li><a href="AllAboutBears.html">Home</a></li>
+        <li><a href="our-team.html">Our Team</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="blog.html">Blog</a></li>
+      </ul>
+    </nav>
+
+    <form class="site-search" role="search" aria-label="Site search">
+      <label for="search-otters" class="sr-only">Search</label>
+      <input id="search-otters" name="q" type="search" placeholder="Search query" />
+      <button type="submit">Go!</button>
+    </form>
+  </div>
+
+  <main id="main-content" class="layout">
+    <article class="post" aria-labelledby="otters-title">
+      <h2 id="otters-title" class="fancy">The trouble with Otters</h2>
+      <p>
+        Otters look like playful swimmers—and they are—but they’re also indicators of clean rivers
+        and healthy coasts. When pollution rises, otters vanish fast.
+      </p>
+
+      <figure class="media">
+        <img src="Media/otters.jpg" alt="River otter floating on its back in clear water"
+             loading="lazy" width="500" height="334" />
+        <figcaption>Playful doesn’t mean carefree—clean water keeps otters thriving.</figcaption>
+      </figure>
+
+      <h3 class="fancy">Protecting habitat</h3>
+      <p>
+        Riparian buffers, reduced runoff, and fish-friendly waterways support otters and
+        the countless species that share their homes.
+      </p>
+    </article>
+
+    <aside class="sidebar" aria-labelledby="related-title" role="complementary">
+      <h3 id="related-title" class="fancy">Related</h3>
+      <ul class="related-links">
+        <li><a href="bees.html">The trouble with Bees</a></li>
+        <li><a href="otters.html" aria-current="page">The trouble with Otters</a></li>
+        <li><a href="penguins.html">The trouble with Penguins</a></li>
+        <li><a href="octopi.html">The trouble with Octopi</a></li>
+        <li><a href="lemurs.html">The trouble with Lemurs</a></li>
+      </ul>
+    </aside>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2025 All About Bears</p>
+  </footer>
+
+  <button id="backToTop" style="display:none;">Back to Top</button>
+  <script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!--
+Name: Saadat Baig
+File: lemurs.html
+Date: August 8, 2025
+Description: “The trouble with Lemurs” page; accessible, consistent chrome.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The trouble with Lemurs — All About Wildlife</title>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Sonsie+One" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <header class="site-hero" role="banner">
+    <h1>Welcome to our wildlife website</h1>
+  </header>
+
+  <div class="topbar">
+    <button class="nav-toggle" aria-controls="primary-nav" aria-expanded="false">
+      <span class="sr-only">Toggle navigation</span>
+      <span aria-hidden="true" class="nav-toggle__bars"></span>
+    </button>
+
+    <nav class="site-nav" aria-label="Main navigation">
+      <ul id="primary-nav">
+        <li><a href="AllAboutBears.html">Home</a></li>
+        <li><a href="our-team.html">Our Team</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="blog.html">Blog</a></li>
+      </ul>
+    </nav>
+
+    <form class="site-search" role="search" aria-label="Site search">
+      <label for="search-lemurs" class="sr-only">Search</label>
+      <input id="search-lemurs" name="q" type="search" placeholder="Search query" />
+      <button type="submit">Go!</button>
+    </form>
+  </div>
+
+  <main id="main-content" class="layout">
+    <article class="post" aria-labelledby="lemurs-title">
+      <h2 id="lemurs-title" class="fancy">The trouble with Lemurs</h2>
+      <p>
+        Lemurs are Madagascar’s signature primates. Deforestation and hunting threaten many species,
+        some critically endangered.
+      </p>
+
+      <figure class="media">
+        <img src="Media/lemur.jpg" alt="Ring-tailed lemur perched on a branch in Madagascar"
+             loading="lazy" width="500" height="334" />
+        <figcaption>Forest guardians with bright eyes and louder calls.</figcaption>
+      </figure>
+
+      <h3 class="fancy">Conservation actions</h3>
+      <p>
+        Community forestry, habitat corridors, and sustainable livelihoods protect lemurs and support
+        local people.
+      </p>
+    </article>
+
+    <aside class="sidebar" aria-labelledby="related-title" role="complementary">
+      <h3 id="related-title" class="fancy">Related</h3>
+      <ul class="related-links">
+        <li><a href="bees.html">The trouble with Bees</a></li>
+        <li><a href="otters.html">The trouble with Otters</a></li>
+        <li><a href="penguins.html">The trouble with Penguins</a></li>
+        <li><a href="octopi.html">The trouble with Octopi</a></li>
+        <li><a href="lemurs.html" aria-current="page">The trouble with Lemurs</a></li>
+      </ul>
+    </aside>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2025 All About Bears</p>
+  </footer>
+
+  <button id="backToTop" style="display:none;">Back to Top</button>
+  <script src="main.js"></script>
+</body>
+</html>

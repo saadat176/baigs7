@@ -30,7 +30,7 @@ window.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ===== Show/Hide comments — MDN parity with a11y =====
+  // ===== Show/Hide comments =====
   const showHideBtn = document.querySelector('.show-hide');
   const commentWrapper = document.querySelector('.comment-wrapper');
 
@@ -57,7 +57,7 @@ window.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ===== Add new comment — MDN parity with minor safety =====
+  // ===== Add new comment =====
   const form = document.querySelector('.comment-form');
   const nameField = document.querySelector('#name');
   const commentField = document.querySelector('#comment');
@@ -92,116 +92,266 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
   // ========================================================================
-  //                      SITE SEARCH (client-side filter)
+  //                         ENHANCED SITE SEARCH
   // ========================================================================
   const siteSearchForm = document.querySelector('.site-search');
   const siteSearchInput = siteSearchForm ? siteSearchForm.querySelector('input[type="search"]') : null;
 
+  // Build a lightweight index of content to search
+  const searchScope = document.querySelector('main') || document.body;
+  const searchableSelectors = [
+    'article.post h2',
+    'article.post h3',
+    'article.post p',
+    'figcaption',
+    '.related-links li',
+    'table th',
+    'table td'
+  ];
+  const searchableNodes = Array.from(searchScope.querySelectorAll(searchableSelectors.join(',')));
+
+  // results panel + live region
+  let panel, statusLive;
   if (siteSearchForm && siteSearchInput) {
-    // Prevent full page reload on submit; apply filter instead
-    siteSearchForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      applySearch(siteSearchInput.value);
+    panel = document.createElement('div');
+    panel.className = 'search-results-panel';
+    panel.setAttribute('role', 'listbox');
+    panel.setAttribute('aria-label', 'Search results');
+    panel.hidden = true;
+
+    // minimal styling; works without extra CSS
+    panel.style.position = 'absolute';
+    panel.style.zIndex = '999';
+    panel.style.maxHeight = '280px';
+    panel.style.overflow = 'auto';
+    panel.style.background = '#ffffff';
+    panel.style.border = '1px solid #cbd3ea';
+    panel.style.boxShadow = '0 6px 18px rgba(0,0,0,.12)';
+    panel.style.padding = '6px';
+    panel.style.marginTop = '4px';
+    panel.style.width = 'min(38rem, 90vw)';
+
+    // container for positioning
+    const wrapper = document.createElement('div');
+    wrapper.style.position = 'relative';
+    siteSearchForm.appendChild(wrapper);
+    wrapper.appendChild(panel);
+
+    statusLive = document.createElement('div');
+    statusLive.className = 'sr-only';
+    statusLive.setAttribute('role', 'status');
+    statusLive.setAttribute('aria-live', 'polite');
+    siteSearchForm.appendChild(statusLive);
+  }
+
+  // Helpers: highlight management
+  function clearHighlights() {
+    const marks = searchScope.querySelectorAll('mark.search-hit');
+    marks.forEach(m => {
+      const parent = m.parentNode;
+      parent.replaceChild(document.createTextNode(m.textContent), m);
+      parent.normalize(); // merge text nodes
+    });
+  }
+  function highlightInNode(node, query) {
+    if (!query) return;
+    const txt = node.textContent;
+    const idx = txt.toLowerCase().indexOf(query.toLowerCase());
+    if (idx === -1) return;
+
+    const before = document.createTextNode(txt.slice(0, idx));
+    const hit = document.createElement('mark');
+    hit.className = 'search-hit';
+    hit.textContent = txt.slice(idx, idx + query.length);
+    const after = document.createTextNode(txt.slice(idx + query.length));
+    node.textContent = '';
+    node.appendChild(before);
+    node.appendChild(hit);
+    node.appendChild(after);
+  }
+
+  function makeSnippet(text, q, len = 120) {
+    const i = text.toLowerCase().indexOf(q.toLowerCase());
+    if (i === -1) return text.slice(0, len) + (text.length > len ? '…' : '');
+    const start = Math.max(0, i - 30);
+    const end = Math.min(text.length, i + q.length + 60);
+    let snip = (start > 0 ? '…' : '') + text.slice(start, end) + (end < text.length ? '…' : '');
+    return snip;
+  }
+
+  function layoutPanel() {
+    // keep panel aligned with input width
+    if (!panel || !siteSearchInput) return;
+    const rect = siteSearchInput.getBoundingClientRect();
+    panel.style.left = `${siteSearchInput.offsetLeft}px`;
+    panel.style.width = `${rect.width}px`;
+  }
+  window.addEventListener('resize', layoutPanel);
+
+  // Perform search -> populate panel
+  function runSearch(q) {
+    clearHighlights();
+    if (!panel) return;
+
+    const query = (q || '').trim();
+    panel.innerHTML = '';
+    panel.hidden = true;
+
+    if (!query) {
+      statusLive && (statusLive.textContent = 'Search cleared.');
+      return;
+    }
+
+    // "Smart" nav shortcuts
+    const navMap = {
+      'home': 'AllAboutBears.html',
+      'team': 'our-team.html',
+      'projects': 'projects.html',
+      'blog': 'blog.html'
+    };
+    const qLower = query.toLowerCase();
+    if (navMap[qLower]) {
+      // show intention to navigate
+      const item = document.createElement('button');
+      item.type = 'button';
+      item.setAttribute('role', 'option');
+      item.style.display = 'block';
+      item.style.width = '100%';
+      item.style.textAlign = 'left';
+      item.style.padding = '8px 10px';
+      item.style.border = '0';
+      item.style.background = 'transparent';
+      item.style.cursor = 'pointer';
+      item.innerHTML = `Go to <strong>${navMap[qLower].replace('.html','')}</strong>`;
+      item.addEventListener('click', () => { window.location.href = navMap[qLower]; });
+      panel.appendChild(item);
+      panel.hidden = false;
+      statusLive && (statusLive.textContent = 'Navigation shortcut. Press Enter to go.');
+      layoutPanel();
+      return;
+    }
+
+    const results = [];
+    for (const node of searchableNodes) {
+      const text = (node.textContent || '').trim();
+      if (!text) continue;
+      if (text.toLowerCase().includes(qLower)) {
+        results.push({ node, text });
+        if (results.length >= 20) break; // cap results for panel
+      }
+    }
+
+    if (results.length === 0) {
+      const none = document.createElement('div');
+      none.style.padding = '8px 10px';
+      none.textContent = `No results for “${query}”.`;
+      panel.appendChild(none);
+      panel.hidden = false;
+      statusLive && (statusLive.textContent = 'No results.');
+      layoutPanel();
+      return;
+    }
+
+    results.forEach((res, idx) => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.setAttribute('role', 'option');
+      btn.style.display = 'block';
+      btn.style.width = '100%';
+      btn.style.textAlign = 'left';
+      btn.style.padding = '8px 10px';
+      btn.style.border = '0';
+      btn.style.background = 'transparent';
+      btn.style.cursor = 'pointer';
+      btn.style.lineHeight = '1.35';
+
+      // Heading label if available
+      const sectionHeading = res.node.closest('article.post')?.querySelector('h2, h3');
+      const label = sectionHeading ? sectionHeading.textContent.trim() : document.title;
+      const snippet = makeSnippet(res.text, query);
+
+      btn.innerHTML = `<strong>${label}</strong><br><span style="opacity:.85">${snippet}</span>`;
+      btn.addEventListener('click', () => jumpToResult(res.node, query));
+      panel.appendChild(btn);
+
+      // Keyboard: first item gets aria-activedescendant-ish behavior via focus
+      if (idx === 0) {
+        // noop here; we focus on submit
+      }
     });
 
-    // Live filter while typing (debounced)
+    panel.hidden = false;
+    statusLive && (statusLive.textContent = `${results.length} result${results.length === 1 ? '' : 's'} found.`);
+    layoutPanel();
+  }
+
+  function jumpToResult(node, query) {
+    clearHighlights();
+    // ensure focusability
+    if (!node.hasAttribute('tabindex')) node.setAttribute('tabindex', '-1');
+    node.focus({ preventScroll: true });
+    node.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    highlightInNode(node, query);
+
+    // quick visual cue
+    node.style.transition = 'box-shadow .6s ease';
+    const prevShadow = node.style.boxShadow;
+    node.style.boxShadow = '0 0 0 4px rgba(255, 215, 0, .8)';
+    setTimeout(() => { node.style.boxShadow = prevShadow || 'none'; }, 700);
+
+    // hide panel after jump
+    if (panel) panel.hidden = true;
+  }
+
+  if (siteSearchForm && siteSearchInput) {
+    // Prevent full page reload on submit; center on best match
+    siteSearchForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const q = siteSearchInput.value.trim();
+      // If a nav keyword, runSearch will show shortcut; pressing Enter should navigate.
+      const navShortcuts = ['home', 'team', 'projects', 'blog'];
+      if (navShortcuts.includes(q.toLowerCase())) {
+        runSearch(q); // shows the "Go to" button
+        // auto navigate on submit
+        const map = {home:'AllAboutBears.html', team:'our-team.html', projects:'projects.html', blog:'blog.html'};
+        window.location.href = map[q.toLowerCase()];
+        return;
+      }
+
+      // Otherwise, pick first match and jump
+      // Build a quick result set (same as runSearch)
+      const qLower = q.toLowerCase();
+      const first = searchableNodes.find(n => (n.textContent || '').toLowerCase().includes(qLower));
+      if (first) {
+        jumpToResult(first, q);
+      } else {
+        runSearch(q); // show "No results" panel
+      }
+    });
+
+    // Live suggestions while typing (debounced)
     let t;
     siteSearchInput.addEventListener('input', () => {
       clearTimeout(t);
-      t = setTimeout(() => applySearch(siteSearchInput.value), 150);
+      t = setTimeout(() => runSearch(siteSearchInput.value), 200);
     });
 
     // Esc to clear search quickly
     siteSearchInput.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
         siteSearchInput.value = '';
-        applySearch('');
+        clearHighlights();
+        if (panel) { panel.hidden = true; panel.innerHTML = ''; }
+        statusLive && (statusLive.textContent = 'Search dismissed.');
       }
     });
-  }
 
-  // Gather candidate "items" once, then just show/hide on each search.
-  // Designed to work across Home / Our Team / Projects / Blog without HTML changes.
-  const searchScope = document.querySelector('main') || document.body;
-  const searchItems = collectSearchItems(searchScope);
-  const noResultsEl = ensureNoResultsEl(searchScope);
-
-  function applySearch(raw) {
-    const q = (raw || '').trim().toLowerCase();
-
-    if (!q) {
-      // Show everything when search is cleared
-      searchItems.forEach(el => {
-        if (el.hidden) el.hidden = false;
-      });
-      if (noResultsEl) noResultsEl.hidden = true;
-      return;
-    }
-
-    let matches = 0;
-    searchItems.forEach(el => {
-      const text = el.textContent ? el.textContent.toLowerCase() : '';
-      const hit = text.includes(q);
-      el.hidden = !hit;
-      if (hit) matches++;
-    });
-
-    if (noResultsEl) {
-      noResultsEl.hidden = matches > 0;
-      if (matches === 0) {
-        // show what we searched for
-        noResultsEl.querySelector('[data-q]').textContent = raw.trim();
+    // Click off the panel closes it
+    document.addEventListener('click', (e) => {
+      if (!panel || panel.hidden) return;
+      if (!panel.contains(e.target) && !siteSearchForm.contains(e.target)) {
+        panel.hidden = true;
       }
-    }
-  }
-
-  function collectSearchItems(scope) {
-    // Priority 1: author-annotated targets
-    const annotated = Array.from(scope.querySelectorAll('[data-search-item]'));
-
-    // Priority 2: common card/list/table-row/figure patterns used across your pages
-    const commonSelectors = [
-      '.project-card',              // projects.html cards (if present)
-      '.post-card',                 // blog posts (if present)
-      '.team-card, .card',          // team member cards (if present)
-      '.media',                     // figure blocks with images/captions
-      'table tbody tr',             // data rows
-      '.related-links li',          // sidebar list items
-      '.comment-container li',      // comments
-      'article.post > section',     // logical content sections
-    ];
-    const common = Array.from(scope.querySelectorAll(commonSelectors.join(',')));
-
-    // Fallback: if a page is very bare, use top-level paragraphs under the article
-    let fallback = [];
-    if (common.length === 0) {
-      fallback = Array.from(scope.querySelectorAll('article.post > p'));
-    }
-
-    // Ensure uniqueness and only elements that are actually visible containers (not the whole <main>)
-    const set = new Set();
-    [...annotated, ...common, ...fallback].forEach(el => {
-      if (el && el.nodeType === 1) set.add(el);
     });
-
-    return Array.from(set);
-  }
-
-  function ensureNoResultsEl(scope) {
-    // Create a polite "no results" line that we can show/hide
-    let info = scope.querySelector('.search-no-results');
-    if (info) return info;
-
-    info = document.createElement('p');
-    info.className = 'search-no-results';
-    info.hidden = true;
-    info.setAttribute('role', 'status');      // announce updates politely
-    info.setAttribute('aria-live', 'polite'); //
-    info.style.margin = '1rem 0';
-    info.innerHTML = `No results for “<span data-q></span>”.`;
-    // Prefer placing near the article/post content
-    const post = scope.querySelector('article.post') || scope;
-    post.appendChild(info);
-    return info;
   }
 });

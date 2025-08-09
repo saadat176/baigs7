@@ -1,0 +1,84 @@
+<!--
+Name: Saadat Baig
+File: penguins.html
+Date: August 8, 2025
+Description: “The trouble with Penguins” page; accessible, consistent chrome.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The trouble with Penguins — All About Wildlife</title>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Sonsie+One" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <header class="site-hero" role="banner">
+    <h1>Welcome to our wildlife website</h1>
+  </header>
+
+  <div class="topbar">
+    <button class="nav-toggle" aria-controls="primary-nav" aria-expanded="false">
+      <span class="sr-only">Toggle navigation</span>
+      <span aria-hidden="true" class="nav-toggle__bars"></span>
+    </button>
+
+    <nav class="site-nav" aria-label="Main navigation">
+      <ul id="primary-nav">
+        <li><a href="AllAboutBears.html">Home</a></li>
+        <li><a href="our-team.html">Our Team</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="blog.html">Blog</a></li>
+      </ul>
+    </nav>
+
+    <form class="site-search" role="search" aria-label="Site search">
+      <label for="search-penguins" class="sr-only">Search</label>
+      <input id="search-penguins" name="q" type="search" placeholder="Search query" />
+      <button type="submit">Go!</button>
+    </form>
+  </div>
+
+  <main id="main-content" class="layout">
+    <article class="post" aria-labelledby="penguins-title">
+      <h2 id="penguins-title" class="fancy">The trouble with Penguins</h2>
+      <p>
+        Penguins are symbols of the polar world. Changing sea-ice patterns shift where they feed and
+        breed, challenging entire colonies.
+      </p>
+
+      <figure class="media">
+        <img src="Media/penguins.jpg" alt="A group of penguins standing on sea ice near open water"
+             loading="lazy" width="500" height="334" />
+        <figcaption>Sea-ice timing is the penguin calendar.</figcaption>
+      </figure>
+
+      <h3 class="fancy">What helps</h3>
+      <p>
+        Marine protected areas, reduced overfishing, and climate action safeguard food webs penguins rely on.
+      </p>
+    </article>
+
+    <aside class="sidebar" aria-labelledby="related-title" role="complementary">
+      <h3 id="related-title" class="fancy">Related</h3>
+      <ul class="related-links">
+        <li><a href="bees.html">The trouble with Bees</a></li>
+        <li><a href="otters.html">The trouble with Otters</a></li>
+        <li><a href="penguins.html" aria-current="page">The trouble with Penguins</a></li>
+        <li><a href="octopi.html">The trouble with Octopi</a></li>
+        <li><a href="lemurs.html">The trouble with Lemurs</a></li>
+      </ul>
+    </aside>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2025 All About Bears</p>
+  </footer>
+
+  <button id="backToTop" style="display:none;">Back to Top</button>
+  <script src="main.js"></script>
+</body>
+</html>
