@@ -88,7 +88,7 @@ tbody tr:nth-child(odd) { background-color: #f3f3ff; }
   align-items: center;
   gap: 1rem;
   padding: .75rem 1.25rem;
-  flex-wrap: nowrap;                /* keep one row */
+  flex-wrap: nowrap;                /* keep one row on wide screens */
   border-top: 1px solid #d6d6e5;
   border-bottom: 1px solid #d6d6e5;
 }
@@ -139,11 +139,10 @@ tbody tr:nth-child(odd) { background-color: #f3f3ff; }
 }
 .site-search button:hover, .site-search button:focus { background: #333; }
 
-/* ===== Two-column layout (like desktop, but safe on phones) ===== */
+/* ===== Two-column layout (desktop/tablet) ===== */
 .layout {
   display: grid;
-  /* Prevent intrinsic min-content width from forcing zoom-out on mobile */
-  grid-template-columns: minmax(0, 1fr) minmax(260px, 28%);
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 28%); /* article | sidebar */
   gap: clamp(2rem, 4vw, 4rem);
   padding: clamp(1rem, 2vw, 2rem);
 }
@@ -239,31 +238,30 @@ details[open] > summary { font-weight: bold; }
 }
 #backToTop:hover, #backToTop:focus { background: #1b5e20; }
 
-/* ====== RESPONSIVE TUNING (keeps two columns) ====== */
+/* ====== RESPONSIVE: stack to ONE COLUMN on phones/tablets ====== */
 @media (max-width: 900px) {
-  /* shrink sidebar & gaps so the grid fits narrow phones without zoom-out */
+  /* Stack the grid: article first, sidebar afterwards */
   .layout {
-    grid-template-columns: minmax(0, 1fr) minmax(220px, 26%);
+    grid-template-columns: 1fr;
     gap: 1.25rem;
     padding: 0.9rem;
   }
-  .post { padding: 1.25rem; }
-  .sidebar { padding: 1rem; }
+  .post    { order: 1; padding: 1.25rem; }
+  .sidebar { order: 2; padding: 1rem; border-left: 0; border-top: 6px solid #c7c7da; }
+
+  /* Header fits better */
   .site-nav ul { gap: .5rem 1rem; }
 }
 
 @media (max-width: 600px) {
+  /* Keep single column; just tighten header controls */
   .topbar { padding: .5rem .75rem; gap: .5rem; flex-wrap: nowrap; }
   .site-nav a { font-size: clamp(.95rem, 2.9vw, 1.1rem); padding: .2rem .4rem; }
   .site-search input[type="search"] { width: 10.5rem; height: 30px; }
   .site-search button { height: 30px; }
 
-  .layout {
-    grid-template-columns: minmax(0, 1fr) minmax(200px, 34%); /* article | narrower sidebar */
-    gap: 1rem;
-    padding: .75rem;
-  }
-  .post { padding: 1rem; }
+  .layout { padding: .75rem; gap: 1rem; }
+  .post   { padding: 1rem; }
   .media-bw img { border-width: 6px; }
   table { font-size: .95rem; }
 }
