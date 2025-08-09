@@ -30,20 +30,28 @@ window.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ===== Show/Hide comments =====
+  // ===== Show/Hide comments (keyboard accessible) =====
   const showHideBtn = document.querySelector('.show-hide');
   const commentWrapper = document.querySelector('.comment-wrapper');
 
   if (showHideBtn && commentWrapper) {
     const isButton = showHideBtn.tagName.toLowerCase() === 'button';
+
+    // If it's not a real <button>, make it behave like one
+    if (!isButton) {
+      showHideBtn.setAttribute('role', 'button');
+      showHideBtn.setAttribute('tabindex', '0'); // focusable with Tab
+    }
+
     const setState = (open) => {
       commentWrapper.hidden = !open;
       showHideBtn.textContent = open ? 'Hide comments' : 'Show comments';
-      if (isButton) showHideBtn.setAttribute('aria-expanded', String(open));
+      showHideBtn.setAttribute('aria-expanded', String(open));
     };
 
     setState(false);
 
+    // Click toggles
     showHideBtn.addEventListener('click', () => {
       const openNow = !commentWrapper.hidden;
       setState(!openNow);
@@ -53,6 +61,14 @@ window.addEventListener('DOMContentLoaded', () => {
         if (nameInput) nameInput.focus();
       } else if (showHideBtn.focus) {
         showHideBtn.focus();
+      }
+    });
+
+    // Keyboard: Enter or Space toggles
+    showHideBtn.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault(); // avoid page scroll on Space
+        showHideBtn.click(); // reuse click handler
       }
     });
   }
@@ -273,11 +289,6 @@ window.addEventListener('DOMContentLoaded', () => {
       btn.innerHTML = `<strong>${label}</strong><br><span style="opacity:.85">${snippet}</span>`;
       btn.addEventListener('click', () => jumpToResult(res.node, query));
       panel.appendChild(btn);
-
-      // Keyboard: first item gets aria-activedescendant-ish behavior via focus
-      if (idx === 0) {
-        // noop here; we focus on submit
-      }
     });
 
     panel.hidden = false;
@@ -319,7 +330,6 @@ window.addEventListener('DOMContentLoaded', () => {
       }
 
       // Otherwise, pick first match and jump
-      // Build a quick result set (same as runSearch)
       const qLower = q.toLowerCase();
       const first = searchableNodes.find(n => (n.textContent || '').toLowerCase().includes(qLower));
       if (first) {

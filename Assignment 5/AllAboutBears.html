@@ -45,7 +45,7 @@ Description: Main “All About Bears” page. Responsive layout, accessible navi
 
     <form class="site-search" role="search" aria-label="Site search">
       <label for="search" class="sr-only">Search</label>
-      <input id="search" name="q" type="search" placeholder="Search query" />
+      <input id="search" name="q" type="search" placeholder="Search query" autocomplete="off" />
       <button type="submit">Go!</button>
     </form>
   </div>
@@ -55,6 +55,8 @@ Description: Main “All About Bears” page. Responsive layout, accessible navi
     <!-- Main article -->
     <article class="post" aria-labelledby="facts">
       <h2 class="fancy" id="facts">The trouble with Bears</h2>
+
+      <!-- Intro (kept as plain paragraphs inside the article) -->
       <p>
         Tall, lumbering, angry, dangerous. The real-life bears of this world are proud, independent
         creatures, self-serving and always on the hunt for food. Nothing like the bears you see on TV.
@@ -63,120 +65,137 @@ Description: Main “All About Bears” page. Responsive layout, accessible navi
         life of the bear.
       </p>
 
-      <h3 class="fancy">Types of bear</h3>
-      <p>
-        Bears come in two varieties — large and medium. You don’t get small bears. If you have seen a
-        small bear, then it was in fact probably a baby bear (cub) from another species.
-      </p>
-      <p>
-        Bears can also be classified in terms of their habitat — both large and medium bears are just as
-        at home in urban areas as they are in the countryside. Different habitats encourage different
-        behaviour however, as you’ll find out below. The table below also gives you some useful facts
-        about bears.
-      </p>
-
-      <table aria-describedby="bear-table-cap">
-        <caption id="bear-table-cap">
-          Quick reference comparing wild and urban bears by coat, size, habitat, lifespan, and diet.
-        </caption>
-        <thead>
-          <tr>
-            <th scope="col">Bear Type</th>
-            <th scope="col">Coat</th>
-            <th scope="col">Adult size</th>
-            <th scope="col">Habitat</th>
-            <th scope="col">Lifespan</th>
-            <th scope="col">Diet</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">Wild</th>
-            <td>Brown or black</td>
-            <td>1.4 to 2.8 meters</td>
-            <td>Woods and forests</td>
-            <td>25 to 28 years</td>
-            <td>Fish, meat, plants</td>
-          </tr>
-          <tr>
-            <th scope="row">Urban</th>
-            <td>North Face</td>
-            <td>18 to 22</td>
-            <td>Condos and coffee shops</td>
-            <td>20 to 32 years</td>
-            <td>Starbucks, sushi</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <!-- Bear Gallery -->
-      <h2 class="fancy" id="gallery">Majestic bears in their element</h2>
-      <p>
-        Bears are powerful and adaptable, thriving everywhere from icy coasts to deep forests. Thick fur,
-        keen noses and serious fishing skills help them survive; curiosity and playfulness make them a joy
-        to watch (from a very safe distance).
-      </p>
-      <p>
-        The photographs below capture two sides of bear life. First, a wild brown bear working a river for
-        dinner; then an “urban” bear making do in a human landscape. Together they show how easily bears
-        switch between wilderness and the edges of our towns.
-      </p>
-
-      <!-- Wild bear image -->
-      <figure class="media">
-        <img
-          src="Media/wild-bear.jpg"
-          alt="Wild bear in the forest"
-          class="wild-bear"
-          loading="lazy"
-          width="500"
-          height="334"
-        />
-        <figcaption>Wild bear — photographed at a riverbank.</figcaption>
-      </figure>
-
-      <!-- Urban bear image (grayscale frame styled in CSS) -->
-      <figure class="media media-bw">
-        <img
-          src="Media/urban-bear.jpg"
-          alt="Urban bear near trash bins"
-          class="urban-bear"
-          loading="lazy"
-          width="500"
-          height="403"
-        />
-        <figcaption>Urban bear — spotted near a city park.</figcaption>
-      </figure>
-
-      <h3 class="fancy">Mating rituals</h3>
-      <p>
-        Bears are romantic creatures by nature, and will naturally look for a mate they can spend the rest
-        of their lives with. They will woo a potential suitor by making their dwelling look attractive — 
-        for example with cave paintings or a bed of reeds in the case of a wild bear, and mood lighting
-        and a Michael Bublé CD in the case of an urban bear.
-      </p>
-      <p>
-        The following audio clip contains a fact file providing more details about bear mating rituals,
-        along with samples and quotes from experts.
-      </p>
-
-      <!-- Audio -->
-      <figure class="audio-block">
-        <figcaption class="sr-only">Audio: Bear sounds</figcaption>
-        <audio controls preload="metadata">
-          <source src="Media/bear.mp3" type="audio/mpeg" />
-          Your browser does not support the audio element.
-          <a href="Media/bear.mp3">Download the MP3</a>
-        </audio>
-      </figure>
-
-      <!-- Accessible transcript for hearing-impaired users -->
-      <details class="transcript">
-        <summary>Transcript of “Bear sounds” audio</summary>
+      <!-- Types of bear -->
+      <section aria-labelledby="types">
+        <h3 class="fancy" id="types">Types of bear</h3>
         <p>
-          Welcome to All About Bears, your guide to one of nature’s most fascinating yet misunderstood animals. While films often portray them as fearsome brutes, bears are intelligent, adaptable, and attuned to their surroundings. They roam remote wilderness or the edges of cities, showing remarkable flexibility in how they live. Large or medium in size, wild bears may grow over two meters, live up to 28 years, and thrive on fish, meat, and plants. Urban bears, in our playful imagining, might stroll in “North Face” gear past coffee shops, living longer, sometimes to 32 years, by learning to seek human food. In the wild, they detect scents kilometres away, spot fish with precision, and catch them in a single swipe; near people, they may raid picnics or bins. Even courtship ranges from strength displays in the wild to, humorously, mood lighting and a Michael Bublé playlist. Whether deep in forests or at city edges, bears remain resourceful survivors and vital to the ecosystems they call home.
+          Bears come in two varieties — large and medium. You don’t get small bears. If you have seen a
+          small bear, then it was in fact probably a baby bear (cub) from another species.
         </p>
-      </details>
+        <p>
+          Bears can also be classified in terms of their habitat — both large and medium bears are just as
+          at home in urban areas as they are in the countryside. Different habitats encourage different
+          behaviour however, as you’ll find out below. The table below also gives you some useful facts
+          about bears.
+        </p>
+
+        <!-- Quick reference table as its own named section -->
+        <section aria-labelledby="quick-ref">
+          <h4 id="quick-ref" class="sr-only">Quick reference table</h4>
+          <table>
+            <caption id="bear-table-cap">
+              Quick reference comparing wild and urban bears by coat, size, habitat, lifespan, and diet.
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">Bear Type</th>
+                <th scope="col">Coat</th>
+                <th scope="col">Adult size</th>
+                <th scope="col">Habitat</th>
+                <th scope="col">Lifespan</th>
+                <th scope="col">Diet</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Wild</th>
+                <td>Brown or black</td>
+                <td>1.4 to 2.8 meters</td>
+                <td>Woods and forests</td>
+                <td>25 to 28 years</td>
+                <td>Fish, meat, plants</td>
+              </tr>
+              <tr>
+                <th scope="row">Urban</th>
+                <td>North Face</td>
+                <td>18 to 22</td>
+                <td>Condos and coffee shops</td>
+                <td>20 to 32 years</td>
+                <td>Starbucks, sushi</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+      </section>
+
+      <!-- Gallery -->
+      <section aria-labelledby="gallery">
+        <h2 class="fancy" id="gallery">Majestic bears in their element</h2>
+        <p>
+          Bears are powerful and adaptable, thriving everywhere from icy coasts to deep forests. Thick fur,
+          keen noses and serious fishing skills help them survive; curiosity and playfulness make them a joy
+          to watch (from a very safe distance).
+        </p>
+        <p>
+          The photographs below capture two sides of bear life. First, a wild brown bear working a river for
+          dinner; then an “urban” bear making do in a human landscape. Together they show how easily bears
+          switch between wilderness and the edges of our towns.
+        </p>
+
+        <!-- Wild bear image -->
+        <figure class="media">
+          <img
+            src="Media/wild-bear.jpg"
+            alt="Wild bear in the forest"
+            class="wild-bear"
+            loading="lazy"
+            width="500"
+            height="334"
+          />
+          <figcaption>Wild bear — photographed at a riverbank.</figcaption>
+        </figure>
+
+        <!-- Urban bear image (grayscale frame styled in CSS) -->
+        <figure class="media media-bw">
+          <img
+            src="Media/urban-bear.jpg"
+            alt="Urban bear near trash bins"
+            class="urban-bear"
+            loading="lazy"
+            width="500"
+            height="403"
+          />
+          <figcaption>Urban bear — spotted near a city park.</figcaption>
+        </figure>
+      </section>
+
+      <!-- Mating rituals + audio -->
+      <section aria-labelledby="mating">
+        <h3 class="fancy" id="mating">Mating rituals</h3>
+        <p>
+          Bears are romantic creatures by nature, and will naturally look for a mate they can spend the rest
+          of their lives with. They will woo a potential suitor by making their dwelling look attractive — 
+          for example with cave paintings or a bed of reeds in the case of a wild bear, and mood lighting
+          and a Michael Bublé CD in the case of an urban bear.
+        </p>
+        <p>
+          The following audio clip contains a fact file providing more details about bear mating rituals,
+          along with samples and quotes from experts.
+        </p>
+
+        <!-- Visible fallback download link (works even if <audio> is ignored) -->
+        <p class="audio-download">
+          <a href="Media/bear.mp3" download>Download the MP3</a>
+        </p>
+
+        <!-- Audio -->
+        <figure class="audio-block">
+          <figcaption class="sr-only">Audio: Bear sounds</figcaption>
+          <audio controls preload="metadata" aria-describedby="audio-transcript">
+            <source src="Media/bear.mp3" type="audio/mpeg" />
+            Your browser does not support the audio element.
+            <a href="Media/bear.mp3" download>Download the MP3</a>
+          </audio>
+        </figure>
+
+        <!-- Accessible transcript for hearing-impaired users -->
+        <details class="transcript" id="audio-transcript">
+          <summary>Transcript of “Bear sounds” audio</summary>
+          <p>
+            Welcome to All About Bears, your guide to one of nature’s most fascinating yet misunderstood animals. While films often portray them as fearsome brutes, bears are intelligent, adaptable, and attuned to their surroundings. They roam remote wilderness or the edges of cities, showing remarkable flexibility in how they live. Large or medium in size, wild bears may grow over two meters, live up to 28 years, and thrive on fish, meat, and plants. Urban bears, in our playful imagining, might stroll in “North Face” gear past coffee shops, living longer, sometimes to 32 years, by learning to seek human food. In the wild, they detect scents kilometres away, spot fish with precision, and catch them in a single swipe; near people, they may raid picnics or bins. Even courtship ranges from strength displays in the wild to, humorously, mood lighting and a Michael Bublé playlist. Whether deep in forests or at city edges, bears remain resourceful survivors and vital to the ecosystems they call home.
+          </p>
+        </details>
+      </section>
 
       <!-- About the author (in-article aside like MDN) -->
       <aside aria-labelledby="about-author">
@@ -197,12 +216,12 @@ Description: Main “All About Bears” page. Responsive layout, accessible navi
         </div>
 
         <div id="comments-panel" class="comment-wrapper" hidden>
-          <h4 class="add-comment-title class fancy">Add your comment</h4>
+          <h4 class="add-comment-title fancy">Add your comment</h4>
 
           <form class="comment-form" aria-label="Add a public comment" novalidate>
             <div class="field">
               <label for="name">Name:</label>
-              <input type="text" id="name" name="name" />
+              <input type="text" id="name" name="name" autocomplete="name" />
             </div>
             <div class="field">
               <label for="comment">Comment:</label>
