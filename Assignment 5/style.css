@@ -348,3 +348,49 @@ summary:focus-visible,
 
 /* Make all images responsive globally */
 img { max-width: 100%; height: auto; }
+
+/* --- Phone tweaks to keep header like desktop --- */
+@media (max-width: 600px) {
+  /* keep the top bar in a row (not a column) */
+  .topbar {
+    flex-direction: row;            /* override previous column */
+    align-items: center;
+    justify-content: space-between;
+    gap: .5rem;
+  }
+
+  /* nav stays inline, just tighter spacing */
+  .site-nav { flex: 1 1 auto; }
+  .site-nav ul {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: .5rem 1rem;                /* smaller gaps on phone */
+  }
+  .site-nav a {
+    font-size: clamp(.95rem, 2.8vw, 1.1rem);
+    padding: 0 .4rem;
+  }
+
+  /* search sits on the right like desktop (can wrap if needed) */
+  .site-search {
+    flex: 0 0 auto;
+    justify-content: flex-end;
+    gap: .5rem;
+  }
+  .site-search input[type="search"] {
+    width: 10.5rem;                 /* prevent full-width block feel */
+    height: 30px;
+  }
+  .site-search button { height: 30px; }
+
+  /* shrink the hero wordmark so it doesn’t dominate on phone */
+  .site-hero { padding: 10px 0 12px; }
+  .site-hero h1 {
+    font-size: clamp(1.8rem, 7.2vw, 2.4rem);
+    text-shadow: 1px 1px 6px rgba(0,0,0,.35);
+  }
+
+  /* slightly tighter headings & article spacing for small screens */
+  h2 { margin-top: 1.2rem; margin-bottom: .6rem; }
+  .post { padding: 1.25rem; }
+}
