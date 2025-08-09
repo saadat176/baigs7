@@ -17,6 +17,9 @@ body {
   background: #e6e6fa;
 }
 
+/* keep major sections centered like desktop */
+.site-hero, .topbar, .layout, .site-footer { margin-left: auto; margin-right: auto; width: 100%; }
+
 /* Body text elements */
 p, li, table, label, input, textarea {
   font-family: 'Times New Roman', Times, serif;
@@ -140,11 +143,11 @@ tbody tr:nth-child(odd) { background-color: #f3f3ff; }
 }
 .site-search button:hover, .site-search button:focus { background: #333; }
 
-/* ===== Two-column layout (wider) ===== */
+/* ===== Two-column layout (always like desktop) ===== */
 .layout {
   display: grid;
-  grid-template-columns: minmax(840px, 3fr) minmax(320px, 1fr);
-  gap: clamp(2.5rem, 4vw, 4rem);
+  grid-template-columns: minmax(0, 3fr) minmax(260px, 1fr); /* article | sidebar */
+  gap: clamp(2rem, 4vw, 4rem);
   padding: clamp(1rem, 2vw, 2rem);
 }
 
@@ -242,38 +245,14 @@ details[open] > summary { font-weight: bold; }
 #backToTop:hover, #backToTop:focus { background: #1b5e20; }
 
 /* ====== RESPONSIVE BREAKPOINTS ====== */
+/* keep two columns on all widths; only adjust spacing a bit at ~1100px */
 @media (max-width: 1100px) {
   .site-nav ul { gap: clamp(.5rem, 2vw, 2rem); }
-  .layout {
-    gap: 1.75rem; padding: 1.1rem;
-    grid-template-columns: minmax(600px, 2fr) minmax(260px, 1fr);
-  }
+  .layout { gap: 1.75rem; padding: 1.1rem; }
 }
 
-@media (max-width: 900px) {
-  .layout { grid-template-columns: 1fr; }
-  .sidebar { border-left: 0; border-top: 6px solid #c7c7da; }
-  table {
-    display: block; width: 100%;
-    overflow-x: auto; -webkit-overflow-scrolling: touch; white-space: nowrap;
-  }
-}
-
-@media (max-width: 600px) {
-  .topbar { flex-direction: column; align-items: stretch; gap: .75rem; }
-  .site-nav, .site-search { flex: 1 1 auto; }
-  .site-nav ul { justify-content: space-evenly; gap: .75rem 1rem; }
-  .site-search { justify-content: stretch; }
-  .site-search input[type="search"] { width: 100%; flex: 1 1 auto; }
-  .site-search button { width: auto; flex: 0 0 auto; }
-
-  .comment-form .field { grid-template-columns: 1fr; padding: 0 0 1rem; }
-  .comment-form label { text-align: left; }
-  .comment-form button[type="submit"] { width: 100%; }
-
-  /* Show the mobile menu button on small screens */
-  .nav-toggle { display: inline-flex; align-items: center; justify-content: center; }
-}
+/* NOTE: removed the 900px rule that collapsed to 1 column */
+/* NOTE: removed the 600px rule that stacked the header */
 
 /* Ultra-wide monitors */
 @media (min-width: 1600px) {
@@ -313,23 +292,19 @@ summary:focus-visible,
   /* Header / hero */
   .site-hero { padding: 10px 0 12px; }
   .site-hero h1 {
-    font-size: 1.9rem;
-    text-shadow: 1px 1px 4px rgba(0,0,0,.35);
+    font-size: 2rem;         /* cap size */
+    text-shadow: none;       /* cleaner on tiny screens */
     line-height: 1.1;
   }
 
-  /* Topbar & nav */
+  /* Topbar & nav (stay horizontal, just tighter) */
   .topbar { padding: .5rem .75rem; gap: .5rem; }
   .site-nav ul { gap: .25rem .75rem; justify-content: space-evenly; }
-  .site-nav a {
-    font-size: .95rem;
-    padding: .35rem .45rem;
-    letter-spacing: .2px;
-  }
+  .site-nav a { font-size: .95rem; padding: .35rem .45rem; letter-spacing: .2px; }
 
   /* Search */
-  .site-search { width: 100%; justify-content: stretch; order: 3; }
-  .site-search input[type="search"] { width: 100%; height: 36px; }
+  .site-search { width: auto; justify-content: flex-end; }
+  .site-search input[type="search"] { width: 10.5rem; height: 36px; }
   .site-search button { height: 36px; }
 
   /* Article spacing & type scale */
@@ -351,46 +326,17 @@ img { max-width: 100%; height: auto; }
 
 /* --- Phone tweaks to keep header like desktop --- */
 @media (max-width: 600px) {
-  /* keep the top bar in a row (not a column) */
   .topbar {
-    flex-direction: row;            /* override previous column */
+    flex-direction: row;   /* ensure it never stacks */
     align-items: center;
     justify-content: space-between;
     gap: .5rem;
   }
-
-  /* nav stays inline, just tighter spacing */
   .site-nav { flex: 1 1 auto; }
-  .site-nav ul {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: .5rem 1rem;                /* smaller gaps on phone */
-  }
-  .site-nav a {
-    font-size: clamp(.95rem, 2.8vw, 1.1rem);
-    padding: 0 .4rem;
-  }
-
-  /* search sits on the right like desktop (can wrap if needed) */
-  .site-search {
-    flex: 0 0 auto;
-    justify-content: flex-end;
-    gap: .5rem;
-  }
-  .site-search input[type="search"] {
-    width: 10.5rem;                 /* prevent full-width block feel */
-    height: 30px;
-  }
+  .site-nav ul { flex-wrap: wrap; justify-content: center; gap: .5rem 1rem; }
+  .site-nav a { font-size: clamp(.95rem, 2.8vw, 1.1rem); padding: 0 .4rem; }
+  .site-search { flex: 0 0 auto; justify-content: flex-end; gap: .5rem; }
+  .site-search input[type="search"] { width: 10.5rem; height: 30px; }
   .site-search button { height: 30px; }
-
-  /* shrink the hero wordmark so it doesn’t dominate on phone */
-  .site-hero { padding: 10px 0 12px; }
-  .site-hero h1 {
-    font-size: clamp(1.8rem, 7.2vw, 2.4rem);
-    text-shadow: 1px 1px 6px rgba(0,0,0,.35);
-  }
-
-  /* slightly tighter headings & article spacing for small screens */
-  h2 { margin-top: 1.2rem; margin-bottom: .6rem; }
   .post { padding: 1.25rem; }
 }
